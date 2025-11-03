@@ -5,6 +5,13 @@ export interface StockQuote {
   regularMarketPrice: number;
   regularMarketChange: number;
   regularMarketChangePercent: number;
+  marketCap?: number;
+  volume?: number;
+  fiftyTwoWeekHigh?: number;
+  fiftyTwoWeekLow?: number;
+  regularMarketOpen?: number;
+  regularMarketDayHigh?: number;
+  regularMarketDayLow?: number;
 }
 
 /**
@@ -31,6 +38,13 @@ export async function getStockQuote(symbol: string): Promise<StockQuote | null> 
         regularMarketPrice: meta.regularMarketPrice || 0,
         regularMarketChange: meta.regularMarketChange || 0,
         regularMarketChangePercent: meta.regularMarketChangePercent || 0,
+        marketCap: meta.marketCap,
+        volume: meta.regularMarketVolume,
+        fiftyTwoWeekHigh: meta.fiftyTwoWeekHigh,
+        fiftyTwoWeekLow: meta.fiftyTwoWeekLow,
+        regularMarketOpen: meta.regularMarketOpen,
+        regularMarketDayHigh: meta.regularMarketDayHigh,
+        regularMarketDayLow: meta.regularMarketDayLow,
       };
     }
 
