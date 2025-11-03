@@ -24,10 +24,17 @@ export function StockTag({ symbol, sentiment }: StockTagProps) {
     { symbols: [symbol] },
     { 
       refetchInterval: 60000, // Refetch every minute
-      retry: 1, // Only retry once
-      retryDelay: 1000, // Wait 1s before retry
+      retry: false, // Don't retry on error
+      enabled: true, // Always try to fetch
     }
   );
+
+  // Log errors silently
+  useEffect(() => {
+    if (isError && error) {
+      console.warn(`Failed to fetch stock data for ${symbol}:`, error.message);
+    }
+  }, [isError, error, symbol]);
 
   useEffect(() => {
     if (quotes && quotes[symbol]) {
@@ -66,6 +73,18 @@ export function StockTag({ symbol, sentiment }: StockTagProps) {
   };
 
   const quote = quotes && quotes[symbol];
+
+  // If no stock data, show simple tag without price
+  if (!stockData) {
+    return (
+      <span
+        className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium
+          bg-gray-500/20 text-gray-300 border border-gray-500/30"
+      >
+        ${symbol}
+      </span>
+    );
+  }
 
   return (
     <TooltipProvider>
