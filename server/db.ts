@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { eq, desc, and, like, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -89,4 +89,101 @@ export async function getUserByOpenId(openId: string) {
   return result.length > 0 ? result[0] : undefined;
 }
 
-// TODO: add feature queries here as your schema grows.
+// Influencer queries
+export async function getAllInfluencers(): Promise<Influencer[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(influencers).where(eq(influencers.isActive, 1)).orderBy(influencers.followerCount);
+}
+
+export async function getInfluencersByPlatform(platform: "youtube" | "twitter"): Promise<Influencer[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(influencers)
+    .where(and(eq(influencers.platform, platform), eq(influencers.isActive, 1)))
+    .orderBy(desc(influencers.followerCount));
+}
+
+export async function getInfluencerById(id: number): Promise<Influencer | undefined> {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(influencers).where(eq(influencers.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+// Content queries
+export async function getAllContents(limit: number = 50): Promise<Content[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(contents)
+    .orderBy(desc(contents.publishedAt))
+    .limit(limit);
+}
+
+export async function getContentsByInfluencer(influencerId: number, limit: number = 20): Promise<Content[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(contents)
+    .where(eq(contents.influencerId, influencerId))
+    .orderBy(desc(contents.publishedAt))
+    .limit(limit);
+}
+
+export async function getContentsByPlatform(platform: "youtube" | "twitter", limit: number = 50): Promise<Content[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(contents)
+    .where(eq(contents.platform, platform))
+    .orderBy(desc(contents.publishedAt))
+    .limit(limit);
+}
+
+export async function searchContents(keyword: string, limit: number = 50): Promise<Content[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(contents)
+    .where(
+      sql`${contents.title} LIKE ${`%${keyword}%`} OR ${contents.description} LIKE ${`%${keyword}%`}`
+    )
+    .orderBy(desc(contents.publishedAt))
+    .limit(limit);
+}
+
+export async function insertContent(content: InsertContent): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot insert content: database not available");
+    return;
+  }
+  
+  try {
+    await db.insert(contents).values(content);
+  } catch (error) {
+    console.error("[Database] Failed to insert content:", error);
+    throw error;
+  }
+}
+
+export async function getContentsWithInfluencer(limit: number = 50) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const result = await db
+    .select({
+      content: contents,
+      influencer: influencers,
+    })
+    .from(contents)
+    .leftJoin(influencers, eq(contents.influencerId, influencers.id))
+    .orderBy(desc(contents.publishedAt))
+    .limit(limit);
+  
+  return result;
+}

@@ -2,9 +2,10 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { z } from "zod";
+import * as db from "./db";
 
 export const appRouter = router({
-    // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
@@ -17,12 +18,64 @@ export const appRouter = router({
     }),
   }),
 
-  // TODO: add feature routers here, e.g.
-  // todo: router({
-  //   list: protectedProcedure.query(({ ctx }) =>
-  //     db.getUserTodos(ctx.user.id)
-  //   ),
-  // }),
+  influencers: router({
+    list: publicProcedure.query(async () => {
+      return await db.getAllInfluencers();
+    }),
+    
+    byPlatform: publicProcedure
+      .input(z.object({ platform: z.enum(["youtube", "twitter"]) }))
+      .query(async ({ input }) => {
+        return await db.getInfluencersByPlatform(input.platform);
+      }),
+    
+    byId: publicProcedure
+      .input(z.object({ id: z.number() }))
+      .query(async ({ input }) => {
+        return await db.getInfluencerById(input.id);
+      }),
+  }),
+
+  contents: router({
+    list: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(50) }))
+      .query(async ({ input }) => {
+        return await db.getAllContents(input.limit);
+      }),
+    
+    withInfluencer: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(50) }))
+      .query(async ({ input }) => {
+        return await db.getContentsWithInfluencer(input.limit);
+      }),
+    
+    byInfluencer: publicProcedure
+      .input(z.object({ 
+        influencerId: z.number(),
+        limit: z.number().optional().default(20)
+      }))
+      .query(async ({ input }) => {
+        return await db.getContentsByInfluencer(input.influencerId, input.limit);
+      }),
+    
+    byPlatform: publicProcedure
+      .input(z.object({ 
+        platform: z.enum(["youtube", "twitter"]),
+        limit: z.number().optional().default(50)
+      }))
+      .query(async ({ input }) => {
+        return await db.getContentsByPlatform(input.platform, input.limit);
+      }),
+    
+    search: publicProcedure
+      .input(z.object({ 
+        keyword: z.string(),
+        limit: z.number().optional().default(50)
+      }))
+      .query(async ({ input }) => {
+        return await db.searchContents(input.keyword, input.limit);
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
