@@ -203,3 +203,10 @@
 - [x] YahooFinance API JSON 파싱 에러 수정
 - [x] 로고를 "TREND HACKER" 2줄로 변경 (영어)
 - [x] 에러 테스트 및 검증
+
+## Phase 25: YahooFinance API 에러 수정
+
+- [x] API 응답 검증 강화 (HTML vs JSON)
+- [x] 에러 처리 개선
+- [x] 실패 시 graceful fallback
+- [x] 로깅 추가

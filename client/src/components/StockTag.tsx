@@ -20,9 +20,13 @@ export function StockTag({ symbol, sentiment }: StockTagProps) {
     changePercent: number;
   } | null>(null);
 
-  const { data: quotes } = trpc.stocks.getQuotes.useQuery(
+  const { data: quotes, error, isError } = trpc.stocks.getQuotes.useQuery(
     { symbols: [symbol] },
-    { refetchInterval: 60000 } // Refetch every minute
+    { 
+      refetchInterval: 60000, // Refetch every minute
+      retry: 1, // Only retry once
+      retryDelay: 1000, // Wait 1s before retry
+    }
   );
 
   useEffect(() => {

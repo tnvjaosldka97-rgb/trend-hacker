@@ -28,17 +28,41 @@ export async function getStockQuote(symbol: string): Promise<StockQuote | null> 
       },
     });
 
+    // Validate response type
+    if (!response) {
+      console.warn(`Empty response for ${symbol}`);
+      return null;
+    }
+
+    // Check if response is HTML (error page)
+    if (typeof response === 'string' && response.trim().startsWith('<')) {
+      console.error(`Received HTML instead of JSON for ${symbol}`);
+      return null;
+    }
+
     // Ensure response is parsed as JSON
     let responseData: any;
     if (typeof response === 'string') {
       try {
         responseData = JSON.parse(response);
       } catch (e) {
-        console.error(`Failed to parse response for ${symbol}:`, e);
+        console.error(`Failed to parse JSON response for ${symbol}:`, e);
+        console.error(`Response preview: ${response.substring(0, 100)}...`);
         return null;
       }
     } else {
       responseData = response;
+    }
+
+    // Validate response structure
+    if (!responseData || !responseData.chart || !responseData.chart.result) {
+      console.warn(`Invalid response structure for ${symbol}`);
+      return null;
+    }
+
+    if (!responseData.chart.result[0]) {
+      console.warn(`No data in response for ${symbol}`);
+      return null;
     }
 
     if (responseData && responseData.chart && responseData.chart.result && responseData.chart.result[0]) {
