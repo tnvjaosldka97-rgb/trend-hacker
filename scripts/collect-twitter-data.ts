@@ -108,14 +108,57 @@ function isRecentTweet(createdAt: string): boolean {
  * Extract stock tickers from text
  */
 function extractTickers(text: string): string[] {
-  // Match $TICKER pattern
+  const tickers = new Set<string>();
+  
+  // 1. Match $TICKER pattern
   const tickerRegex = /\$([A-Z]{1,5})\b/g;
-  const matches = text.match(tickerRegex);
+  const tickerMatches = text.match(tickerRegex);
+  if (tickerMatches) {
+    tickerMatches.forEach(m => tickers.add(m.slice(1)));
+  }
   
-  if (!matches) return [];
+  // 2. Match company names and convert to tickers
+  const stockMap: Record<string, string> = {
+    'Tesla': 'TSLA',
+    'TSLA': 'TSLA',
+    'Nvidia': 'NVDA',
+    'NVIDIA': 'NVDA',
+    'NVDA': 'NVDA',
+    'Apple': 'AAPL',
+    'AAPL': 'AAPL',
+    'Microsoft': 'MSFT',
+    'MSFT': 'MSFT',
+    'Amazon': 'AMZN',
+    'AMZN': 'AMZN',
+    'Google': 'GOOGL',
+    'Alphabet': 'GOOGL',
+    'GOOGL': 'GOOGL',
+    'Meta': 'META',
+    'Facebook': 'META',
+    'META': 'META',
+    'AMD': 'AMD',
+    'Netflix': 'NFLX',
+    'NFLX': 'NFLX',
+    'Disney': 'DIS',
+    'DIS': 'DIS',
+    'Coinbase': 'COIN',
+    'COIN': 'COIN',
+    'Palantir': 'PLTR',
+    'PLTR': 'PLTR',
+    'Uber': 'UBER',
+    'UBER': 'UBER',
+    'Roblox': 'RBLX',
+    'RBLX': 'RBLX',
+  };
   
-  // Remove $ and deduplicate
-  return [...new Set(matches.map(m => m.slice(1)))];
+  for (const [name, ticker] of Object.entries(stockMap)) {
+    const regex = new RegExp(`\\b${name}\\b`, 'gi');
+    if (regex.test(text)) {
+      tickers.add(ticker);
+    }
+  }
+  
+  return Array.from(tickers);
 }
 
 /**
@@ -254,11 +297,8 @@ async function collectInfluencerTweets(influencer: Influencer): Promise<number> 
         continue; // Skip tweets without stock mentions
       }
 
-      // Check engagement (likes + retweets >= 10)
+      // No engagement filter - collect all tweets with stock mentions
       const engagement = favorite_count + retweet_count;
-      if (engagement < 10) {
-        continue;
-      }
 
       console.log(`  💬 Analyzing: "${full_text.slice(0, 60)}..."`);
       console.log(`  📈 Tickers: ${tickers.join(', ')}, Engagement: ${engagement}`);
@@ -311,7 +351,7 @@ async function main() {
   console.log('📋 Criteria:');
   console.log(`   - Minimum followers: ${MIN_FOLLOWERS.toLocaleString()}`);
   console.log(`   - Time window: Last ${HOURS_LIMIT} hours`);
-  console.log(`   - Minimum engagement: 10 (likes + retweets)`);
+  console.log(`   - Minimum engagement: None (all tweets collected)`);
   console.log(`   - Must mention stock tickers ($SYMBOL)\n`);
 
   const influencers = loadInfluencers();

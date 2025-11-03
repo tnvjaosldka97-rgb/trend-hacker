@@ -1,547 +1,405 @@
-import { useState, useEffect } from "react";
+import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { TrendingUp, TrendingDown, Clock, Activity, BarChart3, Zap, Users, MessageSquare, Target, Award, ExternalLink } from "lucide-react";
+import { Activity, BarChart3, Clock, TrendingUp, Users } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState("realtime");
-  
+  const [activeTab, setActiveTab] = useState<"realtime" | "today" | "weekly">("realtime");
+  const [currentTime, setCurrentTime] = useState(new Date());
+
   const realtimeQuery = trpc.trending.realtime.useQuery(undefined, {
-    refetchInterval: 15 * 60 * 1000,
+    enabled: activeTab === "realtime",
+    refetchInterval: 15 * 60 * 1000, // 15분마다 자동 새로고침
+  });
+
+  const todayQuery = trpc.trending.today.useQuery(undefined, {
+    enabled: activeTab === "today",
+  });
+
+  const weeklyQuery = trpc.trending.weekly.useQuery(undefined, {
+    enabled: activeTab === "weekly",
+  });
+
+  // 실시간 타이머
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTimeAgo = (date: Date | null) => {
+    if (!date) return "";
+    const seconds = Math.floor((currentTime.getTime() - new Date(date).getTime()) / 1000);
+    if (seconds < 60) return `${seconds}초 전`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}분 전`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}시간 전`;
+    return `${Math.floor(hours / 24)}일 전`;
+  };
+
+  const formatNextUpdate = (date: Date | null) => {
+    if (!date) return "";
+    const seconds = Math.floor((new Date(date).getTime() - currentTime.getTime()) / 1000);
+    if (seconds < 0) return "곧 업데이트";
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes}분 ${secs}초 후`;
+  };
+
+  const getActiveData = () => {
+    if (activeTab === "realtime") return realtimeQuery.data;
+    if (activeTab === "today") return todayQuery.data;
+    return weeklyQuery.data;
+  };
+
+  const activeData = getActiveData();
+  const stocks = activeData?.stocks || [];
+  
+  // 감성 분석 기반 분류
+  const bullishStocks = stocks.filter(s => {
+    const total = s.bullish + s.bearish + s.neutral;
+    if (total === 0) return false;
+    return (s.bullish / total) >= 0.6; // 60% 이상 상승 전망
   });
   
-  const todayQuery = trpc.trending.today.useQuery();
-  const weeklyQuery = trpc.trending.weekly.useQuery();
+  const bearishStocks = stocks.filter(s => {
+    const total = s.bullish + s.bearish + s.neutral;
+    if (total === 0) return false;
+    return (s.bearish / total) >= 0.6; // 60% 이상 하락 전망
+  });
+  
+  const mixedStocks = stocks.filter(s => {
+    const total = s.bullish + s.bearish + s.neutral;
+    if (total === 0) return true;
+    const bullishRatio = s.bullish / total;
+    const bearishRatio = s.bearish / total;
+    return bullishRatio < 0.6 && bearishRatio < 0.6; // 의견 분분
+  });
+
+  const getSentimentColor = (stock: any) => {
+    const total = stock.bullish + stock.bearish + stock.neutral;
+    if (total === 0) return "border-slate-600";
+    const bullishRatio = stock.bullish / total;
+    const bearishRatio = stock.bearish / total;
+    
+    if (bullishRatio >= 0.8) return "border-green-500 bg-green-500/10"; // 강력 상승
+    if (bullishRatio >= 0.6) return "border-green-600 bg-green-600/5"; // 상승
+    if (bearishRatio >= 0.8) return "border-red-500 bg-red-500/10"; // 강력 하락
+    if (bearishRatio >= 0.6) return "border-red-600 bg-red-600/5"; // 하락
+    return "border-slate-600 bg-slate-800/50"; // 의견 분분
+  };
+
+  const getSentimentBadge = (stock: any) => {
+    const total = stock.bullish + stock.bearish + stock.neutral;
+    if (total === 0) return null;
+    const bullishRatio = stock.bullish / total;
+    const bearishRatio = stock.bearish / total;
+    
+    if (bullishRatio >= 0.8) return <span className="text-xs font-bold text-green-400">⭐ 강력 상승 컨센서스</span>;
+    if (bearishRatio >= 0.8) return <span className="text-xs font-bold text-red-400">⚠️ 강력 하락 컨센서스</span>;
+    return null;
+  };
+
+  const renderStockCard = (stock: any, index: number) => {
+    const total = stock.bullish + stock.bearish + stock.neutral;
+    const bullishPercent = total > 0 ? Math.round((stock.bullish / total) * 100) : 0;
+    const bearishPercent = total > 0 ? Math.round((stock.bearish / total) * 100) : 0;
+    const neutralPercent = total > 0 ? Math.round((stock.neutral / total) * 100) : 0;
+
+    return (
+      <div
+        key={stock.ticker}
+        className={`border-2 ${getSentimentColor(stock)} rounded-lg p-6 transition-all hover:scale-[1.02]`}
+      >
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-2xl font-bold text-cyan-300">${stock.ticker}</span>
+              <TrendingUp className="w-5 h-5 text-cyan-400" />
+            </div>
+            <div className="text-sm text-slate-400">{stock.count}회 언급</div>
+          </div>
+          <div className="text-right">
+            <div className="text-3xl font-bold text-cyan-300">#{index + 1}</div>
+          </div>
+        </div>
+
+        {/* 감성 분석 결과 */}
+        <div className="mb-4 space-y-2">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-green-400">🟢 상승 예상</span>
+            <span className="font-bold text-green-300">{stock.bullish}명 ({bullishPercent}%)</span>
+          </div>
+          <div className="w-full bg-slate-700 rounded-full h-2">
+            <div
+              className="bg-green-500 h-2 rounded-full transition-all"
+              style={{ width: `${bullishPercent}%` }}
+            />
+          </div>
+
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-red-400">🔴 하락 예상</span>
+            <span className="font-bold text-red-300">{stock.bearish}명 ({bearishPercent}%)</span>
+          </div>
+          <div className="w-full bg-slate-700 rounded-full h-2">
+            <div
+              className="bg-red-500 h-2 rounded-full transition-all"
+              style={{ width: `${bearishPercent}%` }}
+            />
+          </div>
+
+          {neutralPercent > 0 && (
+            <>
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-slate-400">⚪ 중립</span>
+                <span className="font-bold text-slate-300">{stock.neutral}명 ({neutralPercent}%)</span>
+              </div>
+              <div className="w-full bg-slate-700 rounded-full h-2">
+                <div
+                  className="bg-slate-500 h-2 rounded-full transition-all"
+                  style={{ width: `${neutralPercent}%` }}
+                />
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* 컨센서스 배지 */}
+        {getSentimentBadge(stock)}
+
+        {/* 최신 의견 */}
+        {stock.latestTweet && (
+          <div className="mt-4 pt-4 border-t border-slate-700">
+            <div className="text-sm text-slate-300 mb-2">→ {stock.latestTweet}</div>
+            <div className="flex items-center justify-between text-xs text-slate-500">
+              <span>@{stock.latestTweetAuthor} · {formatTimeAgo(stock.latestTweetTime)}</span>
+              {stock.latestTweetUrl && (
+                <a
+                  href={stock.latestTweetUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-cyan-400 hover:text-cyan-300"
+                >
+                  원문
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      {/* IT Tech Background */}
-      <div 
-        className="fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: 'url(/bg-tech.png)',
-          filter: 'brightness(0.4)'
+    <div className="min-h-screen bg-slate-950 text-slate-100 relative overflow-hidden">
+      {/* IT 배경 */}
+      <div
+        className="fixed inset-0 opacity-5"
+        style={{
+          backgroundImage: "url('/bg-tech.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-slate-950/80 via-slate-900/70 to-slate-950/90" />
 
-      {/* Header */}
-      <header className="relative z-10 border-b border-cyan-500/20 bg-slate-900/60 backdrop-blur-md sticky top-0 shadow-lg shadow-cyan-500/5">
+      {/* 헤더 */}
+      <header className="relative border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="text-center md:text-left">
-              <div className="flex items-center gap-3 justify-center md:justify-start">
-                <Zap className="w-8 h-8 text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
-                <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent drop-shadow-lg">
-                  TREND HACKER
-                </h1>
-              </div>
-              <p className="text-sm text-cyan-300/80 mt-1 font-medium">200명의 전문가 | 실시간 데이터 스트림</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold text-cyan-300 flex items-center gap-3">
+                <Activity className="w-10 h-10" />
+                TREND HACKER
+              </h1>
+              <p className="text-slate-400 mt-1">200명의 전문가 | 실시간 데이터 스트림</p>
             </div>
-            <LiveTimer lastUpdate={realtimeQuery.data?.lastUpdate} nextUpdate={realtimeQuery.data?.nextUpdate} />
+            <div className="flex items-center gap-6 text-sm">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-red-400" />
+                <span className="text-slate-300">LAST UPDATE</span>
+                <span className="font-mono font-bold text-cyan-300">
+                  {(activeData as any)?.lastUpdate ? formatTimeAgo((activeData as any).lastUpdate) : "0:00"}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-cyan-400" />
+                <span className="text-slate-300">NEXT UPDATE</span>
+                <span className="font-mono font-bold text-cyan-300">
+                  {(activeData as any)?.nextUpdate ? formatNextUpdate((activeData as any).nextUpdate) : "0:00"}
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="relative z-10 container mx-auto px-4 py-8">
-        {/* Hero Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <HeroStatCard 
-            icon={<Users className="w-6 h-6" />}
-            title="전문가"
-            value="200+"
-            subtitle="검증된 계정"
-            color="cyan"
-          />
-          <HeroStatCard 
-            icon={<MessageSquare className="w-6 h-6" />}
-            title="트윗"
-            value={todayQuery.data?.totalTweets || 0}
-            subtitle="오늘 수집"
-            color="blue"
-          />
-          <HeroStatCard 
-            icon={<Target className="w-6 h-6" />}
-            title="종목"
-            value={todayQuery.data?.stocks.length || 0}
-            subtitle="추적 중"
-            color="purple"
-          />
-          <HeroStatCard 
-            icon={<Activity className="w-6 h-6" />}
-            title="업데이트"
-            value="15분"
-            subtitle="자동 갱신"
-            color="pink"
-          />
+      {/* 통계 카드 */}
+      <div className="relative container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="bg-gradient-to-br from-cyan-900/40 to-cyan-950/40 border border-cyan-700/50 rounded-lg p-6">
+            <div className="flex items-center gap-3 mb-2">
+              <Users className="w-6 h-6 text-cyan-400" />
+              <span className="text-slate-300 text-sm">전문가</span>
+            </div>
+            <div className="text-4xl font-bold text-cyan-300">200+</div>
+            <div className="text-xs text-slate-400 mt-1">검증된 계정</div>
+          </div>
+
+          <div className="bg-gradient-to-br from-blue-900/40 to-blue-950/40 border border-blue-700/50 rounded-lg p-6">
+            <div className="flex items-center gap-3 mb-2">
+              <BarChart3 className="w-6 h-6 text-blue-400" />
+              <span className="text-slate-300 text-sm">트윗</span>
+            </div>
+            <div className="text-4xl font-bold text-blue-300">{activeData?.totalTweets || 0}</div>
+            <div className="text-xs text-slate-400 mt-1">오늘 수집</div>
+          </div>
+
+          <div className="bg-gradient-to-br from-purple-900/40 to-purple-950/40 border border-purple-700/50 rounded-lg p-6">
+            <div className="flex items-center gap-3 mb-2">
+              <TrendingUp className="w-6 h-6 text-purple-400" />
+              <span className="text-slate-300 text-sm">종목</span>
+            </div>
+            <div className="text-4xl font-bold text-purple-300">{stocks.length}</div>
+            <div className="text-xs text-slate-400 mt-1">추적 중</div>
+          </div>
+
+          <div className="bg-gradient-to-br from-pink-900/40 to-pink-950/40 border border-pink-700/50 rounded-lg p-6">
+            <div className="flex items-center gap-3 mb-2">
+              <Activity className="w-6 h-6 text-pink-400" />
+              <span className="text-slate-300 text-sm">업데이트</span>
+            </div>
+            <div className="text-4xl font-bold text-pink-300">15분</div>
+            <div className="text-xs text-slate-400 mt-1">자동 갱신</div>
+          </div>
         </div>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="bg-slate-800/60 border border-cyan-500/20 backdrop-blur-md p-1 shadow-lg">
-            <TabsTrigger 
-              value="realtime" 
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-600 data-[state=active]:to-red-500 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-red-500/50"
-            >
-              <Activity className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">🔴 실시간</span>
-              <span className="sm:hidden">🔴</span>
-              <span className="text-xs ml-1">(15분)</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="today"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-600 data-[state=active]:to-blue-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-cyan-500/50"
-            >
-              <Clock className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">📊 오늘</span>
-              <span className="sm:hidden">📊</span>
-              <span className="text-xs ml-1">(24h)</span>
-            </TabsTrigger>
-            <TabsTrigger 
-              value="weekly"
-              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-pink-600 data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-purple-500/50"
-            >
-              <BarChart3 className="w-4 h-4 mr-2" />
-              <span className="hidden sm:inline">📈 주간</span>
-              <span className="sm:hidden">📈</span>
-              <span className="text-xs ml-1">(7일)</span>
-            </TabsTrigger>
-          </TabsList>
+        {/* 탭 네비게이션 */}
+        <div className="flex items-center gap-4 mb-8">
+          <button
+            onClick={() => setActiveTab("realtime")}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+              activeTab === "realtime"
+                ? "bg-red-600 text-white"
+                : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
+            }`}
+          >
+            <Activity className="w-5 h-5" />
+            실시간 (15분)
+          </button>
+          <button
+            onClick={() => setActiveTab("today")}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+              activeTab === "today"
+                ? "bg-cyan-600 text-white"
+                : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
+            }`}
+          >
+            <BarChart3 className="w-5 h-5" />
+            오늘 (24h)
+          </button>
+          <button
+            onClick={() => setActiveTab("weekly")}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+              activeTab === "weekly"
+                ? "bg-purple-600 text-white"
+                : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
+            }`}
+          >
+            <TrendingUp className="w-5 h-5" />
+            주간 (7일)
+          </button>
+        </div>
 
-          <TabsContent value="realtime" className="space-y-6">
-            <RealtimeView data={realtimeQuery.data} isLoading={realtimeQuery.isLoading} />
-          </TabsContent>
-
-          <TabsContent value="today" className="space-y-6">
-            <TodayView data={todayQuery.data} isLoading={todayQuery.isLoading} />
-          </TabsContent>
-
-          <TabsContent value="weekly" className="space-y-6">
-            <WeeklyView data={weeklyQuery.data} isLoading={weeklyQuery.isLoading} />
-          </TabsContent>
-        </Tabs>
-      </main>
-
-      {/* Footer */}
-      <footer className="relative z-10 border-t border-cyan-500/20 bg-slate-900/60 backdrop-blur-md mt-20">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+        {/* 종목 리스트 */}
+        <div className="space-y-8">
+          {/* 상승 예상 종목 */}
+          {bullishStocks.length > 0 && (
             <div>
-              <h3 className="text-cyan-300 font-bold mb-2 flex items-center gap-2 justify-center md:justify-start">
-                <Zap className="w-5 h-5" />
+              <h2 className="text-2xl font-bold text-green-400 mb-4 flex items-center gap-2">
+                📈 상승 예상 종목 ({bullishStocks.length})
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {bullishStocks.map((stock, idx) => renderStockCard(stock, idx))}
+              </div>
+            </div>
+          )}
+
+          {/* 하락 예상 종목 */}
+          {bearishStocks.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-bold text-red-400 mb-4 flex items-center gap-2">
+                📉 하락 예상 종목 ({bearishStocks.length})
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {bearishStocks.map((stock, idx) => renderStockCard(stock, idx))}
+              </div>
+            </div>
+          )}
+
+          {/* 의견 분분 종목 */}
+          {mixedStocks.length > 0 && (
+            <div>
+              <h2 className="text-2xl font-bold text-slate-400 mb-4 flex items-center gap-2">
+                ⚖️ 의견 분분 종목 ({mixedStocks.length})
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {mixedStocks.map((stock, idx) => renderStockCard(stock, idx))}
+              </div>
+            </div>
+          )}
+
+          {stocks.length === 0 && (
+            <div className="text-center py-20">
+              <Activity className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+              <p className="text-slate-400 text-lg">
+                {activeTab === "realtime" && "최근 15분간 종목 언급이 없습니다"}
+                {activeTab === "today" && "오늘 종목 언급이 없습니다"}
+                {activeTab === "weekly" && "이번 주 종목 언급이 없습니다"}
+              </p>
+              <p className="text-slate-500 text-sm mt-2">데이터 수집 대기 중...</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* 푸터 */}
+      <footer className="relative border-t border-slate-800 bg-slate-900/80 backdrop-blur-sm mt-20">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-cyan-300 font-bold text-lg mb-4 flex items-center gap-2">
+                <Activity className="w-5 h-5" />
                 TREND HACKER
               </h3>
-              <p className="text-slate-400 text-sm">
-                200명의 검증된 투자 전문가의<br />실시간 인사이트를 한눈에
+              <p className="text-slate-400 text-sm leading-relaxed">
+                200명의 검증된 투자 전문가의 실시간 인사이트를 한눈에
               </p>
             </div>
+
             <div>
-              <h3 className="text-cyan-300 font-bold mb-2">데이터 소스</h3>
-              <p className="text-slate-400 text-sm">
-                Twitter · Reddit · StockTwits<br />
-                15분 간격 자동 업데이트
-              </p>
+              <h4 className="text-slate-300 font-semibold mb-4">데이터 소스</h4>
+              <ul className="text-slate-400 text-sm space-y-2">
+                <li>Twitter · Reddit · StockTwits</li>
+                <li>15분 간격 자동 업데이트</li>
+              </ul>
             </div>
+
             <div>
-              <h3 className="text-cyan-300 font-bold mb-2">신뢰성 기준</h3>
-              <p className="text-slate-400 text-sm">
-                팔로워 5,000+ · 인증 계정<br />
-                AI 감성 분석 · 참여도 필터링
-              </p>
+              <h4 className="text-slate-300 font-semibold mb-4">신뢰성 기준</h4>
+              <ul className="text-slate-400 text-sm space-y-2">
+                <li>팔로워 5,000+ · 인증 계정</li>
+                <li>AI 감성 분석 · 참여도 필터링</li>
+              </ul>
             </div>
           </div>
-          <div className="mt-8 pt-6 border-t border-slate-700/50 text-center text-slate-500 text-sm">
+
+          <div className="mt-8 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
             © 2025 TREND HACKER. Powered by AI & Real-time Data Streams.
           </div>
         </div>
       </footer>
     </div>
-  );
-}
-
-function HeroStatCard({ icon, title, value, subtitle, color }: { 
-  icon: React.ReactNode; 
-  title: string; 
-  value: string | number; 
-  subtitle: string; 
-  color: string;
-}) {
-  const colorClasses = {
-    cyan: 'from-cyan-500/20 to-cyan-600/20 border-cyan-500/30 text-cyan-300 shadow-cyan-500/20',
-    blue: 'from-blue-500/20 to-blue-600/20 border-blue-500/30 text-blue-300 shadow-blue-500/20',
-    purple: 'from-purple-500/20 to-purple-600/20 border-purple-500/30 text-purple-300 shadow-purple-500/20',
-    pink: 'from-pink-500/20 to-pink-600/20 border-pink-500/30 text-pink-300 shadow-pink-500/20',
-  };
-
-  const classes = colorClasses[color as keyof typeof colorClasses];
-
-  return (
-    <Card className={`bg-gradient-to-br ${classes} border backdrop-blur-md shadow-lg`}>
-      <CardContent className="p-4">
-        <div className="flex items-center gap-3 mb-2">
-          <div className={`${classes.split(' ')[4]}`}>{icon}</div>
-          <p className="text-xs text-slate-400 font-medium">{title}</p>
-        </div>
-        <p className={`text-2xl md:text-3xl font-bold ${classes.split(' ')[4]} font-mono`}>{value}</p>
-        <p className="text-xs text-slate-500 mt-1">{subtitle}</p>
-      </CardContent>
-    </Card>
-  );
-}
-
-function LiveTimer({ lastUpdate, nextUpdate }: { lastUpdate?: Date; nextUpdate?: Date }) {
-  const [timeAgo, setTimeAgo] = useState("");
-  const [timeUntil, setTimeUntil] = useState("");
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (lastUpdate) {
-        const seconds = Math.floor((Date.now() - new Date(lastUpdate).getTime()) / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        setTimeAgo(`${minutes}:${remainingSeconds.toString().padStart(2, '0')}`);
-      }
-      
-      if (nextUpdate) {
-        const seconds = Math.floor((new Date(nextUpdate).getTime() - Date.now()) / 1000);
-        if (seconds > 0) {
-          const minutes = Math.floor(seconds / 60);
-          const remainingSeconds = seconds % 60;
-          setTimeUntil(`${minutes}:${remainingSeconds.toString().padStart(2, '0')}`);
-        } else {
-          setTimeUntil("00:00");
-        }
-      }
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [lastUpdate, nextUpdate]);
-
-  return (
-    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs sm:text-sm bg-slate-800/60 backdrop-blur-md border border-cyan-500/20 rounded-lg px-4 py-3 shadow-lg shadow-cyan-500/10">
-      <div className="flex items-center gap-2">
-        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-lg shadow-red-500/50" />
-        <span className="text-slate-400">LAST UPDATE</span>
-        <span className="text-cyan-300 font-mono font-bold text-base drop-shadow-[0_0_4px_rgba(34,211,238,0.6)]">{timeAgo || "--:--"}</span>
-      </div>
-      <div className="hidden sm:block w-px h-6 bg-slate-700" />
-      <div className="flex items-center gap-2">
-        <Clock className="w-3 h-3 text-slate-400" />
-        <span className="text-slate-400">NEXT UPDATE</span>
-        <span className="text-cyan-300 font-mono font-bold text-base drop-shadow-[0_0_4px_rgba(34,211,238,0.6)]">{timeUntil || "--:--"}</span>
-      </div>
-    </div>
-  );
-}
-
-function getRelativeTime(date: Date | string | null): string {
-  if (!date) return '';
-  
-  const now = new Date();
-  const past = new Date(date);
-  const diffMs = now.getTime() - past.getTime();
-  const diffMins = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMs / 3600000);
-  const diffDays = Math.floor(diffMs / 86400000);
-  
-  if (diffMins < 1) return '방금 전';
-  if (diffMins < 60) return `${diffMins}분 전`;
-  if (diffHours < 24) return `${diffHours}시간 전`;
-  return `${diffDays}일 전`;
-}
-
-function RealtimeView({ data, isLoading }: { data?: any; isLoading: boolean }) {
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="text-cyan-300 animate-pulse text-lg drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">데이터 로딩 중...</div>
-      </div>
-    );
-  }
-
-  if (!data || data.stocks.length === 0) {
-    return (
-      <Card className="bg-slate-800/60 border-cyan-500/20 backdrop-blur-md shadow-xl">
-        <CardContent className="py-20 text-center">
-          <Activity className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-          <p className="text-slate-300 text-lg font-medium">최근 15분간 종목 언급이 없습니다</p>
-          <p className="text-slate-500 text-sm mt-2">데이터 수집 대기 중...</p>
-        </CardContent>
-      </Card>
-    );
-  }
-
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatCard title="MENTIONS" value={data.totalTweets} subtitle="Last 15min" color="cyan" />
-        <StatCard title="STOCKS" value={data.stocks.length} subtitle="Unique" color="purple" />
-        <StatCard 
-          title="AVG" 
-          value={data.stocks.length > 0 ? (data.totalTweets / data.stocks.length).toFixed(1) : 0} 
-          subtitle="Per stock" 
-          color="pink" 
-        />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {data.stocks.map((stock: any, index: number) => (
-          <StockCard key={stock.ticker} stock={stock} rank={index + 1} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function TodayView({ data, isLoading }: { data?: any; isLoading: boolean }) {
-  if (isLoading) {
-    return <div className="flex items-center justify-center py-20"><div className="text-cyan-300 animate-pulse text-lg drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">데이터 로딩 중...</div></div>;
-  }
-
-  if (!data || data.stocks.length === 0) {
-    return (
-      <Card className="bg-slate-800/60 border-cyan-500/20 backdrop-blur-md shadow-xl">
-        <CardContent className="py-20 text-center">
-          <p className="text-slate-300 text-lg">오늘 데이터가 없습니다</p>
-        </CardContent>
-      </Card>
-    );
-  }
-
-  const bullishStocks = data.stocks.filter((s: any) => s.sentiment === 'bullish');
-  const bearishStocks = data.stocks.filter((s: any) => s.sentiment === 'bearish');
-
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <StatCard title="TWEETS" value={data.totalTweets} color="cyan" />
-        <StatCard title="STOCKS" value={data.stocks.length} color="purple" />
-        <StatCard title="BULLISH" value={bullishStocks.length} color="green" />
-        <StatCard title="BEARISH" value={bearishStocks.length} color="red" />
-      </div>
-
-      {bullishStocks.length > 0 && (
-        <div>
-          <h2 className="text-xl font-bold text-green-400 mb-4 flex items-center gap-2 drop-shadow-[0_0_8px_rgba(74,222,128,0.4)]">
-            <TrendingUp className="w-5 h-5" />
-            상승 예상 종목 ({bullishStocks.length})
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {bullishStocks.map((stock: any, index: number) => (
-              <StockCard key={stock.ticker} stock={stock} rank={index + 1} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {bearishStocks.length > 0 && (
-        <div>
-          <h2 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2 drop-shadow-[0_0_8px_rgba(248,113,113,0.4)]">
-            <TrendingDown className="w-5 h-5" />
-            하락 예상 종목 ({bearishStocks.length})
-          </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {bearishStocks.map((stock: any, index: number) => (
-              <StockCard key={stock.ticker} stock={stock} rank={index + 1} />
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function WeeklyView({ data, isLoading }: { data?: any; isLoading: boolean }) {
-  if (isLoading) {
-    return <div className="flex items-center justify-center py-20"><div className="text-cyan-300 animate-pulse text-lg drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">데이터 로딩 중...</div></div>;
-  }
-
-  if (!data || data.stocks.length === 0) {
-    return (
-      <Card className="bg-slate-800/60 border-cyan-500/20 backdrop-blur-md shadow-xl">
-        <CardContent className="py-20 text-center">
-          <p className="text-slate-300 text-lg">이번 주 데이터가 없습니다</p>
-        </CardContent>
-      </Card>
-    );
-  }
-
-  return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <StatCard title="TWEETS" value={data.totalTweets} subtitle="Last 7 days" color="cyan" />
-        <StatCard title="DAILY AVG" value={Math.round(data.totalTweets / 7)} subtitle="Tweets/day" color="purple" />
-        <StatCard title="STOCKS" value={data.stocks.length} subtitle="Tracked" color="pink" />
-      </div>
-
-      {/* Weekly Best */}
-      {data.stocks.length > 0 && (
-        <Card className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border-yellow-500/30 backdrop-blur-md shadow-xl shadow-yellow-500/10">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-yellow-300">
-              <Award className="w-6 h-6" />
-              주간 베스트 종목
-            </CardTitle>
-            <CardDescription className="text-slate-400">
-              가장 많이 언급된 TOP 3
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {data.stocks.slice(0, 3).map((stock: any, index: number) => (
-                <div key={stock.ticker} className="flex items-center justify-between bg-slate-900/40 p-4 rounded-lg border border-yellow-500/20">
-                  <div className="flex items-center gap-4">
-                    <Badge variant="outline" className="bg-yellow-500/20 text-yellow-300 border-yellow-500/30 text-lg font-bold px-3">
-                      #{index + 1}
-                    </Badge>
-                    <div>
-                      <p className="text-xl font-bold text-yellow-300 font-mono">${stock.ticker}</p>
-                      <p className="text-xs text-slate-400">{stock.count}회 언급</p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-sm text-slate-400">일평균</p>
-                    <p className="text-lg font-bold text-cyan-300 font-mono">{stock.avgPerDay}/일</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        {data.stocks.slice(0, 20).map((stock: any, index: number) => (
-          <StockCard key={stock.ticker} stock={stock} rank={index + 1} showAvg />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function StatCard({ title, value, subtitle, color }: { title: string; value: number | string; subtitle?: string; color: string }) {
-  const colorClasses = {
-    cyan: 'border-cyan-500/40 bg-slate-800/60 text-cyan-300 shadow-cyan-500/20',
-    purple: 'border-purple-500/40 bg-slate-800/60 text-purple-300 shadow-purple-500/20',
-    pink: 'border-pink-500/40 bg-slate-800/60 text-pink-300 shadow-pink-500/20',
-    green: 'border-green-500/40 bg-slate-800/60 text-green-300 shadow-green-500/20',
-    red: 'border-red-500/40 bg-slate-800/60 text-red-300 shadow-red-500/20',
-  };
-
-  const classes = colorClasses[color as keyof typeof colorClasses];
-
-  return (
-    <Card className={`${classes} border backdrop-blur-md shadow-lg`}>
-      <CardHeader className="pb-2">
-        <CardTitle className="text-xs text-slate-400 font-mono">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className={`text-4xl font-bold ${classes.split(' ')[2]} font-mono drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]`}>{value}</p>
-        {subtitle && <p className="text-xs text-slate-500 mt-1">{subtitle}</p>}
-      </CardContent>
-    </Card>
-  );
-}
-
-function StockCard({ stock, rank, showAvg = false }: { stock: any; rank: number; showAvg?: boolean }) {
-  const sentimentConfig = {
-    bullish: {
-      border: 'border-green-500/50',
-      bg: 'bg-slate-800/60',
-      text: 'text-green-300',
-      icon: <TrendingUp className="w-5 h-5" />,
-      badge: 'bg-green-500/20 text-green-300 border-green-500/30',
-      shadow: 'shadow-green-500/20'
-    },
-    bearish: {
-      border: 'border-red-500/50',
-      bg: 'bg-slate-800/60',
-      text: 'text-red-300',
-      icon: <TrendingDown className="w-5 h-5" />,
-      badge: 'bg-red-500/20 text-red-300 border-red-500/30',
-      shadow: 'shadow-red-500/20'
-    },
-    neutral: {
-      border: 'border-slate-600',
-      bg: 'bg-slate-800/60',
-      text: 'text-slate-300',
-      icon: <Activity className="w-5 h-5" />,
-      badge: 'bg-slate-700/50 text-slate-300 border-slate-600',
-      shadow: 'shadow-slate-500/20'
-    }
-  };
-
-  const config = sentimentConfig[stock.sentiment as keyof typeof sentimentConfig] || sentimentConfig.neutral;
-  const bullishPercent = stock.count > 0 ? Math.round((stock.bullish / stock.count) * 100) : 0;
-  const bearishPercent = stock.count > 0 ? Math.round((stock.bearish / stock.count) * 100) : 0;
-
-  return (
-    <Card className={`${config.bg} ${config.border} border backdrop-blur-md transition-all hover:scale-[1.02] hover:shadow-xl ${config.shadow}`}>
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Badge variant="outline" className={`${config.badge} border text-lg font-bold font-mono px-3 py-1`}>
-              #{rank}
-            </Badge>
-            <CardTitle className={`text-3xl font-bold ${config.text} font-mono drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]`}>
-              ${stock.ticker}
-            </CardTitle>
-          </div>
-          <div className={config.text}>
-            {config.icon}
-          </div>
-        </div>
-        <CardDescription className="text-slate-400 font-mono text-sm">
-          {stock.count} MENTIONS
-          {showAvg && ` • AVG ${stock.avgPerDay}/DAY`}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <div className="flex justify-between text-xs font-mono">
-            <span className="text-green-400 drop-shadow-[0_0_4px_rgba(74,222,128,0.4)]">▲ {stock.bullish} ({bullishPercent}%)</span>
-            <span className="text-red-400 drop-shadow-[0_0_4px_rgba(248,113,113,0.4)]">▼ {stock.bearish} ({bearishPercent}%)</span>
-          </div>
-          <div className="h-2 bg-slate-900/60 rounded-full overflow-hidden flex border border-slate-700/30">
-            <div className="bg-gradient-to-r from-green-500 to-green-400 shadow-[0_0_8px_rgba(74,222,128,0.6)]" style={{ width: `${bullishPercent}%` }} />
-            <div className="bg-gradient-to-r from-red-500 to-red-400 shadow-[0_0_8px_rgba(248,113,113,0.6)]" style={{ width: `${bearishPercent}%` }} />
-          </div>
-        </div>
-
-        {stock.latestTweet && (
-          <div className="space-y-2">
-            <div className="text-sm text-slate-200 bg-slate-900/60 border border-slate-700/30 p-3 rounded leading-relaxed">
-              <span className="text-cyan-400 drop-shadow-[0_0_4px_rgba(34,211,238,0.6)]">→</span> {stock.latestTweet}
-            </div>
-            
-            {/* Source Info */}
-            <div className="flex items-center justify-between text-xs text-slate-500">
-              <div className="flex items-center gap-2">
-                {stock.latestTweetAuthor && (
-                  <span className="text-cyan-400 font-medium">@{stock.latestTweetAuthor}</span>
-                )}
-                {stock.latestTweetTime && (
-                  <span>• {getRelativeTime(stock.latestTweetTime)}</span>
-                )}
-              </div>
-              {stock.latestTweetUrl && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 px-2 text-xs text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10"
-                  onClick={() => window.open(stock.latestTweetUrl, '_blank')}
-                >
-                  <ExternalLink className="w-3 h-3 mr-1" />
-                  원문
-                </Button>
-              )}
-            </div>
-          </div>
-        )}
-      </CardContent>
-    </Card>
   );
 }
