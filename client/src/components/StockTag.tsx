@@ -116,14 +116,44 @@ export function StockTag({ symbol, sentiment }: StockTagProps) {
                   </div>
                 </div>
                 <div className="border-t border-gray-700 my-2 pt-2">
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs mb-2">
                     <span className="text-gray-400">52주 최고:</span>
                     <span className="text-white">{formatNumber(quote.fiftyTwoWeekHigh)}</span>
                   </div>
-                  <div className="flex justify-between text-xs">
+                  <div className="flex justify-between text-xs mb-3">
                     <span className="text-gray-400">52주 최저:</span>
                     <span className="text-white">{formatNumber(quote.fiftyTwoWeekLow)}</span>
                   </div>
+                  {/* 52주 범위 막대 그래프 */}
+                  {quote.fiftyTwoWeekHigh && quote.fiftyTwoWeekLow && (
+                    <div className="mt-3">
+                      <div className="flex justify-between text-xs text-gray-400 mb-1">
+                        <span>52주 범위</span>
+                        <span>
+                          {((quote.regularMarketPrice - quote.fiftyTwoWeekLow) / (quote.fiftyTwoWeekHigh - quote.fiftyTwoWeekLow) * 100).toFixed(0)}%
+                        </span>
+                      </div>
+                      <div className="relative h-2 bg-gray-700 rounded-full overflow-hidden">
+                        <div
+                          className="absolute h-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full"
+                          style={{
+                            width: `${((quote.regularMarketPrice - quote.fiftyTwoWeekLow) / (quote.fiftyTwoWeekHigh - quote.fiftyTwoWeekLow) * 100)}%`
+                          }}
+                        />
+                        <div
+                          className="absolute top-1/2 -translate-y-1/2 w-1 h-4 bg-white rounded-full shadow-lg"
+                          style={{
+                            left: `${((quote.regularMarketPrice - quote.fiftyTwoWeekLow) / (quote.fiftyTwoWeekHigh - quote.fiftyTwoWeekLow) * 100)}%`,
+                            transform: 'translate(-50%, -50%)'
+                          }}
+                        />
+                      </div>
+                      <div className="flex justify-between text-xs text-gray-500 mt-1">
+                        <span>{formatNumber(quote.fiftyTwoWeekLow)}</span>
+                        <span>{formatNumber(quote.fiftyTwoWeekHigh)}</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </>
             ) : (
