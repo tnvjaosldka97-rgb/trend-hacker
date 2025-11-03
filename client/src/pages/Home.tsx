@@ -36,70 +36,82 @@ export default function Home() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.15),transparent_50%)]" />
         
         <div className="container relative py-24 md:py-32">
-          <div className="mx-auto max-w-4xl text-center space-y-8">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
-              <Flame className="w-4 h-4" />
-              실시간 업데이트 중
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                트렌드해커
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mt-6">
-              모든 미장주식의 최신화된 정보를
-              <br />
-              <span className="text-white font-semibold">5초 안에 만날 수 있다</span>
-            </p>
+          <div className="mx-auto max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              {/* Left: Text Content */}
+              <div className="text-center md:text-left space-y-8">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
+                  <Flame className="w-4 h-4" />
+                  실시간 업데이트 중
+                </div>
+                
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    트렌드해커
+                  </span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-gray-400 mt-6">
+                  모든 미장주식의 최신화된 정보를
+                  <br />
+                  <span className="text-white font-semibold">한번에 만날 수 있다</span>
+                </p>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                <div className="text-4xl font-bold text-blue-400">{stats?.totalInfluencers || 30}</div>
-                <div className="text-sm text-gray-400 mt-2">전문가</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                <div className="text-4xl font-bold text-purple-400">{stats?.totalContents || 72}</div>
-                <div className="text-sm text-gray-400 mt-2">최신 콘텐츠</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                <div className="text-4xl font-bold text-pink-400">8</div>
-                <div className="text-sm text-gray-400 mt-2">트렌딩 종목</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                <div className="text-4xl font-bold text-green-400">24/7</div>
-                <div className="text-sm text-gray-400 mt-2">실시간 수집</div>
-              </div>
-            </div>
+                {/* Stats */}
+                <div className="grid grid-cols-2 gap-6 mt-12">
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-blue-400">{stats?.totalInfluencers || 119}</div>
+                    <div className="text-sm text-gray-400 mt-2">전문가</div>
+                  </div>
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
+                    <div className="text-4xl font-bold text-purple-400">{stats?.totalContents || 76}</div>
+                    <div className="text-sm text-gray-400 mt-2">최신 콘텐츠</div>
+                  </div>
+                </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-              {isAuthenticated ? (
-                <Link href="/dashboard">
-                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl">
-                    대시보드 이동
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-              ) : (
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl"
-                  onClick={() => window.location.href = getLoginUrl()}
-                >
-                  무료로 시작하기
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              )}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-12">
+                  {isAuthenticated ? (
+                    <Link href="/dashboard">
+                      <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl">
+                        대시보드 이동
+                        <ArrowRight className="ml-2 w-5 h-5" />
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button 
+                      size="lg" 
+                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl"
+                      onClick={() => window.location.href = getLoginUrl()}
+                    >
+                      무료로 시작하기
+                      <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  )}
+                </div>
+              </div>
+
+              {/* Right: Hacker Image */}
+              <div className="hidden md:block">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-3xl" />
+                  <img 
+                    src="/hacker-hero.png" 
+                    alt="Trend Hacker" 
+                    className="relative w-full h-auto rounded-3xl shadow-2xl"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Trending Stocks Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="container">
+      <section className="py-20 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img src="/bg-trending-stocks.png" alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="container relative z-10">
           <div className="flex items-center justify-between mb-12">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-blue-500/10 rounded-xl">
@@ -143,8 +155,11 @@ export default function Home() {
       </section>
 
       {/* Hot Keywords Section */}
-      <section className="py-20 bg-gray-900">
-        <div className="container">
+      <section className="py-20 bg-gray-900 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img src="/bg-keywords.png" alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="container relative z-10">
           <div className="flex items-center gap-3 mb-12">
             <div className="p-3 bg-purple-500/10 rounded-xl">
               <Flame className="w-6 h-6 text-purple-400" />
@@ -179,8 +194,11 @@ export default function Home() {
       </section>
 
       {/* Latest Videos Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
-        <div className="container">
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <img src="/bg-videos.png" alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="container relative z-10">
           <div className="flex items-center justify-between mb-12">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-pink-500/10 rounded-xl">
@@ -254,57 +272,37 @@ export default function Home() {
             </div>
           ) : (
             <div className="text-center text-gray-400 py-12">
-              최신 콘텐츠를 불러오는 중...
+              데이터를 불러오는 중...
             </div>
           )}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]" />
-        <div className="container relative">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold">
-              더 많은 인사이트를 확인하세요
+      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div className="container">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                지금 바로 시작하세요
+              </span>
             </h2>
-            <p className="text-xl text-gray-400">
-              전문가들의 필터링, 검색, 정렬 기능으로
-              <br />
-              원하는 정보를 빠르게 찾아보세요
+            <p className="text-xl text-gray-400 mb-8">
+              100명 이상의 전문가가 분석한 최신 종목 정보를 무료로 확인하세요
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              {isAuthenticated ? (
-                <Link href="/dashboard">
-                  <Button size="lg" className="bg-white text-black hover:bg-gray-200 px-8 py-6 text-lg rounded-xl">
-                    대시보드 이동
-                  </Button>
-                </Link>
-              ) : (
-                <Button 
-                  size="lg" 
-                  className="bg-white text-black hover:bg-gray-200 px-8 py-6 text-lg rounded-xl"
-                  onClick={() => window.location.href = getLoginUrl()}
-                >
-                  무료로 시작하기
-                </Button>
-              )}
-            </div>
+            {!isAuthenticated && (
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg rounded-xl"
+                onClick={() => window.location.href = getLoginUrl()}
+              >
+                무료로 시작하기
+                <Rocket className="ml-2 w-5 h-5" />
+              </Button>
+            )}
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-12 bg-black border-t border-white/10">
-        <div className="container">
-          <div className="text-center text-gray-500 text-sm">
-            © 2025 {APP_TITLE}. All rights reserved.
-            <div className="mt-2">
-              본 서비스는 공개된 정보를 수집하여 제공합니다. 투자 결정은 사용자의 책임입니다.
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
