@@ -240,6 +240,7 @@ async function collectInfluencerTweets(influencer: Influencer): Promise<number> 
     }
 
     for (const tweet of tweets) {
+      if (!tweet.legacy) continue;
       const { full_text, created_at, favorite_count, retweet_count } = tweet.legacy;
       
       // Check if recent
@@ -253,9 +254,9 @@ async function collectInfluencerTweets(influencer: Influencer): Promise<number> 
         continue; // Skip tweets without stock mentions
       }
 
-      // Check engagement (likes + retweets >= 100)
+      // Check engagement (likes + retweets >= 10)
       const engagement = favorite_count + retweet_count;
-      if (engagement < 100) {
+      if (engagement < 10) {
         continue;
       }
 
@@ -310,7 +311,7 @@ async function main() {
   console.log('📋 Criteria:');
   console.log(`   - Minimum followers: ${MIN_FOLLOWERS.toLocaleString()}`);
   console.log(`   - Time window: Last ${HOURS_LIMIT} hours`);
-  console.log(`   - Minimum engagement: 100 (likes + retweets)`);
+  console.log(`   - Minimum engagement: 10 (likes + retweets)`);
   console.log(`   - Must mention stock tickers ($SYMBOL)\n`);
 
   const influencers = loadInfluencers();

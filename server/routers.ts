@@ -214,14 +214,29 @@ export const appRouter = router({
 
           for (const ticker of stocks) {
             if (!stockMap.has(ticker)) {
-              stockMap.set(ticker, { ticker, count: 0, bullish: 0, bearish: 0, neutral: 0, latestTweet: '' });
+              stockMap.set(ticker, { 
+                ticker, 
+                count: 0, 
+                bullish: 0, 
+                bearish: 0, 
+                neutral: 0, 
+                latestTweet: '',
+                latestTweetUrl: '',
+                latestTweetAuthor: '',
+                latestTweetTime: null
+              });
             }
             const stock = stockMap.get(ticker);
             stock.count++;
             if (sentiment === 'bullish') stock.bullish++;
             else if (sentiment === 'bearish') stock.bearish++;
             else stock.neutral++;
-            if (!stock.latestTweet && tweet.aiSummary) stock.latestTweet = tweet.aiSummary;
+            if (!stock.latestTweet && tweet.aiSummary) {
+              stock.latestTweet = tweet.aiSummary;
+              stock.latestTweetUrl = tweet.url;
+              stock.latestTweetAuthor = tweet.title?.match(/@(\w+):/)?.[1] || '';
+              stock.latestTweetTime = tweet.publishedAt;
+            }
           }
         } catch (e) {}
       }
@@ -250,14 +265,30 @@ export const appRouter = router({
 
           for (const ticker of stocks) {
             if (!stockMap.has(ticker)) {
-              stockMap.set(ticker, { ticker, count: 0, bullish: 0, bearish: 0, neutral: 0, sentiment: 'neutral', latestTweet: '' });
+              stockMap.set(ticker, { 
+                ticker, 
+                count: 0, 
+                bullish: 0, 
+                bearish: 0, 
+                neutral: 0, 
+                sentiment: 'neutral', 
+                latestTweet: '',
+                latestTweetUrl: '',
+                latestTweetAuthor: '',
+                latestTweetTime: null
+              });
             }
             const stock = stockMap.get(ticker);
             stock.count++;
             if (sentiment === 'bullish') stock.bullish++;
             else if (sentiment === 'bearish') stock.bearish++;
             else stock.neutral++;
-            if (!stock.latestTweet && tweet.aiSummary) stock.latestTweet = tweet.aiSummary;
+            if (!stock.latestTweet && tweet.aiSummary) {
+              stock.latestTweet = tweet.aiSummary;
+              stock.latestTweetUrl = tweet.url;
+              stock.latestTweetAuthor = tweet.title?.match(/@(\w+):/)?.[1] || '';
+              stock.latestTweetTime = tweet.publishedAt;
+            }
           }
         } catch (e) {}
       }
