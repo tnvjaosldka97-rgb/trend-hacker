@@ -16,32 +16,25 @@ export default function Home() {
   const weeklyQuery = trpc.trending.weekly.useQuery();
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Tech Background */}
-      <div className="fixed inset-0 z-0">
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
-        
-        {/* Gradient Orbs */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        
-        {/* Scan Lines */}
-        <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,255,255,0.02)_50%)] bg-[size:100%_4px] pointer-events-none" />
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+      {/* Subtle Tech Background */}
+      <div className="fixed inset-0 z-0 opacity-20">
+        {/* Very subtle grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(100,200,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(100,200,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
       </div>
 
       {/* Header */}
-      <header className="relative z-10 border-b border-cyan-500/20 bg-black/80 backdrop-blur-xl sticky top-0">
+      <header className="relative z-10 border-b border-slate-700/50 bg-slate-900/80 backdrop-blur-sm sticky top-0">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="text-center md:text-left">
               <div className="flex items-center gap-3 justify-center md:justify-start">
                 <Zap className="w-8 h-8 text-cyan-400" />
-                <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">
                   TREND HACKER
                 </h1>
               </div>
-              <p className="text-sm text-cyan-400/60 mt-1">200명의 전문가 | 실시간 데이터 스트림</p>
+              <p className="text-sm text-slate-400 mt-1">200명의 전문가 | 실시간 데이터 스트림</p>
             </div>
             <LiveTimer lastUpdate={realtimeQuery.data?.lastUpdate} nextUpdate={realtimeQuery.data?.nextUpdate} />
           </div>
@@ -51,7 +44,7 @@ export default function Home() {
       {/* Main Content */}
       <main className="relative z-10 container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="bg-black/60 border border-cyan-500/30 backdrop-blur-xl p-1">
+          <TabsList className="bg-slate-800/80 border border-slate-700/50 backdrop-blur-sm p-1">
             <TabsTrigger 
               value="realtime" 
               className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-600 data-[state=active]:to-red-500 data-[state=active]:text-white"
@@ -127,17 +120,17 @@ function LiveTimer({ lastUpdate, nextUpdate }: { lastUpdate?: Date; nextUpdate?:
   }, [lastUpdate, nextUpdate]);
 
   return (
-    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs sm:text-sm bg-black/60 backdrop-blur-xl border border-cyan-500/30 rounded-lg px-4 py-3">
+    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs sm:text-sm bg-slate-800/80 backdrop-blur-sm border border-slate-700/50 rounded-lg px-4 py-3">
       <div className="flex items-center gap-2">
-        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
-        <span className="text-cyan-400/60">LAST UPDATE</span>
-        <span className="text-cyan-400 font-mono font-bold text-base">{timeAgo || "--:--"}</span>
+        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+        <span className="text-slate-400">LAST UPDATE</span>
+        <span className="text-cyan-300 font-mono font-bold text-base">{timeAgo || "--:--"}</span>
       </div>
-      <div className="hidden sm:block w-px h-6 bg-cyan-500/30" />
+      <div className="hidden sm:block w-px h-6 bg-slate-700" />
       <div className="flex items-center gap-2">
-        <Clock className="w-3 h-3 text-cyan-400/60" />
-        <span className="text-cyan-400/60">NEXT UPDATE</span>
-        <span className="text-cyan-400 font-mono font-bold text-base">{timeUntil || "--:--"}</span>
+        <Clock className="w-3 h-3 text-slate-400" />
+        <span className="text-slate-400">NEXT UPDATE</span>
+        <span className="text-cyan-300 font-mono font-bold text-base">{timeUntil || "--:--"}</span>
       </div>
     </div>
   );
@@ -147,18 +140,18 @@ function RealtimeView({ data, isLoading }: { data?: any; isLoading: boolean }) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <div className="text-cyan-400 animate-pulse">LOADING DATA STREAM...</div>
+        <div className="text-cyan-300 animate-pulse text-lg">데이터 로딩 중...</div>
       </div>
     );
   }
 
   if (!data || data.stocks.length === 0) {
     return (
-      <Card className="bg-black/60 border-cyan-500/30 backdrop-blur-xl">
+      <Card className="bg-slate-800/90 border-slate-700/50 backdrop-blur-sm">
         <CardContent className="py-20 text-center">
-          <Activity className="w-16 h-16 text-cyan-400/30 mx-auto mb-4" />
-          <p className="text-cyan-400/60 text-lg">NO DATA IN LAST 15 MINUTES</p>
-          <p className="text-cyan-400/40 text-sm mt-2">Waiting for data stream...</p>
+          <Activity className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+          <p className="text-slate-300 text-lg font-medium">최근 15분간 종목 언급이 없습니다</p>
+          <p className="text-slate-500 text-sm mt-2">데이터 수집 대기 중...</p>
         </CardContent>
       </Card>
     );
@@ -188,14 +181,14 @@ function RealtimeView({ data, isLoading }: { data?: any; isLoading: boolean }) {
 
 function TodayView({ data, isLoading }: { data?: any; isLoading: boolean }) {
   if (isLoading) {
-    return <div className="flex items-center justify-center py-20"><div className="text-cyan-400 animate-pulse">LOADING...</div></div>;
+    return <div className="flex items-center justify-center py-20"><div className="text-cyan-300 animate-pulse text-lg">데이터 로딩 중...</div></div>;
   }
 
   if (!data || data.stocks.length === 0) {
     return (
-      <Card className="bg-black/60 border-cyan-500/30 backdrop-blur-xl">
+      <Card className="bg-slate-800/90 border-slate-700/50 backdrop-blur-sm">
         <CardContent className="py-20 text-center">
-          <p className="text-cyan-400/60">NO DATA TODAY</p>
+          <p className="text-slate-300 text-lg">오늘 데이터가 없습니다</p>
         </CardContent>
       </Card>
     );
@@ -217,7 +210,7 @@ function TodayView({ data, isLoading }: { data?: any; isLoading: boolean }) {
         <div>
           <h2 className="text-xl font-bold text-green-400 mb-4 flex items-center gap-2">
             <TrendingUp className="w-5 h-5" />
-            BULLISH STOCKS ({bullishStocks.length})
+            상승 예상 종목 ({bullishStocks.length})
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {bullishStocks.map((stock: any, index: number) => (
@@ -231,7 +224,7 @@ function TodayView({ data, isLoading }: { data?: any; isLoading: boolean }) {
         <div>
           <h2 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
             <TrendingDown className="w-5 h-5" />
-            BEARISH STOCKS ({bearishStocks.length})
+            하락 예상 종목 ({bearishStocks.length})
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {bearishStocks.map((stock: any, index: number) => (
@@ -246,14 +239,14 @@ function TodayView({ data, isLoading }: { data?: any; isLoading: boolean }) {
 
 function WeeklyView({ data, isLoading }: { data?: any; isLoading: boolean }) {
   if (isLoading) {
-    return <div className="flex items-center justify-center py-20"><div className="text-cyan-400 animate-pulse">LOADING...</div></div>;
+    return <div className="flex items-center justify-center py-20"><div className="text-cyan-300 animate-pulse text-lg">데이터 로딩 중...</div></div>;
   }
 
   if (!data || data.stocks.length === 0) {
     return (
-      <Card className="bg-black/60 border-cyan-500/30 backdrop-blur-xl">
+      <Card className="bg-slate-800/90 border-slate-700/50 backdrop-blur-sm">
         <CardContent className="py-20 text-center">
-          <p className="text-cyan-400/60">NO DATA THIS WEEK</p>
+          <p className="text-slate-300 text-lg">이번 주 데이터가 없습니다</p>
         </CardContent>
       </Card>
     );
@@ -278,29 +271,29 @@ function WeeklyView({ data, isLoading }: { data?: any; isLoading: boolean }) {
 
 function StatCard({ title, value, subtitle, color }: { title: string; value: number | string; subtitle?: string; color: string }) {
   const colorClasses = {
-    cyan: 'border-cyan-500/30 bg-gradient-to-br from-cyan-500/10 to-transparent',
-    purple: 'border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-transparent',
-    pink: 'border-pink-500/30 bg-gradient-to-br from-pink-500/10 to-transparent',
-    green: 'border-green-500/30 bg-gradient-to-br from-green-500/10 to-transparent',
-    red: 'border-red-500/30 bg-gradient-to-br from-red-500/10 to-transparent',
+    cyan: 'border-cyan-500/40 bg-slate-800/90',
+    purple: 'border-purple-500/40 bg-slate-800/90',
+    pink: 'border-pink-500/40 bg-slate-800/90',
+    green: 'border-green-500/40 bg-slate-800/90',
+    red: 'border-red-500/40 bg-slate-800/90',
   };
 
   const textColors = {
-    cyan: 'text-cyan-400',
-    purple: 'text-purple-400',
-    pink: 'text-pink-400',
-    green: 'text-green-400',
-    red: 'text-red-400',
+    cyan: 'text-cyan-300',
+    purple: 'text-purple-300',
+    pink: 'text-pink-300',
+    green: 'text-green-300',
+    red: 'text-red-300',
   };
 
   return (
-    <Card className={`${colorClasses[color as keyof typeof colorClasses]} border backdrop-blur-xl`}>
+    <Card className={`${colorClasses[color as keyof typeof colorClasses]} border backdrop-blur-sm`}>
       <CardHeader className="pb-2">
-        <CardTitle className="text-xs text-cyan-400/60 font-mono">{title}</CardTitle>
+        <CardTitle className="text-xs text-slate-400 font-mono">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className={`text-4xl font-bold ${textColors[color as keyof typeof textColors]} font-mono`}>{value}</p>
-        {subtitle && <p className="text-xs text-cyan-400/40 mt-1">{subtitle}</p>}
+        {subtitle && <p className="text-xs text-slate-500 mt-1">{subtitle}</p>}
       </CardContent>
     </Card>
   );
@@ -309,25 +302,25 @@ function StatCard({ title, value, subtitle, color }: { title: string; value: num
 function StockCard({ stock, rank, showAvg = false }: { stock: any; rank: number; showAvg?: boolean }) {
   const sentimentConfig = {
     bullish: {
-      border: 'border-green-500/40',
-      bg: 'bg-gradient-to-br from-green-500/20 via-green-500/5 to-transparent',
-      text: 'text-green-400',
+      border: 'border-green-500/50',
+      bg: 'bg-slate-800/90',
+      text: 'text-green-300',
       icon: <TrendingUp className="w-5 h-5" />,
-      glow: 'shadow-[0_0_20px_rgba(34,197,94,0.3)]'
+      badge: 'bg-green-500/20 text-green-300 border-green-500/30'
     },
     bearish: {
-      border: 'border-red-500/40',
-      bg: 'bg-gradient-to-br from-red-500/20 via-red-500/5 to-transparent',
-      text: 'text-red-400',
+      border: 'border-red-500/50',
+      bg: 'bg-slate-800/90',
+      text: 'text-red-300',
       icon: <TrendingDown className="w-5 h-5" />,
-      glow: 'shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+      badge: 'bg-red-500/20 text-red-300 border-red-500/30'
     },
     neutral: {
-      border: 'border-cyan-500/30',
-      bg: 'bg-gradient-to-br from-cyan-500/10 to-transparent',
-      text: 'text-cyan-400',
+      border: 'border-slate-600',
+      bg: 'bg-slate-800/90',
+      text: 'text-slate-300',
       icon: <Activity className="w-5 h-5" />,
-      glow: ''
+      badge: 'bg-slate-700/50 text-slate-300 border-slate-600'
     }
   };
 
@@ -336,11 +329,11 @@ function StockCard({ stock, rank, showAvg = false }: { stock: any; rank: number;
   const bearishPercent = stock.count > 0 ? Math.round((stock.bearish / stock.count) * 100) : 0;
 
   return (
-    <Card className={`${config.bg} ${config.border} ${config.glow} border backdrop-blur-xl transition-all hover:scale-[1.02] hover:${config.glow}`}>
+    <Card className={`${config.bg} ${config.border} border backdrop-blur-sm transition-all hover:scale-[1.02] hover:shadow-lg`}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Badge variant="outline" className={`${config.text} border-current text-lg font-bold font-mono px-3 py-1`}>
+            <Badge variant="outline" className={`${config.badge} border text-lg font-bold font-mono px-3 py-1`}>
               #{rank}
             </Badge>
             <CardTitle className={`text-3xl font-bold ${config.text} font-mono`}>
@@ -351,7 +344,7 @@ function StockCard({ stock, rank, showAvg = false }: { stock: any; rank: number;
             {config.icon}
           </div>
         </div>
-        <CardDescription className="text-cyan-400/60 font-mono text-sm">
+        <CardDescription className="text-slate-400 font-mono text-sm">
           {stock.count} MENTIONS
           {showAvg && ` • AVG ${stock.avgPerDay}/DAY`}
         </CardDescription>
@@ -362,14 +355,14 @@ function StockCard({ stock, rank, showAvg = false }: { stock: any; rank: number;
             <span className="text-green-400">▲ {stock.bullish} ({bullishPercent}%)</span>
             <span className="text-red-400">▼ {stock.bearish} ({bearishPercent}%)</span>
           </div>
-          <div className="h-2 bg-black/60 rounded-full overflow-hidden flex border border-cyan-500/20">
+          <div className="h-2 bg-slate-900/60 rounded-full overflow-hidden flex border border-slate-700/30">
             <div className="bg-gradient-to-r from-green-500 to-green-400" style={{ width: `${bullishPercent}%` }} />
             <div className="bg-gradient-to-r from-red-500 to-red-400" style={{ width: `${bearishPercent}%` }} />
           </div>
         </div>
 
         {stock.latestTweet && (
-          <div className="text-sm text-cyan-300/80 bg-black/40 border border-cyan-500/20 p-3 rounded font-mono leading-relaxed">
+          <div className="text-sm text-slate-200 bg-slate-900/60 border border-slate-700/30 p-3 rounded leading-relaxed">
             <span className="text-cyan-400">→</span> {stock.latestTweet}
           </div>
         )}
