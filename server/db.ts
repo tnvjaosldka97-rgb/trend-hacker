@@ -1,4 +1,4 @@
-import { eq, gte, desc, and, like, sql } from "drizzle-orm";
+import { eq, gte, desc, and, like, sql, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -180,4 +180,31 @@ export async function getContentsWithInfluencer(limit: number = 50) {
     .limit(limit);
   
   return result;
+}
+
+// Get contents without transcripts (for caption extraction)
+export async function getContentsWithoutTranscripts(limit: number = 100): Promise<Content[]> {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select().from(contents)
+    .where(and(
+      eq(contents.platform, 'youtube'),
+      isNull(contents.transcript)
+    ))
+    .orderBy(desc(contents.publishedAt))
+    .limit(limit);
+}
+
+// Update content transcript
+export async function updateContentTranscript(contentId: number, transcript: string): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot update transcript: database not available");
+    return;
+  }
+  
+  await db.update(contents)
+    .set({ transcript })
+    .where(eq(contents.id, contentId));
 }

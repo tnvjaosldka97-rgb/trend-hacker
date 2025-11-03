@@ -1,0 +1,917 @@
+[
+  {
+    "username": "elonmusk",
+    "name": "Elon Musk",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "cathiedwood",
+    "name": "Cathie Wood",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "jimcramer",
+    "name": "Jim Cramer",
+    "category": "Journalist"
+  },
+  {
+    "username": "chamath",
+    "name": "Chamath Palihapitiya",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "GaryBlack00",
+    "name": "Gary Black",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "SawyerMerritt",
+    "name": "Sawyer Merritt",
+    "category": "Analyst"
+  },
+  {
+    "username": "TroyTeslike",
+    "name": "Troy Teslike",
+    "category": "Data/Research"
+  },
+  {
+    "username": "KobeissiLetter",
+    "name": "The Kobeissi Letter",
+    "category": "Analyst"
+  },
+  {
+    "username": "unusual_whales",
+    "name": "unusual_whales",
+    "category": "Trader"
+  },
+  {
+    "username": "DeItaone",
+    "name": "Walter Bloomberg",
+    "category": "Journalist"
+  },
+  {
+    "username": "zerohedge",
+    "name": "zerohedge",
+    "category": "Journalist"
+  },
+  {
+    "username": "carlquintanilla",
+    "name": "Carl Quintanilla",
+    "category": "Journalist"
+  },
+  {
+    "username": "SquawkCNBC",
+    "name": "Squawk Box",
+    "category": "Journalist"
+  },
+  {
+    "username": "markets",
+    "name": "Bloomberg Markets",
+    "category": "Journalist"
+  },
+  {
+    "username": "WSJ",
+    "name": "Wall Street Journal",
+    "category": "Journalist"
+  },
+  {
+    "username": "FT",
+    "name": "Financial Times",
+    "category": "Journalist"
+  },
+  {
+    "username": "business",
+    "name": "Bloomberg",
+    "category": "Journalist"
+  },
+  {
+    "username": "Reuters",
+    "name": "Reuters",
+    "category": "Journalist"
+  },
+  {
+    "username": "Fxhedgers",
+    "name": "Fxhedgers",
+    "category": "Journalist"
+  },
+  {
+    "username": "BespokeTrades",
+    "name": "Bespoke Investment Group",
+    "category": "Data/Research"
+  },
+  {
+    "username": "BillAckman",
+    "name": "Bill Ackman",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "Carl_C_Icahn",
+    "name": "Carl Icahn",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "WarrenBuffett",
+    "name": "Warren Buffett",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "RayDalio",
+    "name": "Ray Dalio",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "howardlindzon",
+    "name": "Howard Lindzon",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "ReformedBroker",
+    "name": "Josh Brown",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "BrianFeroldi",
+    "name": "Brian Feroldi",
+    "category": "Analyst"
+  },
+  {
+    "username": "MorganHousel",
+    "name": "Morgan Housel",
+    "category": "Analyst"
+  },
+  {
+    "username": "charliebilello",
+    "name": "Charlie Bilello",
+    "category": "Data/Research"
+  },
+  {
+    "username": "LizAnnSonders",
+    "name": "Liz Ann Sonders",
+    "category": "Analyst"
+  },
+  {
+    "username": "jessefelder",
+    "name": "Jesse Felder",
+    "category": "Analyst"
+  },
+  {
+    "username": "elerianm",
+    "name": "Mohamed El-Erian",
+    "category": "Economist"
+  },
+  {
+    "username": "NorthmanTrader",
+    "name": "Sven Henrich",
+    "category": "Trader"
+  },
+  {
+    "username": "RampCapitalLLC",
+    "name": "Ramp Capital",
+    "category": "Analyst"
+  },
+  {
+    "username": "AlderLaneeggs",
+    "name": "Alder Lane",
+    "category": "Analyst"
+  },
+  {
+    "username": "TESLAcharts",
+    "name": "Tesla Charts",
+    "category": "Data/Research"
+  },
+  {
+    "username": "gurgavin",
+    "name": "Gavin Baker",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "DivesTech",
+    "name": "Dan Ives",
+    "category": "Analyst"
+  },
+  {
+    "username": "GerberKawasaki",
+    "name": "Ross Gerber",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "TheStalwart",
+    "name": "Joe Weisenthal",
+    "category": "Journalist"
+  },
+  {
+    "username": "tracyalloway",
+    "name": "Tracy Alloway",
+    "category": "Journalist"
+  },
+  {
+    "username": "MattLevine",
+    "name": "Matt Levine",
+    "category": "Journalist"
+  },
+  {
+    "username": "katie_martin_fx",
+    "name": "Katie Martin",
+    "category": "Journalist"
+  },
+  {
+    "username": "lisaabramowicz1",
+    "name": "Lisa Abramowicz",
+    "category": "Journalist"
+  },
+  {
+    "username": "SalehaMohsin",
+    "name": "Saleha Mohsin",
+    "category": "Journalist"
+  },
+  {
+    "username": "TheLizYoung",
+    "name": "Liz Young",
+    "category": "Analyst"
+  },
+  {
+    "username": "SqueezeMetrics",
+    "name": "SqueezeMetrics",
+    "category": "Data/Research"
+  },
+  {
+    "username": "SpotGamma",
+    "name": "SpotGamma",
+    "category": "Data/Research"
+  },
+  {
+    "username": "VolatilityQ",
+    "name": "Volatility Queen",
+    "category": "Trader"
+  },
+  {
+    "username": "jam_croissant",
+    "name": "Jam Croissant",
+    "category": "Trader"
+  },
+  {
+    "username": "OptionsHawk",
+    "name": "Options Hawk",
+    "category": "Trader"
+  },
+  {
+    "username": "OptionsPlay",
+    "name": "OptionsPlay",
+    "category": "Trader"
+  },
+  {
+    "username": "RiskReversal",
+    "name": "Risk Reversal",
+    "category": "Trader"
+  },
+  {
+    "username": "GreekLive",
+    "name": "Greek Live",
+    "category": "Trader"
+  },
+  {
+    "username": "MacroCharts",
+    "name": "Macro Charts",
+    "category": "Data/Research"
+  },
+  {
+    "username": "topdowncharts",
+    "name": "Top Down Charts",
+    "category": "Data/Research"
+  },
+  {
+    "username": "biancoresearch",
+    "name": "Bianco Research",
+    "category": "Data/Research"
+  },
+  {
+    "username": "LynAldenContact",
+    "name": "Lyn Alden",
+    "category": "Analyst"
+  },
+  {
+    "username": "RaoulGMI",
+    "name": "Raoul Pal",
+    "category": "Economist"
+  },
+  {
+    "username": "FedGuy12",
+    "name": "Joseph Wang",
+    "category": "Economist"
+  },
+  {
+    "username": "LawrenceSummers",
+    "name": "Lawrence Summers",
+    "category": "Economist"
+  },
+  {
+    "username": "paulkrugman",
+    "name": "Paul Krugman",
+    "category": "Economist"
+  },
+  {
+    "username": "NickTimiraos",
+    "name": "Nick Timiraos",
+    "category": "Journalist"
+  },
+  {
+    "username": "JeffCoxCNBCcom",
+    "name": "Jeff Cox",
+    "category": "Journalist"
+  },
+  {
+    "username": "steveliesman",
+    "name": "Steve Liesman",
+    "category": "Journalist"
+  },
+  {
+    "username": "ScottWapnerCNBC",
+    "name": "Scott Wapner",
+    "category": "Journalist"
+  },
+  {
+    "username": "MelissaLeeCNBC",
+    "name": "Melissa Lee",
+    "category": "Journalist"
+  },
+  {
+    "username": "SaraEisen",
+    "name": "Sara Eisen",
+    "category": "Journalist"
+  },
+  {
+    "username": "KellyCNBC",
+    "name": "Kelly Evans",
+    "category": "Journalist"
+  },
+  {
+    "username": "BeckyQuick",
+    "name": "Becky Quick",
+    "category": "Journalist"
+  },
+  {
+    "username": "andrewrsorkin",
+    "name": "Andrew Ross Sorkin",
+    "category": "Journalist"
+  },
+  {
+    "username": "JoeSquawk",
+    "name": "Joe Kernen",
+    "category": "Journalist"
+  },
+  {
+    "username": "SquawkStreet",
+    "name": "Squawk on the Street",
+    "category": "Journalist"
+  },
+  {
+    "username": "SquawkAlley",
+    "name": "Squawk Alley",
+    "category": "Journalist"
+  },
+  {
+    "username": "CNBCClosingBell",
+    "name": "Closing Bell",
+    "category": "Journalist"
+  },
+  {
+    "username": "CNBCFastMoney",
+    "name": "Fast Money",
+    "category": "Journalist"
+  },
+  {
+    "username": "HalftimeReport",
+    "name": "Halftime Report",
+    "category": "Journalist"
+  },
+  {
+    "username": "BarronsOnline",
+    "name": "Barron's",
+    "category": "Journalist"
+  },
+  {
+    "username": "MarketWatch",
+    "name": "MarketWatch",
+    "category": "Journalist"
+  },
+  {
+    "username": "YahooFinance",
+    "name": "Yahoo Finance",
+    "category": "Journalist"
+  },
+  {
+    "username": "Investingcom",
+    "name": "Investing.com",
+    "category": "Journalist"
+  },
+  {
+    "username": "SeekingAlpha",
+    "name": "Seeking Alpha",
+    "category": "Journalist"
+  },
+  {
+    "username": "TheTerminal",
+    "name": "Bloomberg Terminal",
+    "category": "Data/Research"
+  },
+  {
+    "username": "MktOutperform",
+    "name": "Market Outperform",
+    "category": "Analyst"
+  },
+  {
+    "username": "TruthGundlach",
+    "name": "Jeffrey Gundlach",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "DavidEinhorn",
+    "name": "David Einhorn",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "BarryRitholtz",
+    "name": "Barry Ritholtz",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "michaelbatnick",
+    "name": "Michael Batnick",
+    "category": "Analyst"
+  },
+  {
+    "username": "bespokeinvest",
+    "name": "Bespoke Invest",
+    "category": "Data/Research"
+  },
+  {
+    "username": "sentimentrader",
+    "name": "Sentiment Trader",
+    "category": "Data/Research"
+  },
+  {
+    "username": "NDR_Research",
+    "name": "Ned Davis Research",
+    "category": "Data/Research"
+  },
+  {
+    "username": "fundstrat",
+    "name": "Fundstrat",
+    "category": "Data/Research"
+  },
+  {
+    "username": "TomLeeResearch",
+    "name": "Tom Lee",
+    "category": "Analyst"
+  },
+  {
+    "username": "MikeZaccardi",
+    "name": "Mike Zaccardi",
+    "category": "Analyst"
+  },
+  {
+    "username": "EconguyRosie",
+    "name": "David Rosenberg",
+    "category": "Economist"
+  },
+  {
+    "username": "JohnAuthers",
+    "name": "John Authers",
+    "category": "Journalist"
+  },
+  {
+    "username": "RobinWigg",
+    "name": "Robin Wigglesworth",
+    "category": "Journalist"
+  },
+  {
+    "username": "jasonzweigwsj",
+    "name": "Jason Zweig",
+    "category": "Journalist"
+  },
+  {
+    "username": "BenCarlson",
+    "name": "Ben Carlson",
+    "category": "Analyst"
+  },
+  {
+    "username": "awealthofcs",
+    "name": "A Wealth of Common Sense",
+    "category": "Analyst"
+  },
+  {
+    "username": "EddyElfenbein",
+    "name": "Eddy Elfenbein",
+    "category": "Analyst"
+  },
+  {
+    "username": "JesseBlom",
+    "name": "Jesse Blom",
+    "category": "Analyst"
+  },
+  {
+    "username": "Convertbond",
+    "name": "Convertible Bonds",
+    "category": "Analyst"
+  },
+  {
+    "username": "RyanDetrick",
+    "name": "Ryan Detrick",
+    "category": "Analyst"
+  },
+  {
+    "username": "SamRo",
+    "name": "Sam Ro",
+    "category": "Analyst"
+  },
+  {
+    "username": "MikeAlfred",
+    "name": "Mike Alfred",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "AswathDamodaran",
+    "name": "Aswath Damodaran",
+    "category": "Economist"
+  },
+  {
+    "username": "profgalloway",
+    "name": "Scott Galloway",
+    "category": "Analyst"
+  },
+  {
+    "username": "TaviCosta",
+    "name": "Tavi Costa",
+    "category": "Analyst"
+  },
+  {
+    "username": "LukeGromen",
+    "name": "Luke Gromen",
+    "category": "Economist"
+  },
+  {
+    "username": "JeffSnider_AIP",
+    "name": "Jeff Snider",
+    "category": "Economist"
+  },
+  {
+    "username": "KimbleCharting",
+    "name": "Kimble Charting",
+    "category": "Trader"
+  },
+  {
+    "username": "allstarcharts",
+    "name": "All Star Charts",
+    "category": "Trader"
+  },
+  {
+    "username": "CarterBraxton",
+    "name": "Carter Worth",
+    "category": "Trader"
+  },
+  {
+    "username": "DanGramza",
+    "name": "Dan Gramza",
+    "category": "Trader"
+  },
+  {
+    "username": "MarkMinervini",
+    "name": "Mark Minervini",
+    "category": "Trader"
+  },
+  {
+    "username": "marketsci",
+    "name": "Market Sci",
+    "category": "Trader"
+  },
+  {
+    "username": "IncredibleTrade",
+    "name": "Incredible Trade",
+    "category": "Trader"
+  },
+  {
+    "username": "TraderStewie",
+    "name": "Trader Stewie",
+    "category": "Trader"
+  },
+  {
+    "username": "madaznfootballr",
+    "name": "Madaz",
+    "category": "Trader"
+  },
+  {
+    "username": "MarketSmith",
+    "name": "MarketSmith",
+    "category": "Data/Research"
+  },
+  {
+    "username": "IBDinvestors",
+    "name": "Investor's Business Daily",
+    "category": "Journalist"
+  },
+  {
+    "username": "MrTopStep",
+    "name": "Mr. TopStep",
+    "category": "Trader"
+  },
+  {
+    "username": "TDAmeritrade",
+    "name": "TD Ameritrade",
+    "category": "Data/Research"
+  },
+  {
+    "username": "Schwab",
+    "name": "Charles Schwab",
+    "category": "Data/Research"
+  },
+  {
+    "username": "Fidelity",
+    "name": "Fidelity",
+    "category": "Data/Research"
+  },
+  {
+    "username": "etrade",
+    "name": "E*TRADE",
+    "category": "Data/Research"
+  },
+  {
+    "username": "RobinhoodApp",
+    "name": "Robinhood",
+    "category": "Data/Research"
+  },
+  {
+    "username": "WeBull",
+    "name": "Webull",
+    "category": "Data/Research"
+  },
+  {
+    "username": "TastyTrade",
+    "name": "tastytrade",
+    "category": "Trader"
+  },
+  {
+    "username": "IBKR",
+    "name": "Interactive Brokers",
+    "category": "Data/Research"
+  },
+  {
+    "username": "federalreserve",
+    "name": "Federal Reserve",
+    "category": "Economist"
+  },
+  {
+    "username": "USTreasury",
+    "name": "US Treasury",
+    "category": "Economist"
+  },
+  {
+    "username": "SEC_News",
+    "name": "SEC",
+    "category": "Economist"
+  },
+  {
+    "username": "IMFNews",
+    "name": "IMF",
+    "category": "Economist"
+  },
+  {
+    "username": "WorldBank",
+    "name": "World Bank",
+    "category": "Economist"
+  },
+  {
+    "username": "BLS_gov",
+    "name": "Bureau of Labor Statistics",
+    "category": "Economist"
+  },
+  {
+    "username": "BEA_News",
+    "name": "Bureau of Economic Analysis",
+    "category": "Economist"
+  },
+  {
+    "username": "USCBO",
+    "name": "Congressional Budget Office",
+    "category": "Economist"
+  },
+  {
+    "username": "GoldmanSachs",
+    "name": "Goldman Sachs",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "MorganStanley",
+    "name": "Morgan Stanley",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "jpmorgan",
+    "name": "JPMorgan Chase",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "BankofAmerica",
+    "name": "Bank of America",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "Citi",
+    "name": "Citigroup",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "WellsFargo",
+    "name": "Wells Fargo",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "UBS",
+    "name": "UBS",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "CreditSuisse",
+    "name": "Credit Suisse",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "DeutscheBank",
+    "name": "Deutsche Bank",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "HSBC",
+    "name": "HSBC",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "Barclays",
+    "name": "Barclays",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "RBC",
+    "name": "RBC Capital Markets",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "ScotiabankViews",
+    "name": "Scotiabank",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "BMO",
+    "name": "BMO Capital Markets",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "Vanguard_Group",
+    "name": "Vanguard",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "BlackRock",
+    "name": "BlackRock",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "StateStreet",
+    "name": "State Street",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "PIMCO",
+    "name": "PIMCO",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "FidelityNews",
+    "name": "Fidelity Investments",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "TRowePrice",
+    "name": "T. Rowe Price",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "CapitalGroup",
+    "name": "Capital Group",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "Invesco",
+    "name": "Invesco",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "FranklinTemplet",
+    "name": "Franklin Templeton",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "AllianceBernst",
+    "name": "AllianceBernstein",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "jenniferhsu",
+    "name": "Jen-Hsun Huang",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "tim_cook",
+    "name": "Tim Cook",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "satyanadella",
+    "name": "Satya Nadella",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "sundarpichai",
+    "name": "Sundar Pichai",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "finkd",
+    "name": "Larry Fink",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "jpmorgan_ceo",
+    "name": "Jamie Dimon",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "WarrenBuffett",
+    "name": "Warren Buffett",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "BillGates",
+    "name": "Bill Gates",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "MarkCuban",
+    "name": "Mark Cuban",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "richardbranson",
+    "name": "Richard Branson",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "mcuban",
+    "name": "Mark Cuban",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "Kevin_OLeary",
+    "name": "Kevin O'Leary",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "BarbaraCorcoran",
+    "name": "Barbara Corcoran",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "robertherjavec",
+    "name": "Robert Herjavec",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "mcuban",
+    "name": "Mark Cuban",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "naval",
+    "name": "Naval Ravikant",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "pmarca",
+    "name": "Marc Andreessen",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "bhorowitz",
+    "name": "Ben Horowitz",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "peterthiel",
+    "name": "Peter Thiel",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "reidhoffman",
+    "name": "Reid Hoffman",
+    "category": "CEO/Entrepreneur"
+  }
+]

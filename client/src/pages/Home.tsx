@@ -1,354 +1,379 @@
-import { useAuth } from "@/_core/hooks/useAuth";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { APP_LOGO, APP_TITLE, getLoginUrl } from "@/const";
+import { useState, useEffect } from "react";
 import { trpc } from "@/lib/trpc";
-import {
-  TrendingUp,
-  Rocket,
-  Flame,
-  BarChart3,
-  Play,
-  ExternalLink,
-  Clock,
-  Eye,
-  ArrowRight,
-} from "lucide-react";
-import { Link } from "wouter";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { StockTag } from "@/components/StockTag";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { TrendingUp, TrendingDown, Clock, Activity, BarChart3, Zap } from "lucide-react";
 
 export default function Home() {
-  const { isAuthenticated, loading } = useAuth();
-  const { data: stats } = trpc.influencers.getStats.useQuery();
-  const { data: contents } = trpc.contents.getLatest.useQuery({ limit: 6 });
-  const { data: trendingStocks } = trpc.contents.getTrendingStocks.useQuery();
-  const { data: hotKeywords } = trpc.contents.getHotKeywords.useQuery();
-
-  const CHART_COLORS = ['#3b82f6', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981'];
+  const [activeTab, setActiveTab] = useState("realtime");
+  
+  const realtimeQuery = trpc.trending.realtime.useQuery(undefined, {
+    refetchInterval: 15 * 60 * 1000,
+  });
+  
+  const todayQuery = trpc.trending.today.useQuery();
+  const weeklyQuery = trpc.trending.weekly.useQuery();
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-pink-600/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.15),transparent_50%)]" />
-        {/* Chart Background */}
-        <div className="absolute inset-0 opacity-10">
-          <img src="/bg-trending-stocks.png" alt="" className="w-full h-full object-cover" />
-        </div>
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Tech Background */}
+      <div className="fixed inset-0 z-0">
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
         
-        <div className="container relative py-24 md:py-32">
-          <div className="mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left: Text Content */}
-              <div className="text-center md:text-left space-y-8">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-6">
-                  <Flame className="w-4 h-4" />
-                  실시간 업데이트 중
-                </div>
-                
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight">
-                  <div className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    <div>TREND</div>
-                    <div>HACKER</div>
-                  </div>
+        {/* Gradient Orbs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        
+        {/* Scan Lines */}
+        <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,255,255,0.02)_50%)] bg-[size:100%_4px] pointer-events-none" />
+      </div>
+
+      {/* Header */}
+      <header className="relative z-10 border-b border-cyan-500/20 bg-black/80 backdrop-blur-xl sticky top-0">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left">
+              <div className="flex items-center gap-3 justify-center md:justify-start">
+                <Zap className="w-8 h-8 text-cyan-400" />
+                <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  TREND HACKER
                 </h1>
-                
-                <p className="text-xl md:text-2xl text-gray-400 mt-6">
-                  모든 미장주식의 최신화된 정보를
-                  <br />
-                  <span className="text-white font-semibold">한번에 만날 수 있다</span>
-                </p>
-
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-6 mt-12">
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                    <div className="text-4xl font-bold text-blue-400">{stats?.totalInfluencers || 119}</div>
-                    <div className="text-sm text-gray-400 mt-2">전문가</div>
-                  </div>
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-                    <div className="text-4xl font-bold text-purple-400">{stats?.totalContents || 76}</div>
-                    <div className="text-sm text-gray-400 mt-2">최신 콘텐츠</div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-12">
-                  {isAuthenticated ? (
-                    <Link href="/dashboard">
-                      <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl">
-                        대시보드 이동
-                        <ArrowRight className="ml-2 w-5 h-5" />
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Button 
-                      size="lg" 
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl"
-                      onClick={() => window.location.href = getLoginUrl()}
-                    >
-                      무료로 시작하기
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </Button>
-                  )}
-                </div>
               </div>
-
-              {/* Right: Hacker Image */}
-              <div className="hidden md:block">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-3xl" />
-                  <img 
-                    src="/hero-data-viz.png" 
-                    alt="Trend Hacker Data Visualization" 
-                    className="relative w-full h-auto rounded-3xl shadow-2xl"
-                  />
-                </div>
-              </div>
+              <p className="text-sm text-cyan-400/60 mt-1">200명의 전문가 | 실시간 데이터 스트림</p>
             </div>
+            <LiveTimer lastUpdate={realtimeQuery.data?.lastUpdate} nextUpdate={realtimeQuery.data?.nextUpdate} />
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Trending Stocks Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/bg-trending-stocks.png" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="container relative z-10">
-          <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-blue-500/10 rounded-xl">
-                <TrendingUp className="w-6 h-6 text-blue-400" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold">지금 가장 많이 언급되는 종목</h2>
-                <p className="text-gray-400 mt-1">전문가들이 주목하는 TOP 8</p>
-              </div>
-            </div>
-            <Link href="/dashboard">
-              <Button variant="ghost" className="text-blue-400 hover:text-blue-300">
-                전체 보기
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
+      {/* Main Content */}
+      <main className="relative z-10 container mx-auto px-4 py-8">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+          <TabsList className="bg-black/60 border border-cyan-500/30 backdrop-blur-xl p-1">
+            <TabsTrigger 
+              value="realtime" 
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-red-600 data-[state=active]:to-red-500 data-[state=active]:text-white"
+            >
+              <Activity className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">🔴 실시간</span>
+              <span className="sm:hidden">🔴</span>
+              <span className="text-xs ml-1">(15분)</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="today"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-600 data-[state=active]:to-blue-600 data-[state=active]:text-white"
+            >
+              <Clock className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">📊 오늘</span>
+              <span className="sm:hidden">📊</span>
+              <span className="text-xs ml-1">(24h)</span>
+            </TabsTrigger>
+            <TabsTrigger 
+              value="weekly"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-purple-600 data-[state=active]:to-pink-600 data-[state=active]:text-white"
+            >
+              <BarChart3 className="w-4 h-4 mr-2" />
+              <span className="hidden sm:inline">📈 주간</span>
+              <span className="sm:hidden">📈</span>
+              <span className="text-xs ml-1">(7일)</span>
+            </TabsTrigger>
+          </TabsList>
 
-          {trendingStocks && trendingStocks.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {trendingStocks.slice(0, 8).map((stock: any, index: number) => (
-                <Card key={stock.ticker} className="bg-white/5 backdrop-blur-sm border-white/10 p-6 hover:bg-white/10 transition-all">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="text-2xl font-bold text-gray-500">#{index + 1}</div>
-                      <TrendingUp className="w-4 h-4 text-green-400" />
-                    </div>
-                    <div className="text-sm text-gray-400">{stock.count}회 언급</div>
-                  </div>
-                  <div className="text-2xl font-bold text-white mb-1">{stock.ticker}</div>
-                  <div className="text-sm text-gray-400">{stock.name}</div>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center text-gray-400 py-12">
-              데이터를 불러오는 중...
-            </div>
-          )}
-        </div>
-      </section>
+          <TabsContent value="realtime" className="space-y-6">
+            <RealtimeView data={realtimeQuery.data} isLoading={realtimeQuery.isLoading} />
+          </TabsContent>
 
-      {/* Hot Keywords Section */}
-      <section className="py-20 bg-gray-900 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/bg-keywords.png" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="container relative z-10">
-          <div className="flex items-center gap-3 mb-12">
-            <div className="p-3 bg-purple-500/10 rounded-xl">
-              <Flame className="w-6 h-6 text-purple-400" />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold">핫 키워드</h2>
-              <p className="text-gray-400 mt-1">지금 가장 많이 언급되는 주제</p>
-            </div>
-          </div>
+          <TabsContent value="today" className="space-y-6">
+            <TodayView data={todayQuery.data} isLoading={todayQuery.isLoading} />
+          </TabsContent>
 
-          {hotKeywords && hotKeywords.length > 0 ? (
-            <div className="flex flex-wrap gap-3">
-              {hotKeywords.map((keyword: any, index: number) => (
-                <div
-                  key={keyword.keyword}
-                  className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full hover:bg-white/10 transition-all cursor-pointer"
-                  style={{
-                    fontSize: `${Math.max(14, Math.min(24, 14 + keyword.count * 2))}px`,
-                  }}
-                >
-                  <span className="font-semibold text-white">{keyword.keyword}</span>
-                  <span className="ml-2 text-gray-400 text-sm">{keyword.count}</span>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center text-gray-400 py-12">
-              데이터를 불러오는 중...
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* Latest Videos Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src="/bg-videos.png" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="container relative z-10">
-          <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-pink-500/10 rounded-xl">
-                <Play className="w-6 h-6 text-pink-400" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold">최신 영상 인사이트</h2>
-                <p className="text-gray-400 mt-1">전문가들이 오늘 올린 영상</p>
-              </div>
-            </div>
-            <Link href="/dashboard">
-              <Button variant="ghost" className="text-pink-400 hover:text-pink-300">
-                전체 보기
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
-
-          {contents && contents.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {contents.map((content: any) => (
-                <Card key={content.id} className="bg-white/5 backdrop-blur-sm border-white/10 overflow-hidden hover:bg-white/10 transition-all group">
-                  <div className="relative aspect-video bg-gradient-to-br from-blue-600/20 to-purple-600/20 flex items-center justify-center">
-                    {content.thumbnailUrl ? (
-                      <img src={content.thumbnailUrl} alt={content.title || ''} className="w-full h-full object-cover" />
-                    ) : (
-                      <Play className="w-16 h-16 text-white/50" />
-                    )}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
-                      <Play className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-all" />
-                    </div>
-                    <div className="absolute top-3 left-3 px-3 py-1 bg-red-600 rounded-md text-xs font-semibold">
-                      YOUTUBE
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-semibold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
-                      {content.title}
-                    </h3>
-                    
-                    {/* AI 요약 */}
-                    {content.aiSummary && (
-                      <div className="mb-3 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
-                        <p className="text-sm text-gray-300 line-clamp-2">
-                          {content.aiSummary}
-                        </p>
-                      </div>
-                    )}
-                    
-                    {/* 언급된 종목 */}
-                    {content.aiStocks && content.aiStocks.length > 0 && (
-                      <div className="flex flex-wrap gap-2 mb-3">
-                        {content.aiStocks.slice(0, 4).map((stock: string) => (
-                          <StockTag key={stock} symbol={stock} sentiment={content.aiSentiment} />
-                        ))}
-                      </div>
-                    )}
-                    
-                    {/* 전망 아이콘 */}
-                    {content.aiSentiment && (
-                      <div className="flex items-center gap-2 mb-3">
-                        {content.aiSentiment === 'bullish' && (
-                          <span className="flex items-center gap-1 text-green-400 text-sm">
-                            🔥 상승 전망
-                          </span>
-                        )}
-                        {content.aiSentiment === 'bearish' && (
-                          <span className="flex items-center gap-1 text-red-400 text-sm">
-                            📉 하락 전망
-                          </span>
-                        )}
-                        {content.aiSentiment === 'neutral' && (
-                          <span className="flex items-center gap-1 text-gray-400 text-sm">
-                            ⚖️ 중립
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    
-                    <p className="text-sm text-gray-400 mb-4 line-clamp-2">
-                      {content.description}
-                    </p>
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <div className="flex items-center gap-4">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" />
-                          {content.publishedAt ? new Date(content.publishedAt).toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' }) : 'N/A'}
-                        </span>
-                        {content.viewCount && content.viewCount > 0 && (
-                          <span className="flex items-center gap-1">
-                            <Eye className="w-3 h-3" />
-                            {content.viewCount.toLocaleString()}
-                          </span>
-                        )}
-                      </div>
-                      {content.url && (
-                        <a
-                          href={content.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-blue-400 hover:text-blue-300"
-                        >
-                          원본 보기
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center text-gray-400 py-12">
-              데이터를 불러오는 중...
-            </div>
-          )}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="container">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                지금 바로 시작하세요
-              </span>
-            </h2>
-            <p className="text-xl text-gray-400 mb-8">
-              100명 이상의 전문가가 분석한 최신 종목 정보를 무료로 확인하세요
-            </p>
-            {!isAuthenticated && (
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-12 py-6 text-lg rounded-xl"
-                onClick={() => window.location.href = getLoginUrl()}
-              >
-                무료로 시작하기
-                <Rocket className="ml-2 w-5 h-5" />
-              </Button>
-            )}
-          </div>
-        </div>
-      </section>
+          <TabsContent value="weekly" className="space-y-6">
+            <WeeklyView data={weeklyQuery.data} isLoading={weeklyQuery.isLoading} />
+          </TabsContent>
+        </Tabs>
+      </main>
     </div>
+  );
+}
+
+function LiveTimer({ lastUpdate, nextUpdate }: { lastUpdate?: Date; nextUpdate?: Date }) {
+  const [timeAgo, setTimeAgo] = useState("");
+  const [timeUntil, setTimeUntil] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (lastUpdate) {
+        const seconds = Math.floor((Date.now() - new Date(lastUpdate).getTime()) / 1000);
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        setTimeAgo(`${minutes}:${remainingSeconds.toString().padStart(2, '0')}`);
+      }
+      
+      if (nextUpdate) {
+        const seconds = Math.floor((new Date(nextUpdate).getTime() - Date.now()) / 1000);
+        if (seconds > 0) {
+          const minutes = Math.floor(seconds / 60);
+          const remainingSeconds = seconds % 60;
+          setTimeUntil(`${minutes}:${remainingSeconds.toString().padStart(2, '0')}`);
+        } else {
+          setTimeUntil("00:00");
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [lastUpdate, nextUpdate]);
+
+  return (
+    <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs sm:text-sm bg-black/60 backdrop-blur-xl border border-cyan-500/30 rounded-lg px-4 py-3">
+      <div className="flex items-center gap-2">
+        <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+        <span className="text-cyan-400/60">LAST UPDATE</span>
+        <span className="text-cyan-400 font-mono font-bold text-base">{timeAgo || "--:--"}</span>
+      </div>
+      <div className="hidden sm:block w-px h-6 bg-cyan-500/30" />
+      <div className="flex items-center gap-2">
+        <Clock className="w-3 h-3 text-cyan-400/60" />
+        <span className="text-cyan-400/60">NEXT UPDATE</span>
+        <span className="text-cyan-400 font-mono font-bold text-base">{timeUntil || "--:--"}</span>
+      </div>
+    </div>
+  );
+}
+
+function RealtimeView({ data, isLoading }: { data?: any; isLoading: boolean }) {
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="text-cyan-400 animate-pulse">LOADING DATA STREAM...</div>
+      </div>
+    );
+  }
+
+  if (!data || data.stocks.length === 0) {
+    return (
+      <Card className="bg-black/60 border-cyan-500/30 backdrop-blur-xl">
+        <CardContent className="py-20 text-center">
+          <Activity className="w-16 h-16 text-cyan-400/30 mx-auto mb-4" />
+          <p className="text-cyan-400/60 text-lg">NO DATA IN LAST 15 MINUTES</p>
+          <p className="text-cyan-400/40 text-sm mt-2">Waiting for data stream...</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <StatCard title="MENTIONS" value={data.totalTweets} subtitle="Last 15min" color="cyan" />
+        <StatCard title="STOCKS" value={data.stocks.length} subtitle="Unique" color="purple" />
+        <StatCard 
+          title="AVG" 
+          value={data.stocks.length > 0 ? (data.totalTweets / data.stocks.length).toFixed(1) : 0} 
+          subtitle="Per stock" 
+          color="pink" 
+        />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {data.stocks.map((stock: any, index: number) => (
+          <StockCard key={stock.ticker} stock={stock} rank={index + 1} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function TodayView({ data, isLoading }: { data?: any; isLoading: boolean }) {
+  if (isLoading) {
+    return <div className="flex items-center justify-center py-20"><div className="text-cyan-400 animate-pulse">LOADING...</div></div>;
+  }
+
+  if (!data || data.stocks.length === 0) {
+    return (
+      <Card className="bg-black/60 border-cyan-500/30 backdrop-blur-xl">
+        <CardContent className="py-20 text-center">
+          <p className="text-cyan-400/60">NO DATA TODAY</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  const bullishStocks = data.stocks.filter((s: any) => s.sentiment === 'bullish');
+  const bearishStocks = data.stocks.filter((s: any) => s.sentiment === 'bearish');
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <StatCard title="TWEETS" value={data.totalTweets} color="cyan" />
+        <StatCard title="STOCKS" value={data.stocks.length} color="purple" />
+        <StatCard title="BULLISH" value={bullishStocks.length} color="green" />
+        <StatCard title="BEARISH" value={bearishStocks.length} color="red" />
+      </div>
+
+      {bullishStocks.length > 0 && (
+        <div>
+          <h2 className="text-xl font-bold text-green-400 mb-4 flex items-center gap-2">
+            <TrendingUp className="w-5 h-5" />
+            BULLISH STOCKS ({bullishStocks.length})
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {bullishStocks.map((stock: any, index: number) => (
+              <StockCard key={stock.ticker} stock={stock} rank={index + 1} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {bearishStocks.length > 0 && (
+        <div>
+          <h2 className="text-xl font-bold text-red-400 mb-4 flex items-center gap-2">
+            <TrendingDown className="w-5 h-5" />
+            BEARISH STOCKS ({bearishStocks.length})
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {bearishStocks.map((stock: any, index: number) => (
+              <StockCard key={stock.ticker} stock={stock} rank={index + 1} />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function WeeklyView({ data, isLoading }: { data?: any; isLoading: boolean }) {
+  if (isLoading) {
+    return <div className="flex items-center justify-center py-20"><div className="text-cyan-400 animate-pulse">LOADING...</div></div>;
+  }
+
+  if (!data || data.stocks.length === 0) {
+    return (
+      <Card className="bg-black/60 border-cyan-500/30 backdrop-blur-xl">
+        <CardContent className="py-20 text-center">
+          <p className="text-cyan-400/60">NO DATA THIS WEEK</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <StatCard title="TWEETS" value={data.totalTweets} subtitle="Last 7 days" color="cyan" />
+        <StatCard title="DAILY AVG" value={Math.round(data.totalTweets / 7)} subtitle="Tweets/day" color="purple" />
+        <StatCard title="STOCKS" value={data.stocks.length} subtitle="Tracked" color="pink" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        {data.stocks.slice(0, 20).map((stock: any, index: number) => (
+          <StockCard key={stock.ticker} stock={stock} rank={index + 1} showAvg />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function StatCard({ title, value, subtitle, color }: { title: string; value: number | string; subtitle?: string; color: string }) {
+  const colorClasses = {
+    cyan: 'border-cyan-500/30 bg-gradient-to-br from-cyan-500/10 to-transparent',
+    purple: 'border-purple-500/30 bg-gradient-to-br from-purple-500/10 to-transparent',
+    pink: 'border-pink-500/30 bg-gradient-to-br from-pink-500/10 to-transparent',
+    green: 'border-green-500/30 bg-gradient-to-br from-green-500/10 to-transparent',
+    red: 'border-red-500/30 bg-gradient-to-br from-red-500/10 to-transparent',
+  };
+
+  const textColors = {
+    cyan: 'text-cyan-400',
+    purple: 'text-purple-400',
+    pink: 'text-pink-400',
+    green: 'text-green-400',
+    red: 'text-red-400',
+  };
+
+  return (
+    <Card className={`${colorClasses[color as keyof typeof colorClasses]} border backdrop-blur-xl`}>
+      <CardHeader className="pb-2">
+        <CardTitle className="text-xs text-cyan-400/60 font-mono">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className={`text-4xl font-bold ${textColors[color as keyof typeof textColors]} font-mono`}>{value}</p>
+        {subtitle && <p className="text-xs text-cyan-400/40 mt-1">{subtitle}</p>}
+      </CardContent>
+    </Card>
+  );
+}
+
+function StockCard({ stock, rank, showAvg = false }: { stock: any; rank: number; showAvg?: boolean }) {
+  const sentimentConfig = {
+    bullish: {
+      border: 'border-green-500/40',
+      bg: 'bg-gradient-to-br from-green-500/20 via-green-500/5 to-transparent',
+      text: 'text-green-400',
+      icon: <TrendingUp className="w-5 h-5" />,
+      glow: 'shadow-[0_0_20px_rgba(34,197,94,0.3)]'
+    },
+    bearish: {
+      border: 'border-red-500/40',
+      bg: 'bg-gradient-to-br from-red-500/20 via-red-500/5 to-transparent',
+      text: 'text-red-400',
+      icon: <TrendingDown className="w-5 h-5" />,
+      glow: 'shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+    },
+    neutral: {
+      border: 'border-cyan-500/30',
+      bg: 'bg-gradient-to-br from-cyan-500/10 to-transparent',
+      text: 'text-cyan-400',
+      icon: <Activity className="w-5 h-5" />,
+      glow: ''
+    }
+  };
+
+  const config = sentimentConfig[stock.sentiment as keyof typeof sentimentConfig] || sentimentConfig.neutral;
+  const bullishPercent = stock.count > 0 ? Math.round((stock.bullish / stock.count) * 100) : 0;
+  const bearishPercent = stock.count > 0 ? Math.round((stock.bearish / stock.count) * 100) : 0;
+
+  return (
+    <Card className={`${config.bg} ${config.border} ${config.glow} border backdrop-blur-xl transition-all hover:scale-[1.02] hover:${config.glow}`}>
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Badge variant="outline" className={`${config.text} border-current text-lg font-bold font-mono px-3 py-1`}>
+              #{rank}
+            </Badge>
+            <CardTitle className={`text-3xl font-bold ${config.text} font-mono`}>
+              ${stock.ticker}
+            </CardTitle>
+          </div>
+          <div className={config.text}>
+            {config.icon}
+          </div>
+        </div>
+        <CardDescription className="text-cyan-400/60 font-mono text-sm">
+          {stock.count} MENTIONS
+          {showAvg && ` • AVG ${stock.avgPerDay}/DAY`}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <div className="flex justify-between text-xs font-mono">
+            <span className="text-green-400">▲ {stock.bullish} ({bullishPercent}%)</span>
+            <span className="text-red-400">▼ {stock.bearish} ({bearishPercent}%)</span>
+          </div>
+          <div className="h-2 bg-black/60 rounded-full overflow-hidden flex border border-cyan-500/20">
+            <div className="bg-gradient-to-r from-green-500 to-green-400" style={{ width: `${bullishPercent}%` }} />
+            <div className="bg-gradient-to-r from-red-500 to-red-400" style={{ width: `${bearishPercent}%` }} />
+          </div>
+        </div>
+
+        {stock.latestTweet && (
+          <div className="text-sm text-cyan-300/80 bg-black/40 border border-cyan-500/20 p-3 rounded font-mono leading-relaxed">
+            <span className="text-cyan-400">→</span> {stock.latestTweet}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

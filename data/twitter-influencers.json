@@ -1,0 +1,102 @@
+[
+  {
+    "username": "elonmusk",
+    "name": "Elon Musk",
+    "category": "CEO/Entrepreneur"
+  },
+  {
+    "username": "cathiedwood",
+    "name": "Cathie Wood",
+    "category": "Fund Manager"
+  },
+  {
+    "username": "jimcramer",
+    "name": "Jim Cramer",
+    "category": "TV Host/Analyst"
+  },
+  {
+    "username": "chamath",
+    "name": "Chamath Palihapitiya",
+    "category": "Investor/VC"
+  },
+  {
+    "username": "GaryBlack00",
+    "name": "Gary Black",
+    "category": "Portfolio Manager"
+  },
+  {
+    "username": "SawyerMerritt",
+    "name": "Sawyer Merritt",
+    "category": "Tesla Analyst"
+  },
+  {
+    "username": "TroyTeslike",
+    "name": "Troy Teslike",
+    "category": "Tesla Data Analyst"
+  },
+  {
+    "username": "KobeissiLetter",
+    "name": "The Kobeissi Letter",
+    "category": "Market Analysis"
+  },
+  {
+    "username": "unusual_whales",
+    "name": "unusual_whales",
+    "category": "Options Flow"
+  },
+  {
+    "username": "DeItaone",
+    "name": "Walter Bloomberg",
+    "category": "Breaking News"
+  },
+  {
+    "username": "zerohedge",
+    "name": "zerohedge",
+    "category": "Financial News"
+  },
+  {
+    "username": "carlquintanilla",
+    "name": "Carl Quintanilla",
+    "category": "CNBC Anchor"
+  },
+  {
+    "username": "SquawkCNBC",
+    "name": "Squawk Box",
+    "category": "CNBC Show"
+  },
+  {
+    "username": "markets",
+    "name": "Bloomberg Markets",
+    "category": "Financial News"
+  },
+  {
+    "username": "WSJ",
+    "name": "Wall Street Journal",
+    "category": "News"
+  },
+  {
+    "username": "FT",
+    "name": "Financial Times",
+    "category": "News"
+  },
+  {
+    "username": "business",
+    "name": "Bloomberg",
+    "category": "Financial News"
+  },
+  {
+    "username": "Reuters",
+    "name": "Reuters",
+    "category": "News"
+  },
+  {
+    "username": "Fxhedgers",
+    "name": "Fxhedgers",
+    "category": "Market News"
+  },
+  {
+    "username": "BespokeTrades",
+    "name": "Bespoke Investment Group",
+    "category": "Research"
+  }
+]
