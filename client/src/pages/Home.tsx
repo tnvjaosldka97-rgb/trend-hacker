@@ -95,8 +95,8 @@ export default function Home() {
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-3xl" />
                   <img 
-                    src="/hacker-hero.png" 
-                    alt="Trend Hacker" 
+                    src="/hero-data-viz.png" 
+                    alt="Trend Hacker Data Visualization" 
                     className="relative w-full h-auto rounded-3xl shadow-2xl"
                   />
                 </div>
