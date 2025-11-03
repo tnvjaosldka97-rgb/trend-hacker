@@ -1,4 +1,4 @@
-import { eq, desc, and, like, sql } from "drizzle-orm";
+import { eq, gte, desc, and, like, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -114,12 +114,17 @@ export async function getInfluencerById(id: number): Promise<Influencer | undefi
   return result.length > 0 ? result[0] : undefined;
 }
 
-// Content queries
+// Content queries - Only return contents from the last 7 days
 export async function getAllContents(limit: number = 50): Promise<Content[]> {
   const db = await getDb();
   if (!db) return [];
   
+  // Only get contents from the last 7 days
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  
   return await db.select().from(contents)
+    .where(gte(contents.publishedAt, sevenDaysAgo))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
 }
@@ -128,8 +133,14 @@ export async function getContentsByInfluencer(influencerId: number, limit: numbe
   const db = await getDb();
   if (!db) return [];
   
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  
   return await db.select().from(contents)
-    .where(eq(contents.influencerId, influencerId))
+    .where(and(
+      eq(contents.influencerId, influencerId),
+      gte(contents.publishedAt, sevenDaysAgo)
+    ))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
 }
@@ -138,8 +149,14 @@ export async function getContentsByPlatform(platform: "youtube" | "twitter", lim
   const db = await getDb();
   if (!db) return [];
   
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  
   return await db.select().from(contents)
-    .where(eq(contents.platform, platform))
+    .where(and(
+      eq(contents.platform, platform),
+      gte(contents.publishedAt, sevenDaysAgo)
+    ))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
 }
@@ -148,32 +165,24 @@ export async function searchContents(keyword: string, limit: number = 50): Promi
   const db = await getDb();
   if (!db) return [];
   
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  
   return await db.select().from(contents)
-    .where(
-      sql`${contents.title} LIKE ${`%${keyword}%`} OR ${contents.description} LIKE ${`%${keyword}%`}`
-    )
+    .where(and(
+      sql`(${contents.title} LIKE ${`%${keyword}%`} OR ${contents.description} LIKE ${`%${keyword}%`})`,
+      gte(contents.publishedAt, sevenDaysAgo)
+    ))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
-}
-
-export async function insertContent(content: InsertContent): Promise<void> {
-  const db = await getDb();
-  if (!db) {
-    console.warn("[Database] Cannot insert content: database not available");
-    return;
-  }
-  
-  try {
-    await db.insert(contents).values(content);
-  } catch (error) {
-    console.error("[Database] Failed to insert content:", error);
-    throw error;
-  }
 }
 
 export async function getContentsWithInfluencer(limit: number = 50) {
   const db = await getDb();
   if (!db) return [];
+  
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
   
   const result = await db
     .select({
@@ -182,6 +191,7 @@ export async function getContentsWithInfluencer(limit: number = 50) {
     })
     .from(contents)
     .leftJoin(influencers, eq(contents.influencerId, influencers.id))
+    .where(gte(contents.publishedAt, sevenDaysAgo))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
   

@@ -34,6 +34,15 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await db.getInfluencerById(input.id);
       }),
+    
+    getStats: publicProcedure.query(async () => {
+      const influencers = await db.getAllInfluencers();
+      const contents = await db.getAllContents(1000);
+      return {
+        totalInfluencers: influencers.length,
+        totalContents: contents.length,
+      };
+    }),
   }),
 
   contents: router({
@@ -75,6 +84,71 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await db.searchContents(input.keyword, input.limit);
       }),
+    
+    getLatest: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(6) }))
+      .query(async ({ input }) => {
+        return await db.getAllContents(input.limit);
+      }),
+    
+    getTrendingStocks: publicProcedure.query(async () => {
+      const contents = await db.getAllContents(100);
+      const stockMentions: Record<string, { ticker: string; name: string; count: number }> = {};
+      
+      // 주요 종목 티커 패턴
+      const stockPatterns = [
+        { ticker: 'TSLA', name: 'Tesla', regex: /tesla|tsla/gi },
+        { ticker: 'NVDA', name: 'NVIDIA', regex: /nvidia|nvda/gi },
+        { ticker: 'AAPL', name: 'Apple', regex: /apple|aapl/gi },
+        { ticker: 'MSFT', name: 'Microsoft', regex: /microsoft|msft/gi },
+        { ticker: 'GOOGL', name: 'Google', regex: /google|googl|alphabet/gi },
+        { ticker: 'AMZN', name: 'Amazon', regex: /amazon|amzn/gi },
+        { ticker: 'META', name: 'Meta', regex: /meta|facebook/gi },
+        { ticker: 'AMD', name: 'AMD', regex: /amd/gi },
+        { ticker: 'DIS', name: 'Disney', regex: /disney|dis(?![a-z])/gi },
+        { ticker: 'NFLX', name: 'Netflix', regex: /netflix|nflx/gi },
+        { ticker: 'COIN', name: 'Coinbase', regex: /coinbase|coin/gi },
+        { ticker: 'PLTR', name: 'Palantir', regex: /palantir|pltr/gi },
+        { ticker: 'RBLX', name: 'Roblox', regex: /roblox|rblx/gi },
+      ];
+      
+      contents.forEach(content => {
+        const text = `${content.title || ''} ${content.description || ''}`.toLowerCase();
+        stockPatterns.forEach(({ ticker, name, regex }) => {
+          if (regex.test(text)) {
+            if (!stockMentions[ticker]) {
+              stockMentions[ticker] = { ticker, name, count: 0 };
+            }
+            stockMentions[ticker].count++;
+          }
+        });
+      });
+      
+      return Object.values(stockMentions)
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 10);
+    }),
+    
+    getHotKeywords: publicProcedure.query(async () => {
+      const contents = await db.getAllContents(100);
+      const keywordCounts: Record<string, number> = {};
+      
+      const keywords = ['AI', 'Fed', 'Tesla', 'NVIDIA', 'dividend', 'recession', 'Federal Reserve', 'crypto', 'earnings', 'inflation'];
+      
+      contents.forEach(content => {
+        const text = `${content.title || ''} ${content.description || ''}`.toLowerCase();
+        keywords.forEach(keyword => {
+          if (text.includes(keyword.toLowerCase())) {
+            keywordCounts[keyword] = (keywordCounts[keyword] || 0) + 1;
+          }
+        });
+      });
+      
+      return Object.entries(keywordCounts)
+        .map(([keyword, count]) => ({ keyword, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 10);
+    }),
   }),
 });
 
