@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Link } from "wouter";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { StockTag } from "@/components/StockTag";
 
 export default function Home() {
   const { isAuthenticated, loading } = useAuth();
@@ -256,9 +257,7 @@ export default function Home() {
                     {content.aiStocks && content.aiStocks.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-3">
                         {content.aiStocks.slice(0, 4).map((stock: string) => (
-                          <span key={stock} className="px-2 py-1 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-300">
-                            ${stock}
-                          </span>
+                          <StockTag key={stock} symbol={stock} sentiment={content.aiSentiment} />
                         ))}
                       </div>
                     )}

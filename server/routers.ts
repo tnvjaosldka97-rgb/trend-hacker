@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { z } from "zod";
 import * as db from "./db";
+import { getMultipleStockQuotes } from "./yahooFinance";
 
 export const appRouter = router({
   system: systemRouter,
@@ -155,6 +156,14 @@ export const appRouter = router({
         .sort((a, b) => b.count - a.count)
         .slice(0, 10);
     }),
+  }),
+
+  stocks: router({
+    getQuotes: publicProcedure
+      .input(z.object({ symbols: z.array(z.string()) }))
+      .query(async ({ input }) => {
+        return await getMultipleStockQuotes(input.symbols);
+      }),
   }),
 });
 
