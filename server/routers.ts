@@ -90,12 +90,43 @@ export const appRouter = router({
       .input(z.object({ limit: z.number().optional().default(6) }))
       .query(async ({ input }) => {
         const contents = await db.getAllContents(input.limit);
-        // Parse JSON fields
-        return contents.map(content => ({
-          ...content,
-          aiStocks: content.aiStocks ? JSON.parse(content.aiStocks as string) : [],
-          aiKeyPoints: content.aiKeyPoints ? JSON.parse(content.aiKeyPoints as string) : [],
-        }));
+        // Parse JSON fields safely
+        return contents.map(content => {
+          let aiStocks = [];
+          let aiKeyPoints = [];
+          
+          // Safe JSON parsing for aiStocks
+          if (content.aiStocks) {
+            try {
+              if (typeof content.aiStocks === 'string') {
+                aiStocks = JSON.parse(content.aiStocks);
+              } else if (Array.isArray(content.aiStocks)) {
+                aiStocks = content.aiStocks;
+              }
+            } catch (e) {
+              console.warn(`Failed to parse aiStocks for content ${content.id}:`, e);
+            }
+          }
+          
+          // Safe JSON parsing for aiKeyPoints
+          if (content.aiKeyPoints) {
+            try {
+              if (typeof content.aiKeyPoints === 'string') {
+                aiKeyPoints = JSON.parse(content.aiKeyPoints);
+              } else if (Array.isArray(content.aiKeyPoints)) {
+                aiKeyPoints = content.aiKeyPoints;
+              }
+            } catch (e) {
+              console.warn(`Failed to parse aiKeyPoints for content ${content.id}:`, e);
+            }
+          }
+          
+          return {
+            ...content,
+            aiStocks,
+            aiKeyPoints,
+          };
+        });
       }),
     
     getTrendingStocks: publicProcedure.query(async () => {

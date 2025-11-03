@@ -119,12 +119,8 @@ export async function getAllContents(limit: number = 50): Promise<Content[]> {
   const db = await getDb();
   if (!db) return [];
   
-  // Only get contents from the last 7 days
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  
+  // Get all contents (7-day filter already applied during collection)
   return await db.select().from(contents)
-    .where(gte(contents.publishedAt, sevenDaysAgo))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
 }
@@ -133,14 +129,8 @@ export async function getContentsByInfluencer(influencerId: number, limit: numbe
   const db = await getDb();
   if (!db) return [];
   
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  
   return await db.select().from(contents)
-    .where(and(
-      eq(contents.influencerId, influencerId),
-      gte(contents.publishedAt, sevenDaysAgo)
-    ))
+    .where(eq(contents.influencerId, influencerId))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
 }
@@ -149,14 +139,8 @@ export async function getContentsByPlatform(platform: "youtube" | "twitter", lim
   const db = await getDb();
   if (!db) return [];
   
-  const sevenDaysAgo = new Date();
-  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-  
   return await db.select().from(contents)
-    .where(and(
-      eq(contents.platform, platform),
-      gte(contents.publishedAt, sevenDaysAgo)
-    ))
+    .where(eq(contents.platform, platform))
     .orderBy(desc(contents.publishedAt))
     .limit(limit);
 }
