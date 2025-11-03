@@ -88,7 +88,13 @@ export const appRouter = router({
     getLatest: publicProcedure
       .input(z.object({ limit: z.number().optional().default(6) }))
       .query(async ({ input }) => {
-        return await db.getAllContents(input.limit);
+        const contents = await db.getAllContents(input.limit);
+        // Parse JSON fields
+        return contents.map(content => ({
+          ...content,
+          aiStocks: content.aiStocks ? JSON.parse(content.aiStocks as string) : [],
+          aiKeyPoints: content.aiKeyPoints ? JSON.parse(content.aiKeyPoints as string) : [],
+        }));
       }),
     
     getTrendingStocks: publicProcedure.query(async () => {

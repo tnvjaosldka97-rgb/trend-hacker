@@ -56,6 +56,11 @@ export const contents = mysqlTable("contents", {
   viewCount: int("viewCount"),
   likeCount: int("likeCount"),
   commentCount: int("commentCount"),
+  transcript: text("transcript"),
+  aiSummary: text("aiSummary"),
+  aiStocks: text("aiStocks"),
+  aiSentiment: varchar("aiSentiment", { length: 20 }),
+  aiKeyPoints: text("aiKeyPoints"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

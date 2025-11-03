@@ -15,6 +15,13 @@
       "when": 1762174022537,
       "tag": "0001_oval_devos",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1762182473229,
+      "tag": "0002_wealthy_frog_thor",
+      "breakpoints": true
     }
   ]
 }

@@ -34,6 +34,10 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/10 to-pink-600/20" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(139,92,246,0.15),transparent_50%)]" />
+        {/* Chart Background */}
+        <div className="absolute inset-0 opacity-10">
+          <img src="/bg-trending-stocks.png" alt="" className="w-full h-full object-cover" />
+        </div>
         
         <div className="container relative py-24 md:py-32">
           <div className="mx-auto max-w-6xl">
@@ -238,6 +242,48 @@ export default function Home() {
                     <h3 className="font-semibold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors">
                       {content.title}
                     </h3>
+                    
+                    {/* AI 요약 */}
+                    {content.aiSummary && (
+                      <div className="mb-3 p-3 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                        <p className="text-sm text-gray-300 line-clamp-2">
+                          {content.aiSummary}
+                        </p>
+                      </div>
+                    )}
+                    
+                    {/* 언급된 종목 */}
+                    {content.aiStocks && content.aiStocks.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {content.aiStocks.slice(0, 4).map((stock: string) => (
+                          <span key={stock} className="px-2 py-1 bg-purple-500/20 border border-purple-500/30 rounded text-xs text-purple-300">
+                            ${stock}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* 전망 아이콘 */}
+                    {content.aiSentiment && (
+                      <div className="flex items-center gap-2 mb-3">
+                        {content.aiSentiment === 'bullish' && (
+                          <span className="flex items-center gap-1 text-green-400 text-sm">
+                            🔥 상승 전망
+                          </span>
+                        )}
+                        {content.aiSentiment === 'bearish' && (
+                          <span className="flex items-center gap-1 text-red-400 text-sm">
+                            📉 하락 전망
+                          </span>
+                        )}
+                        {content.aiSentiment === 'neutral' && (
+                          <span className="flex items-center gap-1 text-gray-400 text-sm">
+                            ⚖️ 중립
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    
                     <p className="text-sm text-gray-400 mb-4 line-clamp-2">
                       {content.description}
                     </p>
