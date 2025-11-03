@@ -50,10 +50,11 @@ export default function Home() {
                   실시간 업데이트 중
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
-                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    트렌드해커
-                  </span>
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-tight">
+                  <div className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    <div>TREND</div>
+                    <div>HACKER</div>
+                  </div>
                 </h1>
                 
                 <p className="text-xl md:text-2xl text-gray-400 mt-6">

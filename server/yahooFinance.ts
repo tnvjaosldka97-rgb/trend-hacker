@@ -28,7 +28,19 @@ export async function getStockQuote(symbol: string): Promise<StockQuote | null> 
       },
     });
 
-    const responseData = response as any;
+    // Ensure response is parsed as JSON
+    let responseData: any;
+    if (typeof response === 'string') {
+      try {
+        responseData = JSON.parse(response);
+      } catch (e) {
+        console.error(`Failed to parse response for ${symbol}:`, e);
+        return null;
+      }
+    } else {
+      responseData = response;
+    }
+
     if (responseData && responseData.chart && responseData.chart.result && responseData.chart.result[0]) {
       const result = responseData.chart.result[0];
       const meta = result.meta;
