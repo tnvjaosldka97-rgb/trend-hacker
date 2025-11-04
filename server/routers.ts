@@ -234,7 +234,17 @@ export const appRouter = router({
       // Get last update time from DB
       const lastUpdateMeta = await db.getSystemMetadata('lastDataCollection');
       const lastUpdate = lastUpdateMeta ? new Date(lastUpdateMeta.value!) : null;
-      const nextUpdate = lastUpdate ? new Date(lastUpdate.getTime() + 3 * 60 * 1000) : null;
+      
+      // Calculate next update time based on current time
+      let nextUpdate: Date | null = null;
+      if (lastUpdate) {
+        const now = Date.now();
+        const lastUpdateTime = lastUpdate.getTime();
+        const interval = 3 * 60 * 1000; // 3분
+        const timeSinceLastUpdate = now - lastUpdateTime;
+        const nextUpdateTime = lastUpdateTime + Math.ceil(timeSinceLastUpdate / interval) * interval;
+        nextUpdate = new Date(nextUpdateTime);
+      }
       
       const contents = await db.getAllContents(100);
       const threeMinutesAgo = new Date(Date.now() - 3 * 60 * 1000);
