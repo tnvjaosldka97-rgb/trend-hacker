@@ -444,14 +444,23 @@ export default function Home() {
 
           {stocks.length === 0 && (
             <div className="text-center py-20">
-              <Activity className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-              <p className="text-slate-400 text-lg">
-                {activeTab === "realtime" && "최근 15분간 종목 언급이 없습니다"}
-                {activeTab === "today" && "오늘 종목 언급이 없습니다"}
-                {activeTab === "weekly" && "이번 주 종목 언급이 없습니다"}
-                {activeTab === "consensus" && "현재 강력 컨센서스 종목이 없습니다"}
+              <div className="relative w-24 h-24 mx-auto mb-6">
+                <div className="absolute inset-0 border-4 border-slate-700 rounded-full" />
+                <div className="absolute inset-0 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+                <Activity className="w-12 h-12 text-cyan-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+              </div>
+              <p className="text-slate-300 text-xl font-medium mb-2">
+                {activeTab === "realtime" && "최근 15분간 데이터 수집 중"}
+                {activeTab === "today" && "오늘 데이터 수집 중"}
+                {activeTab === "weekly" && "주간 데이터 수집 중"}
+                {activeTab === "consensus" && "컨센서스 분석 중"}
               </p>
-              <p className="text-slate-500 text-sm mt-2">데이터 수집 대기 중...</p>
+              <p className="text-slate-500 text-sm">전문가들의 의견을 분석하고 있습니다...</p>
+              <div className="mt-6 flex items-center justify-center gap-1">
+                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
+                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
+                <div className="w-2 h-2 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
+              </div>
             </div>
           )}
         </div>

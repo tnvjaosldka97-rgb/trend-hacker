@@ -15,11 +15,45 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
   if (isLoading) {
     return (
       <div className="bg-slate-900/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-6">
-        <h3 className="text-xl font-bold text-cyan-400 mb-4">📊 TOP 10 언급 종목</h3>
+        <div className="flex items-center gap-2 mb-4">
+          <div className="w-6 h-6 bg-cyan-500/20 rounded animate-pulse" />
+          <div className="h-6 w-40 bg-cyan-500/20 rounded animate-pulse" />
+        </div>
+        
         <div className="space-y-3">
-          {[...Array(5)].map((_, i) => (
-            <div key={i} className="h-20 bg-slate-800/50 animate-pulse rounded-lg" />
+          {[...Array(10)].map((_, i) => (
+            <div 
+              key={i} 
+              className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 animate-pulse"
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-slate-700/50" />
+                  <div>
+                    <div className="h-5 w-16 bg-slate-700/50 rounded mb-1" />
+                    <div className="h-3 w-20 bg-slate-700/30 rounded" />
+                  </div>
+                </div>
+                <div className="h-6 w-24 bg-slate-700/50 rounded-full" />
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-20 h-20 rounded-full bg-slate-700/30" />
+                <div className="flex-1 space-y-2">
+                  <div className="h-3 bg-slate-700/50 rounded-full" />
+                  <div className="h-8 bg-slate-700/30 rounded" />
+                </div>
+              </div>
+            </div>
           ))}
+        </div>
+        
+        <div className="mt-6 text-center">
+          <div className="inline-flex items-center gap-2 text-cyan-400">
+            <div className="w-4 h-4 border-2 border-cyan-400 border-t-transparent rounded-full animate-spin" />
+            <span className="text-sm">데이터 수집 대기 중...</span>
+          </div>
         </div>
       </div>
     );
@@ -29,7 +63,14 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
     return (
       <div className="bg-slate-900/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-6">
         <h3 className="text-xl font-bold text-cyan-400 mb-4">📊 TOP 10 언급 종목</h3>
-        <p className="text-slate-400 text-center py-8">데이터가 없습니다</p>
+        <div className="text-center py-12">
+          <div className="w-16 h-16 mx-auto mb-4 relative">
+            <div className="absolute inset-0 border-4 border-slate-700 rounded-full" />
+            <div className="absolute inset-0 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+          </div>
+          <p className="text-slate-400 text-lg font-medium mb-2">데이터 수집 대기 중</p>
+          <p className="text-slate-500 text-sm">전문가들의 의견을 분석하고 있습니다...</p>
+        </div>
       </div>
     );
   }
