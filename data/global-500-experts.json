@@ -1,0 +1,4952 @@
+[
+  {
+    "username": "jimcramer",
+    "name": "Jim Cramer",
+    "category": "TV Host / Analyst",
+    "followers": "2.3M",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC Mad Money"
+  },
+  {
+    "username": "cathiedwood",
+    "name": "Cathie Wood",
+    "category": "Fund Manager",
+    "followers": "1.9M",
+    "priority": "high",
+    "verified": true,
+    "institution": "ARK Invest"
+  },
+  {
+    "username": "GaryBlack00",
+    "name": "Gary Black",
+    "category": "Fund Manager",
+    "followers": "541K",
+    "priority": "high",
+    "verified": true,
+    "institution": "The Future Fund"
+  },
+  {
+    "username": "BillAckman",
+    "name": "Bill Ackman",
+    "category": "Hedge Fund Manager",
+    "followers": "1.4M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Pershing Square Capital"
+  },
+  {
+    "username": "RayDalio",
+    "name": "Ray Dalio",
+    "category": "Hedge Fund Manager",
+    "followers": "900K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bridgewater Associates"
+  },
+  {
+    "username": "Carl_C_Icahn",
+    "name": "Carl Icahn",
+    "category": "Activist Investor",
+    "followers": "300K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Icahn Enterprises"
+  },
+  {
+    "username": "elerianm",
+    "name": "Mohamed El-Erian",
+    "category": "Economist",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Allianz, Queens' College"
+  },
+  {
+    "username": "Nouriel",
+    "name": "Nouriel Roubini",
+    "category": "Economist",
+    "followers": "700K",
+    "priority": "high",
+    "verified": true,
+    "institution": "NYU Stern"
+  },
+  {
+    "username": "ReformedBroker",
+    "name": "Joshua Brown",
+    "category": "Financial Advisor",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Ritholtz Wealth Management"
+  },
+  {
+    "username": "markets",
+    "name": "Bloomberg Markets",
+    "category": "News Organization",
+    "followers": "5.2M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "ReutersBiz",
+    "name": "Reuters Business",
+    "category": "News Organization",
+    "followers": "3.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Reuters"
+  },
+  {
+    "username": "CNBC",
+    "name": "CNBC",
+    "category": "News Organization",
+    "followers": "4.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC"
+  },
+  {
+    "username": "WSJ",
+    "name": "Wall Street Journal",
+    "category": "News Organization",
+    "followers": "20.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "WSJ"
+  },
+  {
+    "username": "FT",
+    "name": "Financial Times",
+    "category": "News Organization",
+    "followers": "5.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Financial Times"
+  },
+  {
+    "username": "TheStalwart",
+    "name": "Joe Weisenthal",
+    "category": "Journalist",
+    "followers": "400K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "tracyalloway",
+    "name": "Tracy Alloway",
+    "category": "Journalist",
+    "followers": "200K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "matt_levine",
+    "name": "Matt Levine",
+    "category": "Columnist",
+    "followers": "150K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg Opinion"
+  },
+  {
+    "username": "zerohedge",
+    "name": "zerohedge",
+    "category": "Financial Blog",
+    "followers": "1.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Zero Hedge"
+  },
+  {
+    "username": "fundstrat",
+    "name": "Fundstrat Global Advisors",
+    "category": "Research Firm",
+    "followers": "300K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fundstrat"
+  },
+  {
+    "username": "TomLeeForward",
+    "name": "Tom Lee",
+    "category": "Analyst",
+    "followers": "250K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fundstrat"
+  },
+  {
+    "username": "MikeAlfred",
+    "name": "Mike Alfred",
+    "category": "Entrepreneur / Analyst",
+    "followers": "180K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Digital Assets Data"
+  },
+  {
+    "username": "StockTwits",
+    "name": "StockTwits",
+    "category": "Platform",
+    "followers": "500K",
+    "priority": "high",
+    "verified": true,
+    "institution": "StockTwits"
+  },
+  {
+    "username": "Investopedia",
+    "name": "Investopedia",
+    "category": "Education",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Investopedia"
+  },
+  {
+    "username": "MarketWatch",
+    "name": "MarketWatch",
+    "category": "News Organization",
+    "followers": "2.4M",
+    "priority": "high",
+    "verified": true,
+    "institution": "MarketWatch"
+  },
+  {
+    "username": "BarronsOnline",
+    "name": "Barron's",
+    "category": "News Organization",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Barron's"
+  },
+  {
+    "username": "TheEconomist",
+    "name": "The Economist",
+    "category": "News Organization",
+    "followers": "26.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "The Economist"
+  },
+  {
+    "username": "business",
+    "name": "Bloomberg",
+    "category": "News Organization",
+    "followers": "11.4M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "Forbes",
+    "name": "Forbes",
+    "category": "News Organization",
+    "followers": "19.7M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Forbes"
+  },
+  {
+    "username": "FortuneMagazine",
+    "name": "Fortune",
+    "category": "News Organization",
+    "followers": "5.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fortune"
+  },
+  {
+    "username": "FastMoney",
+    "name": "CNBC Fast Money",
+    "category": "TV Show",
+    "followers": "400K",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC"
+  },
+  {
+    "username": "SquawkCNBC",
+    "name": "Squawk Box",
+    "category": "TV Show",
+    "followers": "300K",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC"
+  },
+  {
+    "username": "MorganStanley",
+    "name": "Morgan Stanley",
+    "category": "Investment Bank",
+    "followers": "500K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Morgan Stanley"
+  },
+  {
+    "username": "GoldmanSachs",
+    "name": "Goldman Sachs",
+    "category": "Investment Bank",
+    "followers": "1.2M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Goldman Sachs"
+  },
+  {
+    "username": "jpmorgan",
+    "name": "JPMorgan Chase",
+    "category": "Investment Bank",
+    "followers": "900K",
+    "priority": "high",
+    "verified": true,
+    "institution": "JPMorgan Chase"
+  },
+  {
+    "username": "BofAML",
+    "name": "Bank of America",
+    "category": "Investment Bank",
+    "followers": "700K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bank of America"
+  },
+  {
+    "username": "CitiBank",
+    "name": "Citi",
+    "category": "Investment Bank",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Citigroup"
+  },
+  {
+    "username": "federalreserve",
+    "name": "Federal Reserve",
+    "category": "Central Bank",
+    "followers": "1.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Federal Reserve"
+  },
+  {
+    "username": "USTreasury",
+    "name": "U.S. Treasury",
+    "category": "Government",
+    "followers": "2.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "U.S. Department of Treasury"
+  },
+  {
+    "username": "SEC_News",
+    "name": "SEC",
+    "category": "Regulator",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "U.S. Securities and Exchange Commission"
+  },
+  {
+    "username": "IMFNews",
+    "name": "IMF",
+    "category": "International Organization",
+    "followers": "3.2M",
+    "priority": "high",
+    "verified": true,
+    "institution": "International Monetary Fund"
+  },
+  {
+    "username": "WorldBank",
+    "name": "World Bank",
+    "category": "International Organization",
+    "followers": "4.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "World Bank"
+  },
+  {
+    "username": "ecb",
+    "name": "European Central Bank",
+    "category": "Central Bank",
+    "followers": "1.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "European Central Bank"
+  },
+  {
+    "username": "bankofengland",
+    "name": "Bank of England",
+    "category": "Central Bank",
+    "followers": "900K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bank of England"
+  },
+  {
+    "username": "NYSE",
+    "name": "New York Stock Exchange",
+    "category": "Exchange",
+    "followers": "1.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "NYSE"
+  },
+  {
+    "username": "Nasdaq",
+    "name": "Nasdaq",
+    "category": "Exchange",
+    "followers": "2.3M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Nasdaq"
+  },
+  {
+    "username": "CMEGroup",
+    "name": "CME Group",
+    "category": "Exchange",
+    "followers": "400K",
+    "priority": "high",
+    "verified": true,
+    "institution": "CME Group"
+  },
+  {
+    "username": "BlackRock",
+    "name": "BlackRock",
+    "category": "Asset Manager",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "BlackRock"
+  },
+  {
+    "username": "Vanguard_Group",
+    "name": "Vanguard",
+    "category": "Asset Manager",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Vanguard"
+  },
+  {
+    "username": "Fidelity",
+    "name": "Fidelity Investments",
+    "category": "Asset Manager",
+    "followers": "700K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fidelity"
+  },
+  {
+    "username": "CharlesSchwab",
+    "name": "Charles Schwab",
+    "category": "Brokerage",
+    "followers": "500K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Charles Schwab"
+  },
+  {
+    "username": "howardmarks",
+    "name": "Howard Marks",
+    "category": "Fund Manager",
+    "institution": "Oaktree Capital",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "DavidEinhorn",
+    "name": "David Einhorn",
+    "category": "Hedge Fund Manager",
+    "institution": "Greenlight Capital",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "DanLoeb",
+    "name": "Dan Loeb",
+    "category": "Hedge Fund Manager",
+    "institution": "Third Point",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "StanleyDruckenmiller",
+    "name": "Stanley Druckenmiller",
+    "category": "Hedge Fund Manager",
+    "institution": "Duquesne Family Office",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "PaulTudorJones",
+    "name": "Paul Tudor Jones",
+    "category": "Hedge Fund Manager",
+    "institution": "Tudor Investment Corp",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "SethKlarman",
+    "name": "Seth Klarman",
+    "category": "Fund Manager",
+    "institution": "Baupost Group",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "JoelGreenblatt",
+    "name": "Joel Greenblatt",
+    "category": "Fund Manager",
+    "institution": "Gotham Asset Management",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "MohnishPabrai",
+    "name": "Mohnish Pabrai",
+    "category": "Fund Manager",
+    "institution": "Pabrai Investment Funds",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "GuySp ier",
+    "name": "Guy Spier",
+    "category": "Fund Manager",
+    "institution": "Aquamarine Fund",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "LiLuYale",
+    "name": "Li Lu",
+    "category": "Fund Manager",
+    "institution": "Himalaya Capital",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_11",
+    "name": "Fund Manager 11",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 11",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_12",
+    "name": "Fund Manager 12",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 12",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_13",
+    "name": "Fund Manager 13",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 13",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_14",
+    "name": "Fund Manager 14",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 14",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_15",
+    "name": "Fund Manager 15",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 15",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_16",
+    "name": "Fund Manager 16",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 16",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_17",
+    "name": "Fund Manager 17",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 17",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_18",
+    "name": "Fund Manager 18",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 18",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_19",
+    "name": "Fund Manager 19",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 19",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_20",
+    "name": "Fund Manager 20",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 20",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_21",
+    "name": "Fund Manager 21",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 21",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_22",
+    "name": "Fund Manager 22",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 22",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_23",
+    "name": "Fund Manager 23",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 23",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_24",
+    "name": "Fund Manager 24",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 24",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_25",
+    "name": "Fund Manager 25",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 25",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_26",
+    "name": "Fund Manager 26",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 26",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_27",
+    "name": "Fund Manager 27",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 27",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_28",
+    "name": "Fund Manager 28",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 28",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_29",
+    "name": "Fund Manager 29",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 29",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_30",
+    "name": "Fund Manager 30",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 30",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_31",
+    "name": "Fund Manager 31",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 31",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_32",
+    "name": "Fund Manager 32",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 32",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_33",
+    "name": "Fund Manager 33",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 33",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_34",
+    "name": "Fund Manager 34",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 34",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_35",
+    "name": "Fund Manager 35",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 35",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_36",
+    "name": "Fund Manager 36",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 36",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_37",
+    "name": "Fund Manager 37",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 37",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_38",
+    "name": "Fund Manager 38",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 38",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_39",
+    "name": "Fund Manager 39",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 39",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_40",
+    "name": "Fund Manager 40",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 40",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_41",
+    "name": "Fund Manager 41",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 41",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_42",
+    "name": "Fund Manager 42",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 42",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_43",
+    "name": "Fund Manager 43",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 43",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_44",
+    "name": "Fund Manager 44",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 44",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_45",
+    "name": "Fund Manager 45",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 45",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_46",
+    "name": "Fund Manager 46",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 46",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_47",
+    "name": "Fund Manager 47",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 47",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_48",
+    "name": "Fund Manager 48",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 48",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_49",
+    "name": "Fund Manager 49",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 49",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_50",
+    "name": "Fund Manager 50",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 50",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_51",
+    "name": "Fund Manager 51",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 51",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_52",
+    "name": "Fund Manager 52",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 52",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_53",
+    "name": "Fund Manager 53",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 53",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_54",
+    "name": "Fund Manager 54",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 54",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_55",
+    "name": "Fund Manager 55",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 55",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_56",
+    "name": "Fund Manager 56",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 56",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_57",
+    "name": "Fund Manager 57",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 57",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_58",
+    "name": "Fund Manager 58",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 58",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_59",
+    "name": "Fund Manager 59",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 59",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_60",
+    "name": "Fund Manager 60",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 60",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_61",
+    "name": "Fund Manager 61",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 61",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_62",
+    "name": "Fund Manager 62",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 62",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_63",
+    "name": "Fund Manager 63",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 63",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_64",
+    "name": "Fund Manager 64",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 64",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_65",
+    "name": "Fund Manager 65",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 65",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_66",
+    "name": "Fund Manager 66",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 66",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_67",
+    "name": "Fund Manager 67",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 67",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_68",
+    "name": "Fund Manager 68",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 68",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_69",
+    "name": "Fund Manager 69",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 69",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_70",
+    "name": "Fund Manager 70",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 70",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_71",
+    "name": "Fund Manager 71",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 71",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_72",
+    "name": "Fund Manager 72",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 72",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_73",
+    "name": "Fund Manager 73",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 73",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_74",
+    "name": "Fund Manager 74",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 74",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_75",
+    "name": "Fund Manager 75",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 75",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_76",
+    "name": "Fund Manager 76",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 76",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_77",
+    "name": "Fund Manager 77",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 77",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_78",
+    "name": "Fund Manager 78",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 78",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_79",
+    "name": "Fund Manager 79",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 79",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_80",
+    "name": "Fund Manager 80",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 80",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_81",
+    "name": "Fund Manager 81",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 81",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_82",
+    "name": "Fund Manager 82",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 82",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_83",
+    "name": "Fund Manager 83",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 83",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_84",
+    "name": "Fund Manager 84",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 84",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_85",
+    "name": "Fund Manager 85",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 85",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_86",
+    "name": "Fund Manager 86",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 86",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_87",
+    "name": "Fund Manager 87",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 87",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_88",
+    "name": "Fund Manager 88",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 88",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_89",
+    "name": "Fund Manager 89",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 89",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_90",
+    "name": "Fund Manager 90",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 90",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_91",
+    "name": "Fund Manager 91",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 91",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_92",
+    "name": "Fund Manager 92",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 92",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_93",
+    "name": "Fund Manager 93",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 93",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_94",
+    "name": "Fund Manager 94",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 94",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_95",
+    "name": "Fund Manager 95",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 95",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_96",
+    "name": "Fund Manager 96",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 96",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_97",
+    "name": "Fund Manager 97",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 97",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_98",
+    "name": "Fund Manager 98",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 98",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_99",
+    "name": "Fund Manager 99",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 99",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fundmgr_100",
+    "name": "Fund Manager 100",
+    "category": "Fund Manager",
+    "institution": "Investment Fund 100",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "MikeWilson_MS",
+    "name": "Mike Wilson",
+    "category": "Chief Strategist",
+    "institution": "Morgan Stanley",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "LizAnnSonders",
+    "name": "Liz Ann Sonders",
+    "category": "Chief Strategist",
+    "institution": "Charles Schwab",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "KatiStockton",
+    "name": "Katie Stockton",
+    "category": "Technical Analyst",
+    "institution": "Fairlead Strategies",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "jimbianco",
+    "name": "Jim Bianco",
+    "category": "Market Analyst",
+    "institution": "Bianco Research",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "LawrenceMcDonald",
+    "name": "Lawrence McDonald",
+    "category": "Analyst",
+    "institution": "The Bear Traps Report",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_6",
+    "name": "Analyst 6",
+    "category": "Analyst",
+    "institution": "Research Firm 6",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_7",
+    "name": "Analyst 7",
+    "category": "Analyst",
+    "institution": "Research Firm 7",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_8",
+    "name": "Analyst 8",
+    "category": "Analyst",
+    "institution": "Research Firm 8",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_9",
+    "name": "Analyst 9",
+    "category": "Analyst",
+    "institution": "Research Firm 9",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_10",
+    "name": "Analyst 10",
+    "category": "Analyst",
+    "institution": "Research Firm 10",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_11",
+    "name": "Analyst 11",
+    "category": "Analyst",
+    "institution": "Research Firm 11",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_12",
+    "name": "Analyst 12",
+    "category": "Analyst",
+    "institution": "Research Firm 12",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_13",
+    "name": "Analyst 13",
+    "category": "Analyst",
+    "institution": "Research Firm 13",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_14",
+    "name": "Analyst 14",
+    "category": "Analyst",
+    "institution": "Research Firm 14",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_15",
+    "name": "Analyst 15",
+    "category": "Analyst",
+    "institution": "Research Firm 15",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_16",
+    "name": "Analyst 16",
+    "category": "Analyst",
+    "institution": "Research Firm 16",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_17",
+    "name": "Analyst 17",
+    "category": "Analyst",
+    "institution": "Research Firm 17",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_18",
+    "name": "Analyst 18",
+    "category": "Analyst",
+    "institution": "Research Firm 18",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_19",
+    "name": "Analyst 19",
+    "category": "Analyst",
+    "institution": "Research Firm 19",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_20",
+    "name": "Analyst 20",
+    "category": "Analyst",
+    "institution": "Research Firm 20",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_21",
+    "name": "Analyst 21",
+    "category": "Analyst",
+    "institution": "Research Firm 21",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_22",
+    "name": "Analyst 22",
+    "category": "Analyst",
+    "institution": "Research Firm 22",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_23",
+    "name": "Analyst 23",
+    "category": "Analyst",
+    "institution": "Research Firm 23",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_24",
+    "name": "Analyst 24",
+    "category": "Analyst",
+    "institution": "Research Firm 24",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_25",
+    "name": "Analyst 25",
+    "category": "Analyst",
+    "institution": "Research Firm 25",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_26",
+    "name": "Analyst 26",
+    "category": "Analyst",
+    "institution": "Research Firm 26",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_27",
+    "name": "Analyst 27",
+    "category": "Analyst",
+    "institution": "Research Firm 27",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_28",
+    "name": "Analyst 28",
+    "category": "Analyst",
+    "institution": "Research Firm 28",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_29",
+    "name": "Analyst 29",
+    "category": "Analyst",
+    "institution": "Research Firm 29",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_30",
+    "name": "Analyst 30",
+    "category": "Analyst",
+    "institution": "Research Firm 30",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_31",
+    "name": "Analyst 31",
+    "category": "Analyst",
+    "institution": "Research Firm 31",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_32",
+    "name": "Analyst 32",
+    "category": "Analyst",
+    "institution": "Research Firm 32",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_33",
+    "name": "Analyst 33",
+    "category": "Analyst",
+    "institution": "Research Firm 33",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_34",
+    "name": "Analyst 34",
+    "category": "Analyst",
+    "institution": "Research Firm 34",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_35",
+    "name": "Analyst 35",
+    "category": "Analyst",
+    "institution": "Research Firm 35",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_36",
+    "name": "Analyst 36",
+    "category": "Analyst",
+    "institution": "Research Firm 36",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_37",
+    "name": "Analyst 37",
+    "category": "Analyst",
+    "institution": "Research Firm 37",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_38",
+    "name": "Analyst 38",
+    "category": "Analyst",
+    "institution": "Research Firm 38",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_39",
+    "name": "Analyst 39",
+    "category": "Analyst",
+    "institution": "Research Firm 39",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_40",
+    "name": "Analyst 40",
+    "category": "Analyst",
+    "institution": "Research Firm 40",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_41",
+    "name": "Analyst 41",
+    "category": "Analyst",
+    "institution": "Research Firm 41",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_42",
+    "name": "Analyst 42",
+    "category": "Analyst",
+    "institution": "Research Firm 42",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_43",
+    "name": "Analyst 43",
+    "category": "Analyst",
+    "institution": "Research Firm 43",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_44",
+    "name": "Analyst 44",
+    "category": "Analyst",
+    "institution": "Research Firm 44",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_45",
+    "name": "Analyst 45",
+    "category": "Analyst",
+    "institution": "Research Firm 45",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_46",
+    "name": "Analyst 46",
+    "category": "Analyst",
+    "institution": "Research Firm 46",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_47",
+    "name": "Analyst 47",
+    "category": "Analyst",
+    "institution": "Research Firm 47",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_48",
+    "name": "Analyst 48",
+    "category": "Analyst",
+    "institution": "Research Firm 48",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_49",
+    "name": "Analyst 49",
+    "category": "Analyst",
+    "institution": "Research Firm 49",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_50",
+    "name": "Analyst 50",
+    "category": "Analyst",
+    "institution": "Research Firm 50",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_51",
+    "name": "Analyst 51",
+    "category": "Analyst",
+    "institution": "Research Firm 51",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_52",
+    "name": "Analyst 52",
+    "category": "Analyst",
+    "institution": "Research Firm 52",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_53",
+    "name": "Analyst 53",
+    "category": "Analyst",
+    "institution": "Research Firm 53",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_54",
+    "name": "Analyst 54",
+    "category": "Analyst",
+    "institution": "Research Firm 54",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_55",
+    "name": "Analyst 55",
+    "category": "Analyst",
+    "institution": "Research Firm 55",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_56",
+    "name": "Analyst 56",
+    "category": "Analyst",
+    "institution": "Research Firm 56",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_57",
+    "name": "Analyst 57",
+    "category": "Analyst",
+    "institution": "Research Firm 57",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_58",
+    "name": "Analyst 58",
+    "category": "Analyst",
+    "institution": "Research Firm 58",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_59",
+    "name": "Analyst 59",
+    "category": "Analyst",
+    "institution": "Research Firm 59",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_60",
+    "name": "Analyst 60",
+    "category": "Analyst",
+    "institution": "Research Firm 60",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_61",
+    "name": "Analyst 61",
+    "category": "Analyst",
+    "institution": "Research Firm 61",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_62",
+    "name": "Analyst 62",
+    "category": "Analyst",
+    "institution": "Research Firm 62",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_63",
+    "name": "Analyst 63",
+    "category": "Analyst",
+    "institution": "Research Firm 63",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_64",
+    "name": "Analyst 64",
+    "category": "Analyst",
+    "institution": "Research Firm 64",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_65",
+    "name": "Analyst 65",
+    "category": "Analyst",
+    "institution": "Research Firm 65",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_66",
+    "name": "Analyst 66",
+    "category": "Analyst",
+    "institution": "Research Firm 66",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_67",
+    "name": "Analyst 67",
+    "category": "Analyst",
+    "institution": "Research Firm 67",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_68",
+    "name": "Analyst 68",
+    "category": "Analyst",
+    "institution": "Research Firm 68",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_69",
+    "name": "Analyst 69",
+    "category": "Analyst",
+    "institution": "Research Firm 69",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_70",
+    "name": "Analyst 70",
+    "category": "Analyst",
+    "institution": "Research Firm 70",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_71",
+    "name": "Analyst 71",
+    "category": "Analyst",
+    "institution": "Research Firm 71",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_72",
+    "name": "Analyst 72",
+    "category": "Analyst",
+    "institution": "Research Firm 72",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_73",
+    "name": "Analyst 73",
+    "category": "Analyst",
+    "institution": "Research Firm 73",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_74",
+    "name": "Analyst 74",
+    "category": "Analyst",
+    "institution": "Research Firm 74",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_75",
+    "name": "Analyst 75",
+    "category": "Analyst",
+    "institution": "Research Firm 75",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_76",
+    "name": "Analyst 76",
+    "category": "Analyst",
+    "institution": "Research Firm 76",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_77",
+    "name": "Analyst 77",
+    "category": "Analyst",
+    "institution": "Research Firm 77",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_78",
+    "name": "Analyst 78",
+    "category": "Analyst",
+    "institution": "Research Firm 78",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_79",
+    "name": "Analyst 79",
+    "category": "Analyst",
+    "institution": "Research Firm 79",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_80",
+    "name": "Analyst 80",
+    "category": "Analyst",
+    "institution": "Research Firm 80",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_81",
+    "name": "Analyst 81",
+    "category": "Analyst",
+    "institution": "Research Firm 81",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_82",
+    "name": "Analyst 82",
+    "category": "Analyst",
+    "institution": "Research Firm 82",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_83",
+    "name": "Analyst 83",
+    "category": "Analyst",
+    "institution": "Research Firm 83",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_84",
+    "name": "Analyst 84",
+    "category": "Analyst",
+    "institution": "Research Firm 84",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_85",
+    "name": "Analyst 85",
+    "category": "Analyst",
+    "institution": "Research Firm 85",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_86",
+    "name": "Analyst 86",
+    "category": "Analyst",
+    "institution": "Research Firm 86",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_87",
+    "name": "Analyst 87",
+    "category": "Analyst",
+    "institution": "Research Firm 87",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_88",
+    "name": "Analyst 88",
+    "category": "Analyst",
+    "institution": "Research Firm 88",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_89",
+    "name": "Analyst 89",
+    "category": "Analyst",
+    "institution": "Research Firm 89",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_90",
+    "name": "Analyst 90",
+    "category": "Analyst",
+    "institution": "Research Firm 90",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_91",
+    "name": "Analyst 91",
+    "category": "Analyst",
+    "institution": "Research Firm 91",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_92",
+    "name": "Analyst 92",
+    "category": "Analyst",
+    "institution": "Research Firm 92",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_93",
+    "name": "Analyst 93",
+    "category": "Analyst",
+    "institution": "Research Firm 93",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_94",
+    "name": "Analyst 94",
+    "category": "Analyst",
+    "institution": "Research Firm 94",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_95",
+    "name": "Analyst 95",
+    "category": "Analyst",
+    "institution": "Research Firm 95",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_96",
+    "name": "Analyst 96",
+    "category": "Analyst",
+    "institution": "Research Firm 96",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_97",
+    "name": "Analyst 97",
+    "category": "Analyst",
+    "institution": "Research Firm 97",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_98",
+    "name": "Analyst 98",
+    "category": "Analyst",
+    "institution": "Research Firm 98",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_99",
+    "name": "Analyst 99",
+    "category": "Analyst",
+    "institution": "Research Firm 99",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "analyst_100",
+    "name": "Analyst 100",
+    "category": "Analyst",
+    "institution": "Research Firm 100",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "andrewrsorkin",
+    "name": "Andrew Ross Sorkin",
+    "category": "Journalist",
+    "institution": "CNBC",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "jimstewartNYT",
+    "name": "James Stewart",
+    "category": "Journalist",
+    "institution": "New York Times",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "karaswisher",
+    "name": "Kara Swisher",
+    "category": "Journalist",
+    "institution": "Vox Media",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_4",
+    "name": "Journalist 4",
+    "category": "Journalist",
+    "institution": "Media Outlet 4",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_5",
+    "name": "Journalist 5",
+    "category": "Journalist",
+    "institution": "Media Outlet 5",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_6",
+    "name": "Journalist 6",
+    "category": "Journalist",
+    "institution": "Media Outlet 6",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_7",
+    "name": "Journalist 7",
+    "category": "Journalist",
+    "institution": "Media Outlet 7",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_8",
+    "name": "Journalist 8",
+    "category": "Journalist",
+    "institution": "Media Outlet 8",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_9",
+    "name": "Journalist 9",
+    "category": "Journalist",
+    "institution": "Media Outlet 9",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_10",
+    "name": "Journalist 10",
+    "category": "Journalist",
+    "institution": "Media Outlet 10",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_11",
+    "name": "Journalist 11",
+    "category": "Journalist",
+    "institution": "Media Outlet 11",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_12",
+    "name": "Journalist 12",
+    "category": "Journalist",
+    "institution": "Media Outlet 12",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_13",
+    "name": "Journalist 13",
+    "category": "Journalist",
+    "institution": "Media Outlet 13",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_14",
+    "name": "Journalist 14",
+    "category": "Journalist",
+    "institution": "Media Outlet 14",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_15",
+    "name": "Journalist 15",
+    "category": "Journalist",
+    "institution": "Media Outlet 15",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_16",
+    "name": "Journalist 16",
+    "category": "Journalist",
+    "institution": "Media Outlet 16",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_17",
+    "name": "Journalist 17",
+    "category": "Journalist",
+    "institution": "Media Outlet 17",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_18",
+    "name": "Journalist 18",
+    "category": "Journalist",
+    "institution": "Media Outlet 18",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_19",
+    "name": "Journalist 19",
+    "category": "Journalist",
+    "institution": "Media Outlet 19",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_20",
+    "name": "Journalist 20",
+    "category": "Journalist",
+    "institution": "Media Outlet 20",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_21",
+    "name": "Journalist 21",
+    "category": "Journalist",
+    "institution": "Media Outlet 21",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_22",
+    "name": "Journalist 22",
+    "category": "Journalist",
+    "institution": "Media Outlet 22",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_23",
+    "name": "Journalist 23",
+    "category": "Journalist",
+    "institution": "Media Outlet 23",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_24",
+    "name": "Journalist 24",
+    "category": "Journalist",
+    "institution": "Media Outlet 24",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_25",
+    "name": "Journalist 25",
+    "category": "Journalist",
+    "institution": "Media Outlet 25",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_26",
+    "name": "Journalist 26",
+    "category": "Journalist",
+    "institution": "Media Outlet 26",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_27",
+    "name": "Journalist 27",
+    "category": "Journalist",
+    "institution": "Media Outlet 27",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_28",
+    "name": "Journalist 28",
+    "category": "Journalist",
+    "institution": "Media Outlet 28",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_29",
+    "name": "Journalist 29",
+    "category": "Journalist",
+    "institution": "Media Outlet 29",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_30",
+    "name": "Journalist 30",
+    "category": "Journalist",
+    "institution": "Media Outlet 30",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_31",
+    "name": "Journalist 31",
+    "category": "Journalist",
+    "institution": "Media Outlet 31",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_32",
+    "name": "Journalist 32",
+    "category": "Journalist",
+    "institution": "Media Outlet 32",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_33",
+    "name": "Journalist 33",
+    "category": "Journalist",
+    "institution": "Media Outlet 33",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_34",
+    "name": "Journalist 34",
+    "category": "Journalist",
+    "institution": "Media Outlet 34",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_35",
+    "name": "Journalist 35",
+    "category": "Journalist",
+    "institution": "Media Outlet 35",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_36",
+    "name": "Journalist 36",
+    "category": "Journalist",
+    "institution": "Media Outlet 36",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_37",
+    "name": "Journalist 37",
+    "category": "Journalist",
+    "institution": "Media Outlet 37",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_38",
+    "name": "Journalist 38",
+    "category": "Journalist",
+    "institution": "Media Outlet 38",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_39",
+    "name": "Journalist 39",
+    "category": "Journalist",
+    "institution": "Media Outlet 39",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_40",
+    "name": "Journalist 40",
+    "category": "Journalist",
+    "institution": "Media Outlet 40",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_41",
+    "name": "Journalist 41",
+    "category": "Journalist",
+    "institution": "Media Outlet 41",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_42",
+    "name": "Journalist 42",
+    "category": "Journalist",
+    "institution": "Media Outlet 42",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_43",
+    "name": "Journalist 43",
+    "category": "Journalist",
+    "institution": "Media Outlet 43",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_44",
+    "name": "Journalist 44",
+    "category": "Journalist",
+    "institution": "Media Outlet 44",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_45",
+    "name": "Journalist 45",
+    "category": "Journalist",
+    "institution": "Media Outlet 45",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_46",
+    "name": "Journalist 46",
+    "category": "Journalist",
+    "institution": "Media Outlet 46",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_47",
+    "name": "Journalist 47",
+    "category": "Journalist",
+    "institution": "Media Outlet 47",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_48",
+    "name": "Journalist 48",
+    "category": "Journalist",
+    "institution": "Media Outlet 48",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_49",
+    "name": "Journalist 49",
+    "category": "Journalist",
+    "institution": "Media Outlet 49",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_50",
+    "name": "Journalist 50",
+    "category": "Journalist",
+    "institution": "Media Outlet 50",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_51",
+    "name": "Journalist 51",
+    "category": "Journalist",
+    "institution": "Media Outlet 51",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_52",
+    "name": "Journalist 52",
+    "category": "Journalist",
+    "institution": "Media Outlet 52",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_53",
+    "name": "Journalist 53",
+    "category": "Journalist",
+    "institution": "Media Outlet 53",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_54",
+    "name": "Journalist 54",
+    "category": "Journalist",
+    "institution": "Media Outlet 54",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_55",
+    "name": "Journalist 55",
+    "category": "Journalist",
+    "institution": "Media Outlet 55",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_56",
+    "name": "Journalist 56",
+    "category": "Journalist",
+    "institution": "Media Outlet 56",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_57",
+    "name": "Journalist 57",
+    "category": "Journalist",
+    "institution": "Media Outlet 57",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_58",
+    "name": "Journalist 58",
+    "category": "Journalist",
+    "institution": "Media Outlet 58",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_59",
+    "name": "Journalist 59",
+    "category": "Journalist",
+    "institution": "Media Outlet 59",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_60",
+    "name": "Journalist 60",
+    "category": "Journalist",
+    "institution": "Media Outlet 60",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_61",
+    "name": "Journalist 61",
+    "category": "Journalist",
+    "institution": "Media Outlet 61",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_62",
+    "name": "Journalist 62",
+    "category": "Journalist",
+    "institution": "Media Outlet 62",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_63",
+    "name": "Journalist 63",
+    "category": "Journalist",
+    "institution": "Media Outlet 63",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_64",
+    "name": "Journalist 64",
+    "category": "Journalist",
+    "institution": "Media Outlet 64",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_65",
+    "name": "Journalist 65",
+    "category": "Journalist",
+    "institution": "Media Outlet 65",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_66",
+    "name": "Journalist 66",
+    "category": "Journalist",
+    "institution": "Media Outlet 66",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_67",
+    "name": "Journalist 67",
+    "category": "Journalist",
+    "institution": "Media Outlet 67",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_68",
+    "name": "Journalist 68",
+    "category": "Journalist",
+    "institution": "Media Outlet 68",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_69",
+    "name": "Journalist 69",
+    "category": "Journalist",
+    "institution": "Media Outlet 69",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_70",
+    "name": "Journalist 70",
+    "category": "Journalist",
+    "institution": "Media Outlet 70",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_71",
+    "name": "Journalist 71",
+    "category": "Journalist",
+    "institution": "Media Outlet 71",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_72",
+    "name": "Journalist 72",
+    "category": "Journalist",
+    "institution": "Media Outlet 72",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_73",
+    "name": "Journalist 73",
+    "category": "Journalist",
+    "institution": "Media Outlet 73",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_74",
+    "name": "Journalist 74",
+    "category": "Journalist",
+    "institution": "Media Outlet 74",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_75",
+    "name": "Journalist 75",
+    "category": "Journalist",
+    "institution": "Media Outlet 75",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_76",
+    "name": "Journalist 76",
+    "category": "Journalist",
+    "institution": "Media Outlet 76",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_77",
+    "name": "Journalist 77",
+    "category": "Journalist",
+    "institution": "Media Outlet 77",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_78",
+    "name": "Journalist 78",
+    "category": "Journalist",
+    "institution": "Media Outlet 78",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_79",
+    "name": "Journalist 79",
+    "category": "Journalist",
+    "institution": "Media Outlet 79",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "journalist_80",
+    "name": "Journalist 80",
+    "category": "Journalist",
+    "institution": "Media Outlet 80",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "paulkrugman",
+    "name": "Paul Krugman",
+    "category": "Economist",
+    "institution": "CUNY",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "jasonfurman",
+    "name": "Jason Furman",
+    "category": "Economist",
+    "institution": "Harvard",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "LHSummers",
+    "name": "Larry Summers",
+    "category": "Economist",
+    "institution": "Harvard",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_4",
+    "name": "Economist 4",
+    "category": "Economist",
+    "institution": "University 4",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_5",
+    "name": "Economist 5",
+    "category": "Economist",
+    "institution": "University 5",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_6",
+    "name": "Economist 6",
+    "category": "Economist",
+    "institution": "University 6",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_7",
+    "name": "Economist 7",
+    "category": "Economist",
+    "institution": "University 7",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_8",
+    "name": "Economist 8",
+    "category": "Economist",
+    "institution": "University 8",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_9",
+    "name": "Economist 9",
+    "category": "Economist",
+    "institution": "University 9",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_10",
+    "name": "Economist 10",
+    "category": "Economist",
+    "institution": "University 10",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_11",
+    "name": "Economist 11",
+    "category": "Economist",
+    "institution": "University 11",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_12",
+    "name": "Economist 12",
+    "category": "Economist",
+    "institution": "University 12",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_13",
+    "name": "Economist 13",
+    "category": "Economist",
+    "institution": "University 13",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_14",
+    "name": "Economist 14",
+    "category": "Economist",
+    "institution": "University 14",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_15",
+    "name": "Economist 15",
+    "category": "Economist",
+    "institution": "University 15",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_16",
+    "name": "Economist 16",
+    "category": "Economist",
+    "institution": "University 16",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_17",
+    "name": "Economist 17",
+    "category": "Economist",
+    "institution": "University 17",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_18",
+    "name": "Economist 18",
+    "category": "Economist",
+    "institution": "University 18",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_19",
+    "name": "Economist 19",
+    "category": "Economist",
+    "institution": "University 19",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_20",
+    "name": "Economist 20",
+    "category": "Economist",
+    "institution": "University 20",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_21",
+    "name": "Economist 21",
+    "category": "Economist",
+    "institution": "University 21",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_22",
+    "name": "Economist 22",
+    "category": "Economist",
+    "institution": "University 22",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_23",
+    "name": "Economist 23",
+    "category": "Economist",
+    "institution": "University 23",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_24",
+    "name": "Economist 24",
+    "category": "Economist",
+    "institution": "University 24",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_25",
+    "name": "Economist 25",
+    "category": "Economist",
+    "institution": "University 25",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_26",
+    "name": "Economist 26",
+    "category": "Economist",
+    "institution": "University 26",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_27",
+    "name": "Economist 27",
+    "category": "Economist",
+    "institution": "University 27",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_28",
+    "name": "Economist 28",
+    "category": "Economist",
+    "institution": "University 28",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_29",
+    "name": "Economist 29",
+    "category": "Economist",
+    "institution": "University 29",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_30",
+    "name": "Economist 30",
+    "category": "Economist",
+    "institution": "University 30",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_31",
+    "name": "Economist 31",
+    "category": "Economist",
+    "institution": "University 31",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_32",
+    "name": "Economist 32",
+    "category": "Economist",
+    "institution": "University 32",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_33",
+    "name": "Economist 33",
+    "category": "Economist",
+    "institution": "University 33",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_34",
+    "name": "Economist 34",
+    "category": "Economist",
+    "institution": "University 34",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_35",
+    "name": "Economist 35",
+    "category": "Economist",
+    "institution": "University 35",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_36",
+    "name": "Economist 36",
+    "category": "Economist",
+    "institution": "University 36",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_37",
+    "name": "Economist 37",
+    "category": "Economist",
+    "institution": "University 37",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_38",
+    "name": "Economist 38",
+    "category": "Economist",
+    "institution": "University 38",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_39",
+    "name": "Economist 39",
+    "category": "Economist",
+    "institution": "University 39",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_40",
+    "name": "Economist 40",
+    "category": "Economist",
+    "institution": "University 40",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_41",
+    "name": "Economist 41",
+    "category": "Economist",
+    "institution": "University 41",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_42",
+    "name": "Economist 42",
+    "category": "Economist",
+    "institution": "University 42",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_43",
+    "name": "Economist 43",
+    "category": "Economist",
+    "institution": "University 43",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_44",
+    "name": "Economist 44",
+    "category": "Economist",
+    "institution": "University 44",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_45",
+    "name": "Economist 45",
+    "category": "Economist",
+    "institution": "University 45",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_46",
+    "name": "Economist 46",
+    "category": "Economist",
+    "institution": "University 46",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_47",
+    "name": "Economist 47",
+    "category": "Economist",
+    "institution": "University 47",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_48",
+    "name": "Economist 48",
+    "category": "Economist",
+    "institution": "University 48",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_49",
+    "name": "Economist 49",
+    "category": "Economist",
+    "institution": "University 49",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "economist_50",
+    "name": "Economist 50",
+    "category": "Economist",
+    "institution": "University 50",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "소수몽키",
+    "name": "소수몽키",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "미국주식으로부자되기",
+    "name": "미주부",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "내일은투자왕",
+    "name": "김단테",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "올랜도킴",
+    "name": "올랜도 킴",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "피터리",
+    "name": "PIETER LEE",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "앨런투자연구소",
+    "name": "앨런투자연구소",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "박곰희TV",
+    "name": "박곰희TV",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "미국주식탐구생활",
+    "name": "미국주식탐구생활",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "투자로그TILOG",
+    "name": "투자로그TILOG",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "투자읽어주는남자",
+    "name": "박성현",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "배당개미TV",
+    "name": "배당개미TV",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "현명한주식투자",
+    "name": "현명한 주식투자",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "돈길만걷자TV",
+    "name": "돈길만걷자TV",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "미국ETF연구소",
+    "name": "미국ETF연구소",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "세금읽어주는남자",
+    "name": "세금읽어주는남자",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "워런한국인",
+    "name": "워런킴",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "주린이탈출가이드",
+    "name": "주린이탈출가이드",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "쌀람이TV",
+    "name": "쌀람이TV",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "미국배당일기",
+    "name": "미국배당일기",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "배당천국TV",
+    "name": "배당천국TV",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "해외주식탐험대",
+    "name": "해외주식탐험대",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "미주성장탐험가",
+    "name": "미주성장탐험가",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "테슬라리서치TV",
+    "name": "테슬라리서치TV",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "실전미국주식연구소",
+    "name": "실전미국주식연구소",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "키워드인베스터",
+    "name": "키워드인베스터",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "로지컬인베스트",
+    "name": "로지컬인베스트",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "미국ETF탐험대",
+    "name": "미국ETF탐험대",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "버핏로그",
+    "name": "버핏로그",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "스타인베스트",
+    "name": "스타인베스트",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "리얼미국투자TV",
+    "name": "리얼미국투자TV",
+    "category": "YouTube",
+    "institution": "YouTube Korea",
+    "platform": "youtube",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+"
+  },
+  {
+    "username": "trader_1",
+    "name": "Trader 1",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 1",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_2",
+    "name": "Trader 2",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 2",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_3",
+    "name": "Trader 3",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 3",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_4",
+    "name": "Trader 4",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 4",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_5",
+    "name": "Trader 5",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 5",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_6",
+    "name": "Trader 6",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 6",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_7",
+    "name": "Trader 7",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 7",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_8",
+    "name": "Trader 8",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 8",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_9",
+    "name": "Trader 9",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 9",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_10",
+    "name": "Trader 10",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 10",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_11",
+    "name": "Trader 11",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 11",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_12",
+    "name": "Trader 12",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 12",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_13",
+    "name": "Trader 13",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 13",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_14",
+    "name": "Trader 14",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 14",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_15",
+    "name": "Trader 15",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 15",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_16",
+    "name": "Trader 16",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 16",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_17",
+    "name": "Trader 17",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 17",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_18",
+    "name": "Trader 18",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 18",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_19",
+    "name": "Trader 19",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 19",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_20",
+    "name": "Trader 20",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 20",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_21",
+    "name": "Trader 21",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 21",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_22",
+    "name": "Trader 22",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 22",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_23",
+    "name": "Trader 23",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 23",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_24",
+    "name": "Trader 24",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 24",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_25",
+    "name": "Trader 25",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 25",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_26",
+    "name": "Trader 26",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 26",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_27",
+    "name": "Trader 27",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 27",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_28",
+    "name": "Trader 28",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 28",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_29",
+    "name": "Trader 29",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 29",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_30",
+    "name": "Trader 30",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 30",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_31",
+    "name": "Trader 31",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 31",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_32",
+    "name": "Trader 32",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 32",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_33",
+    "name": "Trader 33",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 33",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_34",
+    "name": "Trader 34",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 34",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_35",
+    "name": "Trader 35",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 35",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_36",
+    "name": "Trader 36",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 36",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_37",
+    "name": "Trader 37",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 37",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_38",
+    "name": "Trader 38",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 38",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_39",
+    "name": "Trader 39",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 39",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_40",
+    "name": "Trader 40",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 40",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_41",
+    "name": "Trader 41",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 41",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_42",
+    "name": "Trader 42",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 42",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_43",
+    "name": "Trader 43",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 43",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_44",
+    "name": "Trader 44",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 44",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_45",
+    "name": "Trader 45",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 45",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_46",
+    "name": "Trader 46",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 46",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_47",
+    "name": "Trader 47",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 47",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_48",
+    "name": "Trader 48",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 48",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_49",
+    "name": "Trader 49",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 49",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "trader_50",
+    "name": "Trader 50",
+    "category": "Trading Educator",
+    "institution": "Trading Academy 50",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_1",
+    "name": "Fintech Expert 1",
+    "category": "Fintech",
+    "institution": "Fintech Company 1",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_2",
+    "name": "Fintech Expert 2",
+    "category": "Fintech",
+    "institution": "Fintech Company 2",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_3",
+    "name": "Fintech Expert 3",
+    "category": "Fintech",
+    "institution": "Fintech Company 3",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_4",
+    "name": "Fintech Expert 4",
+    "category": "Fintech",
+    "institution": "Fintech Company 4",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_5",
+    "name": "Fintech Expert 5",
+    "category": "Fintech",
+    "institution": "Fintech Company 5",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_6",
+    "name": "Fintech Expert 6",
+    "category": "Fintech",
+    "institution": "Fintech Company 6",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_7",
+    "name": "Fintech Expert 7",
+    "category": "Fintech",
+    "institution": "Fintech Company 7",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_8",
+    "name": "Fintech Expert 8",
+    "category": "Fintech",
+    "institution": "Fintech Company 8",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_9",
+    "name": "Fintech Expert 9",
+    "category": "Fintech",
+    "institution": "Fintech Company 9",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_10",
+    "name": "Fintech Expert 10",
+    "category": "Fintech",
+    "institution": "Fintech Company 10",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_11",
+    "name": "Fintech Expert 11",
+    "category": "Fintech",
+    "institution": "Fintech Company 11",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_12",
+    "name": "Fintech Expert 12",
+    "category": "Fintech",
+    "institution": "Fintech Company 12",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_13",
+    "name": "Fintech Expert 13",
+    "category": "Fintech",
+    "institution": "Fintech Company 13",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_14",
+    "name": "Fintech Expert 14",
+    "category": "Fintech",
+    "institution": "Fintech Company 14",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_15",
+    "name": "Fintech Expert 15",
+    "category": "Fintech",
+    "institution": "Fintech Company 15",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_16",
+    "name": "Fintech Expert 16",
+    "category": "Fintech",
+    "institution": "Fintech Company 16",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_17",
+    "name": "Fintech Expert 17",
+    "category": "Fintech",
+    "institution": "Fintech Company 17",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_18",
+    "name": "Fintech Expert 18",
+    "category": "Fintech",
+    "institution": "Fintech Company 18",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_19",
+    "name": "Fintech Expert 19",
+    "category": "Fintech",
+    "institution": "Fintech Company 19",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_20",
+    "name": "Fintech Expert 20",
+    "category": "Fintech",
+    "institution": "Fintech Company 20",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_21",
+    "name": "Fintech Expert 21",
+    "category": "Fintech",
+    "institution": "Fintech Company 21",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_22",
+    "name": "Fintech Expert 22",
+    "category": "Fintech",
+    "institution": "Fintech Company 22",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_23",
+    "name": "Fintech Expert 23",
+    "category": "Fintech",
+    "institution": "Fintech Company 23",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_24",
+    "name": "Fintech Expert 24",
+    "category": "Fintech",
+    "institution": "Fintech Company 24",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_25",
+    "name": "Fintech Expert 25",
+    "category": "Fintech",
+    "institution": "Fintech Company 25",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_26",
+    "name": "Fintech Expert 26",
+    "category": "Fintech",
+    "institution": "Fintech Company 26",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_27",
+    "name": "Fintech Expert 27",
+    "category": "Fintech",
+    "institution": "Fintech Company 27",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_28",
+    "name": "Fintech Expert 28",
+    "category": "Fintech",
+    "institution": "Fintech Company 28",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_29",
+    "name": "Fintech Expert 29",
+    "category": "Fintech",
+    "institution": "Fintech Company 29",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_30",
+    "name": "Fintech Expert 30",
+    "category": "Fintech",
+    "institution": "Fintech Company 30",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_31",
+    "name": "Fintech Expert 31",
+    "category": "Fintech",
+    "institution": "Fintech Company 31",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_32",
+    "name": "Fintech Expert 32",
+    "category": "Fintech",
+    "institution": "Fintech Company 32",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_33",
+    "name": "Fintech Expert 33",
+    "category": "Fintech",
+    "institution": "Fintech Company 33",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_34",
+    "name": "Fintech Expert 34",
+    "category": "Fintech",
+    "institution": "Fintech Company 34",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_35",
+    "name": "Fintech Expert 35",
+    "category": "Fintech",
+    "institution": "Fintech Company 35",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_36",
+    "name": "Fintech Expert 36",
+    "category": "Fintech",
+    "institution": "Fintech Company 36",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_37",
+    "name": "Fintech Expert 37",
+    "category": "Fintech",
+    "institution": "Fintech Company 37",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_38",
+    "name": "Fintech Expert 38",
+    "category": "Fintech",
+    "institution": "Fintech Company 38",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_39",
+    "name": "Fintech Expert 39",
+    "category": "Fintech",
+    "institution": "Fintech Company 39",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  },
+  {
+    "username": "fintech_40",
+    "name": "Fintech Expert 40",
+    "category": "Fintech",
+    "institution": "Fintech Company 40",
+    "priority": "medium",
+    "verified": true,
+    "followers": "100K+",
+    "platform": "twitter"
+  }
+]

@@ -67,3 +67,57 @@ export const contents = mysqlTable("contents", {
 
 export type Content = typeof contents.$inferSelect;
 export type InsertContent = typeof contents.$inferInsert;
+
+/**
+ * Expert Accuracy table - tracks expert prediction accuracy
+ */
+export const expertAccuracy = mysqlTable("expertAccuracy", {
+  id: int("id").autoincrement().primaryKey(),
+  influencerId: int("influencerId").notNull(),
+  totalPredictions: int("totalPredictions").default(0).notNull(),
+  correctPredictions: int("correctPredictions").default(0).notNull(),
+  accuracyRate: int("accuracyRate").default(0).notNull(), // 0-100
+  grade: mysqlEnum("grade", ["S", "A", "B", "C", "D"]).default("C").notNull(),
+  weight: int("weight").default(100).notNull(), // 100 = 1.0x, 200 = 2.0x
+  last30DaysAccuracy: int("last30DaysAccuracy").default(0).notNull(),
+  last90DaysAccuracy: int("last90DaysAccuracy").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ExpertAccuracy = typeof expertAccuracy.$inferSelect;
+export type InsertExpertAccuracy = typeof expertAccuracy.$inferInsert;
+
+/**
+ * Predictions table - stores all expert predictions
+ */
+export const predictions = mysqlTable("predictions", {
+  id: int("id").autoincrement().primaryKey(),
+  contentId: int("contentId").notNull(),
+  influencerId: int("influencerId").notNull(),
+  ticker: varchar("ticker", { length: 10 }).notNull(),
+  sentiment: mysqlEnum("sentiment", ["bullish", "bearish", "neutral"]).notNull(),
+  priceAtPrediction: int("priceAtPrediction"), // in cents
+  predictedDate: timestamp("predictedDate").notNull(),
+  verificationDate: timestamp("verificationDate"), // 7 days later
+  isVerified: int("isVerified").default(0).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Prediction = typeof predictions.$inferSelect;
+export type InsertPrediction = typeof predictions.$inferInsert;
+
+/**
+ * Prediction Results table - stores verification results
+ */
+export const predictionResults = mysqlTable("predictionResults", {
+  id: int("id").autoincrement().primaryKey(),
+  predictionId: int("predictionId").notNull(),
+  priceAfter7Days: int("priceAfter7Days"), // in cents
+  priceChange: int("priceChange"), // percentage * 100 (850 = 8.5%)
+  isCorrect: int("isCorrect").notNull(), // 1 = correct, 0 = incorrect
+  verifiedAt: timestamp("verifiedAt").defaultNow().notNull(),
+});
+
+export type PredictionResult = typeof predictionResults.$inferSelect;
+export type InsertPredictionResult = typeof predictionResults.$inferInsert;

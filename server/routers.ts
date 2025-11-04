@@ -197,6 +197,20 @@ export const appRouter = router({
       }),
   }),
 
+  experts: router({
+    getTopExperts: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(50) }))
+      .query(async ({ input }) => {
+        return await db.getTopExperts(input.limit);
+      }),
+    
+    getExpertAccuracy: publicProcedure
+      .input(z.object({ influencerId: z.number() }))
+      .query(async ({ input }) => {
+        return await db.getExpertAccuracy(input.influencerId);
+      }),
+  }),
+
   trending: router({
     realtime: publicProcedure.query(async () => {
       const contents = await db.getAllContents(100);

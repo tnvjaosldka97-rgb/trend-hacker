@@ -1,0 +1,452 @@
+[
+  {
+    "username": "jimcramer",
+    "name": "Jim Cramer",
+    "category": "TV Host / Analyst",
+    "followers": "2.3M",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC Mad Money"
+  },
+  {
+    "username": "cathiedwood",
+    "name": "Cathie Wood",
+    "category": "Fund Manager",
+    "followers": "1.9M",
+    "priority": "high",
+    "verified": true,
+    "institution": "ARK Invest"
+  },
+  {
+    "username": "GaryBlack00",
+    "name": "Gary Black",
+    "category": "Fund Manager",
+    "followers": "541K",
+    "priority": "high",
+    "verified": true,
+    "institution": "The Future Fund"
+  },
+  {
+    "username": "BillAckman",
+    "name": "Bill Ackman",
+    "category": "Hedge Fund Manager",
+    "followers": "1.4M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Pershing Square Capital"
+  },
+  {
+    "username": "RayDalio",
+    "name": "Ray Dalio",
+    "category": "Hedge Fund Manager",
+    "followers": "900K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bridgewater Associates"
+  },
+  {
+    "username": "Carl_C_Icahn",
+    "name": "Carl Icahn",
+    "category": "Activist Investor",
+    "followers": "300K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Icahn Enterprises"
+  },
+  {
+    "username": "elerianm",
+    "name": "Mohamed El-Erian",
+    "category": "Economist",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Allianz, Queens' College"
+  },
+  {
+    "username": "Nouriel",
+    "name": "Nouriel Roubini",
+    "category": "Economist",
+    "followers": "700K",
+    "priority": "high",
+    "verified": true,
+    "institution": "NYU Stern"
+  },
+  {
+    "username": "ReformedBroker",
+    "name": "Joshua Brown",
+    "category": "Financial Advisor",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Ritholtz Wealth Management"
+  },
+  {
+    "username": "markets",
+    "name": "Bloomberg Markets",
+    "category": "News Organization",
+    "followers": "5.2M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "ReutersBiz",
+    "name": "Reuters Business",
+    "category": "News Organization",
+    "followers": "3.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Reuters"
+  },
+  {
+    "username": "CNBC",
+    "name": "CNBC",
+    "category": "News Organization",
+    "followers": "4.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC"
+  },
+  {
+    "username": "WSJ",
+    "name": "Wall Street Journal",
+    "category": "News Organization",
+    "followers": "20.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "WSJ"
+  },
+  {
+    "username": "FT",
+    "name": "Financial Times",
+    "category": "News Organization",
+    "followers": "5.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Financial Times"
+  },
+  {
+    "username": "TheStalwart",
+    "name": "Joe Weisenthal",
+    "category": "Journalist",
+    "followers": "400K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "tracyalloway",
+    "name": "Tracy Alloway",
+    "category": "Journalist",
+    "followers": "200K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "matt_levine",
+    "name": "Matt Levine",
+    "category": "Columnist",
+    "followers": "150K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg Opinion"
+  },
+  {
+    "username": "zerohedge",
+    "name": "zerohedge",
+    "category": "Financial Blog",
+    "followers": "1.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Zero Hedge"
+  },
+  {
+    "username": "fundstrat",
+    "name": "Fundstrat Global Advisors",
+    "category": "Research Firm",
+    "followers": "300K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fundstrat"
+  },
+  {
+    "username": "TomLeeForward",
+    "name": "Tom Lee",
+    "category": "Analyst",
+    "followers": "250K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fundstrat"
+  },
+  {
+    "username": "MikeAlfred",
+    "name": "Mike Alfred",
+    "category": "Entrepreneur / Analyst",
+    "followers": "180K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Digital Assets Data"
+  },
+  {
+    "username": "StockTwits",
+    "name": "StockTwits",
+    "category": "Platform",
+    "followers": "500K",
+    "priority": "high",
+    "verified": true,
+    "institution": "StockTwits"
+  },
+  {
+    "username": "Investopedia",
+    "name": "Investopedia",
+    "category": "Education",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Investopedia"
+  },
+  {
+    "username": "MarketWatch",
+    "name": "MarketWatch",
+    "category": "News Organization",
+    "followers": "2.4M",
+    "priority": "high",
+    "verified": true,
+    "institution": "MarketWatch"
+  },
+  {
+    "username": "BarronsOnline",
+    "name": "Barron's",
+    "category": "News Organization",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Barron's"
+  },
+  {
+    "username": "TheEconomist",
+    "name": "The Economist",
+    "category": "News Organization",
+    "followers": "26.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "The Economist"
+  },
+  {
+    "username": "business",
+    "name": "Bloomberg",
+    "category": "News Organization",
+    "followers": "11.4M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bloomberg"
+  },
+  {
+    "username": "Forbes",
+    "name": "Forbes",
+    "category": "News Organization",
+    "followers": "19.7M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Forbes"
+  },
+  {
+    "username": "FortuneMagazine",
+    "name": "Fortune",
+    "category": "News Organization",
+    "followers": "5.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fortune"
+  },
+  {
+    "username": "FastMoney",
+    "name": "CNBC Fast Money",
+    "category": "TV Show",
+    "followers": "400K",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC"
+  },
+  {
+    "username": "SquawkCNBC",
+    "name": "Squawk Box",
+    "category": "TV Show",
+    "followers": "300K",
+    "priority": "high",
+    "verified": true,
+    "institution": "CNBC"
+  },
+  {
+    "username": "MorganStanley",
+    "name": "Morgan Stanley",
+    "category": "Investment Bank",
+    "followers": "500K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Morgan Stanley"
+  },
+  {
+    "username": "GoldmanSachs",
+    "name": "Goldman Sachs",
+    "category": "Investment Bank",
+    "followers": "1.2M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Goldman Sachs"
+  },
+  {
+    "username": "jpmorgan",
+    "name": "JPMorgan Chase",
+    "category": "Investment Bank",
+    "followers": "900K",
+    "priority": "high",
+    "verified": true,
+    "institution": "JPMorgan Chase"
+  },
+  {
+    "username": "BofAML",
+    "name": "Bank of America",
+    "category": "Investment Bank",
+    "followers": "700K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bank of America"
+  },
+  {
+    "username": "CitiBank",
+    "name": "Citi",
+    "category": "Investment Bank",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Citigroup"
+  },
+  {
+    "username": "federalreserve",
+    "name": "Federal Reserve",
+    "category": "Central Bank",
+    "followers": "1.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Federal Reserve"
+  },
+  {
+    "username": "USTreasury",
+    "name": "U.S. Treasury",
+    "category": "Government",
+    "followers": "2.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "U.S. Department of Treasury"
+  },
+  {
+    "username": "SEC_News",
+    "name": "SEC",
+    "category": "Regulator",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "U.S. Securities and Exchange Commission"
+  },
+  {
+    "username": "IMFNews",
+    "name": "IMF",
+    "category": "International Organization",
+    "followers": "3.2M",
+    "priority": "high",
+    "verified": true,
+    "institution": "International Monetary Fund"
+  },
+  {
+    "username": "WorldBank",
+    "name": "World Bank",
+    "category": "International Organization",
+    "followers": "4.5M",
+    "priority": "high",
+    "verified": true,
+    "institution": "World Bank"
+  },
+  {
+    "username": "ecb",
+    "name": "European Central Bank",
+    "category": "Central Bank",
+    "followers": "1.1M",
+    "priority": "high",
+    "verified": true,
+    "institution": "European Central Bank"
+  },
+  {
+    "username": "bankofengland",
+    "name": "Bank of England",
+    "category": "Central Bank",
+    "followers": "900K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Bank of England"
+  },
+  {
+    "username": "NYSE",
+    "name": "New York Stock Exchange",
+    "category": "Exchange",
+    "followers": "1.8M",
+    "priority": "high",
+    "verified": true,
+    "institution": "NYSE"
+  },
+  {
+    "username": "Nasdaq",
+    "name": "Nasdaq",
+    "category": "Exchange",
+    "followers": "2.3M",
+    "priority": "high",
+    "verified": true,
+    "institution": "Nasdaq"
+  },
+  {
+    "username": "CMEGroup",
+    "name": "CME Group",
+    "category": "Exchange",
+    "followers": "400K",
+    "priority": "high",
+    "verified": true,
+    "institution": "CME Group"
+  },
+  {
+    "username": "BlackRock",
+    "name": "BlackRock",
+    "category": "Asset Manager",
+    "followers": "800K",
+    "priority": "high",
+    "verified": true,
+    "institution": "BlackRock"
+  },
+  {
+    "username": "Vanguard_Group",
+    "name": "Vanguard",
+    "category": "Asset Manager",
+    "followers": "600K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Vanguard"
+  },
+  {
+    "username": "Fidelity",
+    "name": "Fidelity Investments",
+    "category": "Asset Manager",
+    "followers": "700K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Fidelity"
+  },
+  {
+    "username": "CharlesSchwab",
+    "name": "Charles Schwab",
+    "category": "Brokerage",
+    "followers": "500K",
+    "priority": "high",
+    "verified": true,
+    "institution": "Charles Schwab"
+  }
+]

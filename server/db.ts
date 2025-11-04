@@ -208,3 +208,191 @@ export async function updateContentTranscript(contentId: number, transcript: str
     .set({ transcript })
     .where(eq(contents.id, contentId));
 }
+
+// ============================================
+// Expert Accuracy & Prediction Tracking
+// ============================================
+
+import { expertAccuracy, predictions, predictionResults, InsertExpertAccuracy, InsertPrediction, InsertPredictionResult } from "../drizzle/schema";
+
+/**
+ * Get expert accuracy by influencer ID
+ */
+export async function getExpertAccuracy(influencerId: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const result = await db.select().from(expertAccuracy)
+    .where(eq(expertAccuracy.influencerId, influencerId))
+    .limit(1);
+  
+  return result.length > 0 ? result[0] : undefined;
+}
+
+/**
+ * Upsert expert accuracy
+ */
+export async function upsertExpertAccuracy(data: InsertExpertAccuracy) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.insert(expertAccuracy).values(data).onDuplicateKeyUpdate({
+    set: {
+      totalPredictions: data.totalPredictions,
+      correctPredictions: data.correctPredictions,
+      accuracyRate: data.accuracyRate,
+      grade: data.grade,
+      weight: data.weight,
+      last30DaysAccuracy: data.last30DaysAccuracy,
+      last90DaysAccuracy: data.last90DaysAccuracy,
+      updatedAt: new Date(),
+    },
+  });
+}
+
+/**
+ * Create prediction record
+ */
+export async function createPrediction(data: InsertPrediction) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.insert(predictions).values(data);
+}
+
+/**
+ * Get unverified predictions (7 days old)
+ */
+export async function getUnverifiedPredictions() {
+  const db = await getDb();
+  if (!db) return [];
+  
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+  
+  return await db.select().from(predictions)
+    .where(and(
+      eq(predictions.isVerified, 0),
+      sql`${predictions.predictedDate} <= ${sevenDaysAgo}`
+    ))
+    .limit(1000);
+}
+
+/**
+ * Create prediction result
+ */
+export async function createPredictionResult(data: InsertPredictionResult) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.insert(predictionResults).values(data);
+}
+
+/**
+ * Mark prediction as verified
+ */
+export async function markPredictionVerified(predictionId: number) {
+  const db = await getDb();
+  if (!db) return;
+  
+  await db.update(predictions)
+    .set({ isVerified: 1, verificationDate: new Date() })
+    .where(eq(predictions.id, predictionId));
+}
+
+/**
+ * Calculate expert accuracy and update grade
+ */
+export async function calculateExpertAccuracy(influencerId: number) {
+  const db = await getDb();
+  if (!db) return;
+  
+  // Get all verified predictions for this expert
+  const expertPredictions = await db.select({
+    prediction: predictions,
+    result: predictionResults,
+  })
+  .from(predictions)
+  .leftJoin(predictionResults, eq(predictions.id, predictionResults.predictionId))
+  .where(and(
+    eq(predictions.influencerId, influencerId),
+    eq(predictions.isVerified, 1)
+  ));
+  
+  if (expertPredictions.length === 0) return;
+  
+  const total = expertPredictions.length;
+  const correct = expertPredictions.filter(p => p.result?.isCorrect === 1).length;
+  const accuracyRate = Math.round((correct / total) * 100);
+  
+  // Calculate last 30 days accuracy
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  const last30Days = expertPredictions.filter(p => 
+    p.prediction.predictedDate && new Date(p.prediction.predictedDate) >= thirtyDaysAgo
+  );
+  const last30DaysAccuracy = last30Days.length > 0
+    ? Math.round((last30Days.filter(p => p.result?.isCorrect === 1).length / last30Days.length) * 100)
+    : 0;
+  
+  // Calculate last 90 days accuracy
+  const ninetyDaysAgo = new Date();
+  ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+  const last90Days = expertPredictions.filter(p => 
+    p.prediction.predictedDate && new Date(p.prediction.predictedDate) >= ninetyDaysAgo
+  );
+  const last90DaysAccuracy = last90Days.length > 0
+    ? Math.round((last90Days.filter(p => p.result?.isCorrect === 1).length / last90Days.length) * 100)
+    : 0;
+  
+  // Determine grade
+  let grade: "S" | "A" | "B" | "C" | "D" = "C";
+  let weight = 100; // 1.0x
+  
+  if (accuracyRate >= 90) {
+    grade = "S";
+    weight = 200; // 2.0x
+  } else if (accuracyRate >= 80) {
+    grade = "A";
+    weight = 150; // 1.5x
+  } else if (accuracyRate >= 70) {
+    grade = "B";
+    weight = 120; // 1.2x
+  } else if (accuracyRate >= 60) {
+    grade = "C";
+    weight = 100; // 1.0x
+  } else {
+    grade = "D";
+    weight = 50; // 0.5x
+  }
+  
+  // Upsert accuracy record
+  await upsertExpertAccuracy({
+    influencerId,
+    totalPredictions: total,
+    correctPredictions: correct,
+    accuracyRate,
+    grade,
+    weight,
+    last30DaysAccuracy,
+    last90DaysAccuracy,
+  });
+}
+
+/**
+ * Get top experts by accuracy
+ */
+export async function getTopExperts(limit: number = 50) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select({
+    accuracy: expertAccuracy,
+    influencer: influencers,
+  })
+  .from(expertAccuracy)
+  .leftJoin(influencers, eq(expertAccuracy.influencerId, influencers.id))
+  .where(sql`${expertAccuracy.totalPredictions} >= 10`) // At least 10 predictions
+  .orderBy(desc(expertAccuracy.accuracyRate))
+  .limit(limit);
+}

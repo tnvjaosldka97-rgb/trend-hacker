@@ -1,11 +1,12 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { Activity, BarChart3, Clock, TrendingUp, Users } from "lucide-react";
+import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<"realtime" | "today" | "weekly">("realtime");
+  const [activeTab, setActiveTab] = useState<"realtime" | "today" | "weekly" | "consensus">("realtime");
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [expandedStocks, setExpandedStocks] = useState<Set<string>>(new Set());
 
   const realtimeQuery = trpc.trending.realtime.useQuery(undefined, {
     enabled: activeTab === "realtime",
@@ -18,6 +19,10 @@ export default function Home() {
 
   const weeklyQuery = trpc.trending.weekly.useQuery(undefined, {
     enabled: activeTab === "weekly",
+  });
+
+  const consensusQuery = trpc.trending.today.useQuery(undefined, {
+    enabled: activeTab === "consensus",
   });
 
   // 실시간 타이머
@@ -48,14 +53,39 @@ export default function Home() {
     return `${minutes}분 ${secs}초 후`;
   };
 
+  const toggleExpanded = (ticker: string) => {
+    setExpandedStocks(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(ticker)) {
+        newSet.delete(ticker);
+      } else {
+        newSet.add(ticker);
+      }
+      return newSet;
+    });
+  };
+
   const getActiveData = () => {
     if (activeTab === "realtime") return realtimeQuery.data;
     if (activeTab === "today") return todayQuery.data;
-    return weeklyQuery.data;
+    if (activeTab === "weekly") return weeklyQuery.data;
+    if (activeTab === "consensus") return consensusQuery.data;
+    return realtimeQuery.data;
   };
 
   const activeData = getActiveData();
-  const stocks = activeData?.stocks || [];
+  let stocks = activeData?.stocks || [];
+  
+  // 강력 컨센서스 탭일 때 필터링
+  if (activeTab === "consensus") {
+    stocks = stocks.filter(s => {
+      const total = s.bullish + s.bearish + s.neutral;
+      if (total === 0) return false;
+      const bullishRatio = s.bullish / total;
+      const bearishRatio = s.bearish / total;
+      return bullishRatio >= 0.8 || bearishRatio >= 0.8; // 80% 이상
+    });
+  }
   
   // 감성 분석 기반 분류
   const bullishStocks = stocks.filter(s => {
@@ -107,6 +137,7 @@ export default function Home() {
     const bullishPercent = total > 0 ? Math.round((stock.bullish / total) * 100) : 0;
     const bearishPercent = total > 0 ? Math.round((stock.bearish / total) * 100) : 0;
     const neutralPercent = total > 0 ? Math.round((stock.neutral / total) * 100) : 0;
+    const isExpanded = expandedStocks.has(stock.ticker);
 
     return (
       <div
@@ -188,6 +219,35 @@ export default function Home() {
             </div>
           </div>
         )}
+
+        {/* 모든 의견 보기 버튼 */}
+        {total > 1 && (
+          <button
+            onClick={() => toggleExpanded(stock.ticker)}
+            className="mt-4 w-full flex items-center justify-center gap-2 py-2 px-4 bg-slate-800/50 hover:bg-slate-700/50 rounded-lg text-sm text-cyan-400 transition-all"
+          >
+            {isExpanded ? (
+              <>
+                <ChevronUp className="w-4 h-4" />
+                접기
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-4 h-4" />
+                {total}명의 의견 모두 보기
+              </>
+            )}
+          </button>
+        )}
+
+        {/* 확장된 트윗 리스트 (TODO: 실제 데이터 연동 필요) */}
+        {isExpanded && (
+          <div className="mt-4 space-y-3 border-t border-slate-700 pt-4">
+            <div className="text-xs text-slate-500 mb-2">
+              💡 전체 {total}명의 전문가 의견을 곧 표시할 예정입니다
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -205,30 +265,39 @@ export default function Home() {
       />
 
       {/* 헤더 */}
-      <header className="relative border-b border-slate-800 bg-slate-900/80 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-6">
+      <header className="relative border-b border-slate-800 bg-slate-900/90 backdrop-blur-md">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-4xl font-bold text-cyan-300 flex items-center gap-3">
-                <Activity className="w-10 h-10" />
-                TREND HACKER
-              </h1>
-              <p className="text-slate-400 mt-1">200명의 전문가 | 실시간 데이터 스트림</p>
-            </div>
-            <div className="flex items-center gap-6 text-sm">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-red-400" />
-                <span className="text-slate-300">LAST UPDATE</span>
-                <span className="font-mono font-bold text-cyan-300">
-                  {(activeData as any)?.lastUpdate ? formatTimeAgo((activeData as any).lastUpdate) : "0:00"}
-                </span>
+            {/* 왼쪽: 로고 + 캐릭터 */}
+            <div className="flex items-center gap-4">
+              <img 
+                src="/hacker-character.png" 
+                alt="Trend Hacker" 
+                className="w-16 h-16 object-contain"
+              />
+              <div>
+                <h1 className="text-3xl font-bold text-cyan-300 flex items-center gap-2">
+                  <Activity className="w-7 h-7" />
+                  TREND HACKER
+                </h1>
+                <p className="text-slate-400 text-sm mt-0.5">500+ 검증된 전문가 · 실시간 업데이트</p>
               </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-cyan-400" />
-                <span className="text-slate-300">NEXT UPDATE</span>
-                <span className="font-mono font-bold text-cyan-300">
-                  {(activeData as any)?.nextUpdate ? formatNextUpdate((activeData as any).nextUpdate) : "0:00"}
-                </span>
+            </div>
+            
+            {/* 오른쪽: 업데이트 타이머 */}
+            <div className="flex items-center gap-8">
+              <div className="text-right">
+                <div className="text-xs text-slate-400 mb-1">LAST UPDATE</div>
+                <div className="font-mono font-bold text-cyan-300 text-lg">
+                  {(activeData as any)?.lastUpdate ? formatTimeAgo((activeData as any).lastUpdate) : "대기 중"}
+                </div>
+              </div>
+              <div className="w-px h-12 bg-slate-700"></div>
+              <div className="text-right">
+                <div className="text-xs text-slate-400 mb-1">NEXT UPDATE</div>
+                <div className="font-mono font-bold text-cyan-300 text-lg">
+                  {(activeData as any)?.nextUpdate ? formatNextUpdate((activeData as any).nextUpdate) : "대기 중"}
+                </div>
               </div>
             </div>
           </div>
@@ -243,7 +312,7 @@ export default function Home() {
               <Users className="w-6 h-6 text-cyan-400" />
               <span className="text-slate-300 text-sm">전문가</span>
             </div>
-            <div className="text-4xl font-bold text-cyan-300">200+</div>
+            <div className="text-4xl font-bold text-cyan-300">500+</div>
             <div className="text-xs text-slate-400 mt-1">검증된 계정</div>
           </div>
 
@@ -310,6 +379,17 @@ export default function Home() {
             <TrendingUp className="w-5 h-5" />
             주간 (7일)
           </button>
+          <button
+            onClick={() => setActiveTab("consensus")}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+              activeTab === "consensus"
+                ? "bg-yellow-600 text-white"
+                : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
+            }`}
+          >
+            ⭐
+            강력 컨센서스
+          </button>
         </div>
 
         {/* 종목 리스트 */}
@@ -357,6 +437,7 @@ export default function Home() {
                 {activeTab === "realtime" && "최근 15분간 종목 언급이 없습니다"}
                 {activeTab === "today" && "오늘 종목 언급이 없습니다"}
                 {activeTab === "weekly" && "이번 주 종목 언급이 없습니다"}
+                {activeTab === "consensus" && "현재 강력 컨센서스 종목이 없습니다"}
               </p>
               <p className="text-slate-500 text-sm mt-2">데이터 수집 대기 중...</p>
             </div>
@@ -389,8 +470,8 @@ export default function Home() {
             <div>
               <h4 className="text-slate-300 font-semibold mb-4">신뢰성 기준</h4>
               <ul className="text-slate-400 text-sm space-y-2">
-                <li>팔로워 5,000+ · 인증 계정</li>
-                <li>AI 감성 분석 · 참여도 필터링</li>
+                <li>팔로워 50,000+ · 인증 필수</li>
+                <li>AI 감성 분석 · 전문성 검증</li>
               </ul>
             </div>
           </div>
