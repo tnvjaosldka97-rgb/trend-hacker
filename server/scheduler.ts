@@ -5,13 +5,13 @@ import path from 'path';
 
 const execAsync = promisify(exec);
 
-// 5분마다 실시간 데이터 수집
-// Cron expression: every 5 minutes
+// 3분마다 실시간 데이터 수집
+// Cron expression: every 3 minutes
 export function startDataCollectionScheduler() {
-  console.log('[Scheduler] Starting 5-minute data collection scheduler...');
+  console.log('[Scheduler] Starting 3-minute data collection scheduler...');
   
-  // 5분마다 실행
-  cron.schedule('*/5 * * * *', async () => {
+  // 3분마다 실행
+  cron.schedule('*/3 * * * *', async () => {
     const now = new Date().toISOString();
     console.log(`[Scheduler] ${now} - Starting data collection...`);
     
@@ -46,7 +46,7 @@ export function startDataCollectionScheduler() {
     }
   });
   
-  console.log('[Scheduler] Scheduler started successfully. Running every 5 minutes.');
+  console.log('[Scheduler] Scheduler started successfully. Running every 3 minutes.');
   console.log('[Scheduler] Next run will be at:', getNextRunTime());
 }
 
@@ -56,7 +56,7 @@ export function startDataCollectionScheduler() {
 function getNextRunTime(): string {
   const now = new Date();
   const minutes = now.getMinutes();
-  const nextMinutes = Math.ceil((minutes + 1) / 5) * 5;
+  const nextMinutes = Math.ceil((minutes + 1) / 3) * 3;
   const nextRun = new Date(now);
   
   if (nextMinutes >= 60) {

@@ -11,7 +11,7 @@ export default function Home() {
 
   const realtimeQuery = trpc.trending.realtime.useQuery(undefined, {
     enabled: activeTab === "realtime",
-    refetchInterval: 5 * 60 * 1000, // 5분마다 자동 새로고침
+    refetchInterval: 3 * 60 * 1000, // 3분마다 자동 새로고침
   });
 
   const todayQuery = trpc.trending.today.useQuery(undefined, {
@@ -340,7 +340,7 @@ export default function Home() {
               <Activity className="w-6 h-6 text-pink-400" />
               <span className="text-slate-300 text-sm">업데이트</span>
             </div>
-            <div className="text-4xl font-bold text-pink-300">5분</div>
+            <div className="text-4xl font-bold text-pink-300">3분</div>
             <div className="text-xs text-slate-400 mt-1">자동 갱신</div>
           </div>
         </div>
@@ -356,7 +356,7 @@ export default function Home() {
             }`}
           >
             <Activity className="w-5 h-5" />
-            실시간 (5분)
+            실시간 (3분)
           </button>
           <button
             onClick={() => setActiveTab("today")}
@@ -450,7 +450,7 @@ export default function Home() {
                 <Activity className="w-12 h-12 text-cyan-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
               </div>
               <p className="text-slate-300 text-xl font-medium mb-2">
-                {activeTab === "realtime" && "최근 5분간 데이터 수집 중"}
+                {activeTab === "realtime" && "최근 3분간 데이터 수집 중"}
                 {activeTab === "today" && "오늘 데이터 수집 중"}
                 {activeTab === "weekly" && "주간 데이터 수집 중"}
                 {activeTab === "consensus" && "컨센서스 분석 중"}
@@ -484,7 +484,7 @@ export default function Home() {
               <h4 className="text-slate-300 font-semibold mb-4">데이터 소스</h4>
               <ul className="text-slate-400 text-sm space-y-2">
                 <li>Twitter · Reddit · StockTwits</li>
-                <li>5분 간격 자동 업데이트</li>
+                <li>3분 간격 자동 업데이트</li>
               </ul>
             </div>
 
