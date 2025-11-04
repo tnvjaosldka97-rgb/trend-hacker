@@ -53,6 +53,27 @@ export type Influencer = typeof influencers.$inferSelect;
 export type InsertInfluencer = typeof influencers.$inferInsert;
 
 /**
+ * Stock Tweets table - stores tweets mentioning stocks
+ */
+export const stockTweets = mysqlTable("stockTweets", {
+  id: int("id").autoincrement().primaryKey(),
+  tweetId: varchar("tweetId", { length: 255 }).notNull().unique(),
+  authorUsername: varchar("authorUsername", { length: 255 }).notNull(),
+  authorName: varchar("authorName", { length: 255 }),
+  text: text("text").notNull(),
+  ticker: varchar("ticker", { length: 10 }).notNull(),
+  sentiment: mysqlEnum("sentiment", ["bullish", "bearish", "neutral"]).notNull(),
+  url: text("url"),
+  likeCount: int("likeCount").default(0),
+  retweetCount: int("retweetCount").default(0),
+  createdAt: timestamp("createdAt").notNull(),
+  collectedAt: timestamp("collectedAt").defaultNow().notNull(),
+});
+
+export type StockTweet = typeof stockTweets.$inferSelect;
+export type InsertStockTweet = typeof stockTweets.$inferInsert;
+
+/**
  * Contents table - stores collected content from influencers
  */
 export const contents = mysqlTable("contents", {

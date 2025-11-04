@@ -16,7 +16,7 @@ export function startDataCollectionScheduler() {
     console.log(`[Scheduler] ${now} - Starting data collection...`);
     
     try {
-      const scriptPath = path.join(process.cwd(), 'scripts/collect-twitter-data-v2.ts');
+      const scriptPath = path.join(process.cwd(), 'scripts/collect-twitter-simple.ts');
       const dataPath = path.join(process.cwd(), 'data/top-50-realtime.json');
       
       const { stdout, stderr } = await execAsync(

@@ -1,6 +1,6 @@
 import { eq, gte, desc, and, like, sql, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content } from "../drizzle/schema";
+import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -434,12 +434,9 @@ export async function getTopStocks(timeWindow: '15min' | '24h' | '7d', limit: nu
     timeThreshold = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
   }
 
-  // Get all contents within time window with stocks
-  const allContents = await db.select().from(contents)
-    .where(and(
-      gte(contents.publishedAt, timeThreshold),
-      sql`${contents.aiStocks} IS NOT NULL AND JSON_LENGTH(${contents.aiStocks}) > 0`
-    ));
+  // Get all tweets within time window from stockTweets table
+  const tweets = await db.select().from(stockTweets)
+    .where(gte(stockTweets.createdAt, timeThreshold));
 
   // Process in memory to group by ticker
   const stockMap = new Map<string, {
@@ -450,19 +447,8 @@ export async function getTopStocks(timeWindow: '15min' | '24h' | '7d', limit: nu
     neutralCount: number;
   }>();
 
-  for (const content of allContents) {
-    if (!content.aiStocks) continue;
-    
-    let stocks: string[] = [];
-    try {
-      stocks = typeof content.aiStocks === 'string' 
-        ? JSON.parse(content.aiStocks) 
-        : content.aiStocks;
-    } catch (e) {
-      continue;
-    }
-
-    const ticker = stocks[0]; // Use first ticker
+  for (const tweet of tweets) {
+    const ticker = tweet.ticker;
     if (!ticker) continue;
 
     const existing = stockMap.get(ticker) || {
@@ -474,8 +460,8 @@ export async function getTopStocks(timeWindow: '15min' | '24h' | '7d', limit: nu
     };
 
     existing.mentionCount++;
-    if (content.aiSentiment === 'bullish') existing.bullishCount++;
-    else if (content.aiSentiment === 'bearish') existing.bearishCount++;
+    if (tweet.sentiment === 'bullish') existing.bullishCount++;
+    else if (tweet.sentiment === 'bearish') existing.bearishCount++;
     else existing.neutralCount++;
 
     stockMap.set(ticker, existing);

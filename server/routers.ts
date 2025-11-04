@@ -231,167 +231,18 @@ export const appRouter = router({
 
   trending: router({
     realtime: publicProcedure.query(async () => {
-      // Get last update time from DB
-      const lastUpdateMeta = await db.getSystemMetadata('lastDataCollection');
-      const lastUpdate = lastUpdateMeta ? new Date(lastUpdateMeta.value!) : null;
-      
-      // Calculate next update time based on current time
-      let nextUpdate: Date | null = null;
-      if (lastUpdate) {
-        const now = Date.now();
-        const lastUpdateTime = lastUpdate.getTime();
-        const interval = 3 * 60 * 1000; // 3분
-        const timeSinceLastUpdate = now - lastUpdateTime;
-        const nextUpdateTime = lastUpdateTime + Math.ceil(timeSinceLastUpdate / interval) * interval;
-        nextUpdate = new Date(nextUpdateTime);
-      }
-      
-      const contents = await db.getAllContents(100);
-      const threeMinutesAgo = new Date(Date.now() - 3 * 60 * 1000);
-      
-      const recentTweets = contents.filter(c => 
-        new Date(c.publishedAt) >= threeMinutesAgo && c.aiStocks
-      );
-
-      const stockMap = new Map();
-      for (const tweet of recentTweets) {
-        try {
-          const stocks = typeof tweet.aiStocks === 'string' ? JSON.parse(tweet.aiStocks) : tweet.aiStocks;
-          const sentiment = tweet.aiSentiment || 'neutral';
-
-          for (const ticker of stocks) {
-            if (!stockMap.has(ticker)) {
-              stockMap.set(ticker, { 
-                ticker, 
-                count: 0, 
-                bullish: 0, 
-                bearish: 0, 
-                neutral: 0, 
-                latestTweet: '',
-                latestTweetUrl: '',
-                latestTweetAuthor: '',
-                latestTweetTime: null
-              });
-            }
-            const stock = stockMap.get(ticker);
-            stock.count++;
-            if (sentiment === 'bullish') stock.bullish++;
-            else if (sentiment === 'bearish') stock.bearish++;
-            else stock.neutral++;
-            if (!stock.latestTweet && tweet.aiSummary) {
-              stock.latestTweet = tweet.aiSummary;
-              stock.latestTweetUrl = tweet.url;
-              stock.latestTweetAuthor = tweet.title?.match(/@(\w+):/)?.[1] || '';
-              stock.latestTweetTime = tweet.publishedAt;
-            }
-          }
-        } catch (e) {}
-      }
-
-      const stocks = Array.from(stockMap.values()).sort((a, b) => b.count - a.count).slice(0, 20);
-      return { stocks, lastUpdate, nextUpdate, totalTweets: recentTweets.length };
+      const { getRealtimeTrending } = await import('./trending');
+      return await getRealtimeTrending();
     }),
 
     today: publicProcedure.query(async () => {
-      const contents = await db.getAllContents(500);
-      const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
-      
-      const todayTweets = contents.filter(c => 
-        new Date(c.publishedAt) >= oneDayAgo && c.aiStocks
-      );
-
-      const stockMap = new Map();
-      const hourlyMap = new Map();
-
-      for (const tweet of todayTweets) {
-        try {
-          const stocks = typeof tweet.aiStocks === 'string' ? JSON.parse(tweet.aiStocks) : tweet.aiStocks;
-          const sentiment = tweet.aiSentiment || 'neutral';
-          const hour = new Date(tweet.publishedAt).getHours();
-          hourlyMap.set(hour, (hourlyMap.get(hour) || 0) + 1);
-
-          for (const ticker of stocks) {
-            if (!stockMap.has(ticker)) {
-              stockMap.set(ticker, { 
-                ticker, 
-                count: 0, 
-                bullish: 0, 
-                bearish: 0, 
-                neutral: 0, 
-                sentiment: 'neutral', 
-                latestTweet: '',
-                latestTweetUrl: '',
-                latestTweetAuthor: '',
-                latestTweetTime: null
-              });
-            }
-            const stock = stockMap.get(ticker);
-            stock.count++;
-            if (sentiment === 'bullish') stock.bullish++;
-            else if (sentiment === 'bearish') stock.bearish++;
-            else stock.neutral++;
-            if (!stock.latestTweet && tweet.aiSummary) {
-              stock.latestTweet = tweet.aiSummary;
-              stock.latestTweetUrl = tweet.url;
-              stock.latestTweetAuthor = tweet.title?.match(/@(\w+):/)?.[1] || '';
-              stock.latestTweetTime = tweet.publishedAt;
-            }
-          }
-        } catch (e) {}
-      }
-
-      for (const stock of Array.from(stockMap.values())) {
-        if (stock.bullish > stock.bearish && stock.bullish > stock.neutral) stock.sentiment = 'bullish';
-        else if (stock.bearish > stock.bullish && stock.bearish > stock.neutral) stock.sentiment = 'bearish';
-        else stock.sentiment = 'neutral';
-      }
-
-      const stocks = Array.from(stockMap.values()).sort((a, b) => b.count - a.count);
-      const hourlyData = Array.from({ length: 24 }, (_, i) => ({ hour: i, count: hourlyMap.get(i) || 0 }));
-      return { stocks, hourlyData, totalTweets: todayTweets.length };
+      const { getTodayTrending } = await import('./trending');
+      return await getTodayTrending();
     }),
 
     weekly: publicProcedure.query(async () => {
-      const contents = await db.getAllContents(1000);
-      const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-      
-      const weeklyTweets = contents.filter(c => 
-        new Date(c.publishedAt) >= sevenDaysAgo && c.aiStocks
-      );
-
-      const stockMap = new Map();
-      const dailyMap = new Map();
-
-      for (const tweet of weeklyTweets) {
-        try {
-          const stocks = typeof tweet.aiStocks === 'string' ? JSON.parse(tweet.aiStocks) : tweet.aiStocks;
-          const sentiment = tweet.aiSentiment || 'neutral';
-          const date = new Date(tweet.publishedAt).toISOString().split('T')[0];
-          dailyMap.set(date, (dailyMap.get(date) || 0) + 1);
-
-          for (const ticker of stocks) {
-            if (!stockMap.has(ticker)) {
-              stockMap.set(ticker, { ticker, count: 0, bullish: 0, bearish: 0, neutral: 0, sentiment: 'neutral', avgPerDay: 0 });
-            }
-            const stock = stockMap.get(ticker);
-            stock.count++;
-            if (sentiment === 'bullish') stock.bullish++;
-            else if (sentiment === 'bearish') stock.bearish++;
-            else stock.neutral++;
-          }
-        } catch (e) {}
-      }
-
-      for (const stock of Array.from(stockMap.values())) {
-        if (stock.bullish > stock.bearish && stock.bullish > stock.neutral) stock.sentiment = 'bullish';
-        else if (stock.bearish > stock.bullish && stock.bearish > stock.neutral) stock.sentiment = 'bearish';
-        else stock.sentiment = 'neutral';
-        stock.avgPerDay = Math.round(stock.count / 7);
-      }
-
-      const stocks = Array.from(stockMap.values()).sort((a, b) => b.count - a.count);
-      const dailyData = Array.from(dailyMap.entries()).map(([date, count]) => ({ date, count })).sort((a, b) => a.date.localeCompare(b.date));
-      return { stocks, dailyData, totalTweets: weeklyTweets.length };
+      const { getWeeklyTrending } = await import('./trending');
+      return await getWeeklyTrending();
     }),
   }),
 });

@@ -36,6 +36,13 @@
       "when": 1762239160456,
       "tag": "0004_nappy_vapor",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1762261362068,
+      "tag": "0005_spicy_magik",
+      "breakpoints": true
     }
   ]
 }

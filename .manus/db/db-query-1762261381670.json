@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE IF NOT EXISTS `stockTweets` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`tweetId` varchar(255) NOT NULL,\n\t`authorUsername` varchar(255) NOT NULL,\n\t`authorName` varchar(255),\n\t`text` text NOT NULL,\n\t`ticker` varchar(10) NOT NULL,\n\t`sentiment` enum('bullish','bearish','neutral') NOT NULL,\n\t`url` text,\n\t`likeCount` int DEFAULT 0,\n\t`retweetCount` int DEFAULT 0,\n\t`createdAt` timestamp NOT NULL,\n\t`collectedAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `stockTweets_id` PRIMARY KEY(`id`),\n\tCONSTRAINT `stockTweets_tweetId_unique` UNIQUE(`tweetId`)\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2X49rbyh5skMcUf.cfd704647716 --database jaL3MeCkWSbFaXkY2XzNnr --execute CREATE TABLE IF NOT EXISTS `stockTweets` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`tweetId` varchar(255) NOT NULL,\n\t`authorUsername` varchar(255) NOT NULL,\n\t`authorName` varchar(255),\n\t`text` text NOT NULL,\n\t`ticker` varchar(10) NOT NULL,\n\t`sentiment` enum('bullish','bearish','neutral') NOT NULL,\n\t`url` text,\n\t`likeCount` int DEFAULT 0,\n\t`retweetCount` int DEFAULT 0,\n\t`createdAt` timestamp NOT NULL,\n\t`collectedAt` timestamp NOT NULL DEFAULT (now()),\n\tCONSTRAINT `stockTweets_id` PRIMARY KEY(`id`),\n\tCONSTRAINT `stockTweets_tweetId_unique` UNIQUE(`tweetId`)\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 1703
+}
