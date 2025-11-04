@@ -1,0 +1,16 @@
+{
+  "query": "SELECT * FROM systemMetadata WHERE `key` = 'lastDataCollection'",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2X49rbyh5skMcUf.cfd704647716 --database jaL3MeCkWSbFaXkY2XzNnr --execute SELECT * FROM systemMetadata WHERE `key` = 'lastDataCollection'",
+  "rows": [
+    {
+      "id": "1",
+      "key": "lastDataCollection",
+      "value": "2025-11-04T13:22:50.532Z",
+      "updatedAt": "2025-11-04 13:22:51"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tkey\tvalue\tupdatedAt\n1\tlastDataCollection\t2025-11-04T13:22:50.532Z\t2025-11-04 13:22:51\n",
+  "stderr": "",
+  "execution_time_ms": 1552
+}

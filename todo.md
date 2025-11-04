@@ -208,3 +208,24 @@
 - [ ] HOT 종목 섹션 모바일 레이아웃
 - [ ] 텍스트 크기 및 간격 조정
 - [ ] 테스트 및 체크포인트 저장
+
+
+## Phase 57: Manus 백엔드 + Vercel 프론트엔드 분리 배포
+
+### 1. 백엔드 독립 실행 설정
+- [x] CORS 설정 추가 (Vercel 도메인 허용)
+- [x] cors 패키지 설치
+- [x] 환경변수 분리 (백엔드용)
+
+### 2. 프론트엔드 Vercel 배포 설정
+- [x] Vercel 빌드 설정 파일 작성 (vercel.json)
+- [x] 프론트엔드 환경변수 설정 (.env.vercel.example)
+- [x] API URL 환경변수로 분리 (VITE_API_URL)
+
+### 3. 배포 가이드 문서
+- [x] Manus 백엔드 배포 가이드
+- [x] Vercel 프론트엔드 배포 가이드
+- [x] 환경변수 설정 가이드
+- [x] CORS 설정 가이드
+- [x] 문제 해결 가이드
+- [x] 문서 전달 (DEPLOYMENT_GUIDE.md)
