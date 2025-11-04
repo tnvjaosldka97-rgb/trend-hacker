@@ -2,6 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import StockRanking from "@/components/StockRanking";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"realtime" | "today" | "weekly" | "consensus">("realtime");
@@ -390,6 +391,17 @@ export default function Home() {
             ⭐
             강력 컨센서스
           </button>
+        </div>
+
+        {/* 주식 순위 */}
+        <div className="mb-8">
+          <StockRanking 
+            timeWindow={
+              activeTab === "realtime" ? "15min" : 
+              activeTab === "today" ? "24h" : 
+              "7d"
+            } 
+          />
         </div>
 
         {/* 종목 리스트 */}

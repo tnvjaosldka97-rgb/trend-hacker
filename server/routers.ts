@@ -195,6 +195,15 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await getMultipleStockQuotes(input.symbols);
       }),
+    
+    getTopStocks: publicProcedure
+      .input(z.object({ 
+        timeWindow: z.enum(['15min', '24h', '7d']),
+        limit: z.number().optional().default(10)
+      }))
+      .query(async ({ input }) => {
+        return await db.getTopStocks(input.timeWindow, input.limit);
+      }),
   }),
 
   experts: router({

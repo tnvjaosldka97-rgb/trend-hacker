@@ -414,3 +414,75 @@ export async function getPredictionsByInfluencer(influencerId: number, limit: nu
   .orderBy(sql`${predictions.predictedDate} DESC`)
   .limit(limit);
 }
+
+
+/**
+ * Get top mentioned stocks with sentiment breakdown
+ */
+export async function getTopStocks(timeWindow: '15min' | '24h' | '7d', limit: number = 10) {
+  const db = await getDb();
+  if (!db) return [];
+
+  // Calculate time threshold
+  const now = new Date();
+  let timeThreshold = new Date();
+  if (timeWindow === '15min') {
+    timeThreshold = new Date(now.getTime() - 15 * 60 * 1000);
+  } else if (timeWindow === '24h') {
+    timeThreshold = new Date(now.getTime() - 24 * 60 * 60 * 1000);
+  } else if (timeWindow === '7d') {
+    timeThreshold = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  }
+
+  // Get all contents within time window with stocks
+  const allContents = await db.select().from(contents)
+    .where(and(
+      gte(contents.publishedAt, timeThreshold),
+      sql`${contents.aiStocks} IS NOT NULL AND JSON_LENGTH(${contents.aiStocks}) > 0`
+    ));
+
+  // Process in memory to group by ticker
+  const stockMap = new Map<string, {
+    ticker: string;
+    mentionCount: number;
+    bullishCount: number;
+    bearishCount: number;
+    neutralCount: number;
+  }>();
+
+  for (const content of allContents) {
+    if (!content.aiStocks) continue;
+    
+    let stocks: string[] = [];
+    try {
+      stocks = typeof content.aiStocks === 'string' 
+        ? JSON.parse(content.aiStocks) 
+        : content.aiStocks;
+    } catch (e) {
+      continue;
+    }
+
+    const ticker = stocks[0]; // Use first ticker
+    if (!ticker) continue;
+
+    const existing = stockMap.get(ticker) || {
+      ticker,
+      mentionCount: 0,
+      bullishCount: 0,
+      bearishCount: 0,
+      neutralCount: 0,
+    };
+
+    existing.mentionCount++;
+    if (content.aiSentiment === 'bullish') existing.bullishCount++;
+    else if (content.aiSentiment === 'bearish') existing.bearishCount++;
+    else existing.neutralCount++;
+
+    stockMap.set(ticker, existing);
+  }
+
+  // Convert to array and sort by mention count
+  return Array.from(stockMap.values())
+    .sort((a, b) => b.mentionCount - a.mentionCount)
+    .slice(0, limit);
+}
