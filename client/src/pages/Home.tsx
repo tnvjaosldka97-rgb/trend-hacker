@@ -3,6 +3,7 @@ import { trpc } from "@/lib/trpc";
 import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import StockRanking from "@/components/StockRanking";
+import HotStocks from "@/components/HotStocks";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"realtime" | "today" | "weekly" | "consensus">("realtime");
@@ -393,7 +394,12 @@ export default function Home() {
           </button>
         </div>
 
-        {/* 주식 순위 */}
+        {/* 주간 HOT 종목 (오늘 탭에만 표시) */}
+        {activeTab === "today" && weeklyQuery.data?.stocks && (
+          <HotStocks stocks={weeklyQuery.data.stocks} />
+        )}
+
+        {/* TOP 10 언급 종목 */}
         <div className="mb-8">
           <StockRanking 
             timeWindow={
