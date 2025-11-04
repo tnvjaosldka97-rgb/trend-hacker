@@ -76,10 +76,10 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
   }
 
   return (
-    <div className="bg-slate-900/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-6">
-      <h3 className="text-xl font-bold text-cyan-400 mb-4">📊 TOP 10 언급 종목</h3>
+    <div className="bg-slate-900/50 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-4 sm:p-6">
+      <h3 className="text-lg sm:text-xl font-bold text-cyan-400 mb-3 sm:mb-4">📊 TOP 10 언급 종목</h3>
       
-      <div className="space-y-3">
+      <div className="space-y-2 sm:space-y-3">
         {stocks.map((stock, index) => {
           const total = stock.bullishCount + stock.bearishCount + stock.neutralCount;
           const bullishPercent = total > 0 ? Math.round((stock.bullishCount / total) * 100) : 0;
@@ -97,13 +97,13 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
           return (
             <div 
               key={stock.ticker}
-              className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-4 hover:border-cyan-500/30 transition-all"
+              className="bg-slate-800/50 border border-slate-700/50 rounded-lg p-3 sm:p-4 hover:border-cyan-500/30 transition-all"
             >
               {/* 헤더: 순위 + 티커 + 언급 횟수 */}
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
+              <div className="flex items-center justify-between mb-2 sm:mb-3">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <div className={`
-                    w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm
+                    w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm
                     ${index === 0 ? 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30' : ''}
                     ${index === 1 ? 'bg-slate-400/20 text-slate-300 border border-slate-400/30' : ''}
                     ${index === 2 ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : ''}
@@ -113,11 +113,11 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
                   </div>
                   
                   <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold text-white">{stock.ticker}</span>
-                      {mainSentiment === 'bullish' && <TrendingUp className="w-4 h-4 text-green-400" />}
-                      {mainSentiment === 'bearish' && <TrendingDown className="w-4 h-4 text-red-400" />}
-                      {mainSentiment === 'neutral' && <Minus className="w-4 h-4 text-slate-400" />}
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <span className="text-base sm:text-lg font-bold text-white">{stock.ticker}</span>
+                      {mainSentiment === 'bullish' && <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" />}
+                      {mainSentiment === 'bearish' && <TrendingDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400" />}
+                      {mainSentiment === 'neutral' && <Minus className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-400" />}
                     </div>
                     <div className="text-xs text-slate-400">
                       {stock.mentionCount}회 언급
@@ -127,7 +127,7 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
                 
                 {/* 주요 의견 배지 */}
                 <div className={`
-                  px-3 py-1 rounded-full text-xs font-semibold
+                  px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-xs font-semibold whitespace-nowrap
                   ${mainSentiment === 'bullish' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : ''}
                   ${mainSentiment === 'bearish' ? 'bg-red-500/20 text-red-400 border border-red-500/30' : ''}
                   ${mainSentiment === 'neutral' ? 'bg-slate-500/20 text-slate-400 border border-slate-500/30' : ''}
@@ -139,9 +139,9 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
               </div>
               
               {/* 파이 차트 + 의견 비율 바 */}
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 sm:gap-4">
                 {/* 파이 차트 */}
-                <div className="w-20 h-20 flex-shrink-0">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -198,17 +198,17 @@ export default function StockRanking({ timeWindow }: StockRankingProps) {
                 
                 {/* 의견 비율 상세 */}
                 <div className="flex items-center justify-between text-xs">
-                  <div className="flex items-center gap-1 text-green-400">
-                    <div className="w-2 h-2 rounded-full bg-green-400" />
-                    상승 {bullishPercent}%
+                  <div className="flex items-center gap-0.5 sm:gap-1 text-green-400">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400" />
+                    <span className="hidden sm:inline">상승 </span>{bullishPercent}%
                   </div>
-                  <div className="flex items-center gap-1 text-red-400">
-                    <div className="w-2 h-2 rounded-full bg-red-400" />
-                    하락 {bearishPercent}%
+                  <div className="flex items-center gap-0.5 sm:gap-1 text-red-400">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-400" />
+                    <span className="hidden sm:inline">하락 </span>{bearishPercent}%
                   </div>
-                  <div className="flex items-center gap-1 text-slate-400">
-                    <div className="w-2 h-2 rounded-full bg-slate-400" />
-                    중립 {neutralPercent}%
+                  <div className="flex items-center gap-0.5 sm:gap-1 text-slate-400">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-slate-400" />
+                    <span className="hidden sm:inline">중립 </span>{neutralPercent}%
                   </div>
                 </div>
                 </div>

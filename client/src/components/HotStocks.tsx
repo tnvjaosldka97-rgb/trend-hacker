@@ -23,15 +23,15 @@ export default function HotStocks({ stocks }: HotStocksProps) {
   const topStocks = stocks.slice(0, 5);
 
   return (
-    <div className="mb-8">
-      <div className="flex items-center gap-3 mb-6">
-        <Flame className="w-7 h-7 text-orange-500 animate-pulse" />
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+    <div className="mb-6 sm:mb-8">
+      <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+        <Flame className="w-6 h-6 sm:w-7 sm:h-7 text-orange-500 animate-pulse" />
+        <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
           주간 HOT 종목 TOP 5
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
         {topStocks.map((stock, index) => {
           const totalSentiment = stock.sentiment.bullish + stock.sentiment.bearish + stock.sentiment.neutral;
           const bullishPercent = totalSentiment > 0 ? Math.round((stock.sentiment.bullish / totalSentiment) * 100) : 0;
@@ -63,25 +63,25 @@ export default function HotStocks({ stocks }: HotStocksProps) {
           return (
             <div
               key={stock.ticker}
-              className={`relative bg-gradient-to-br ${getSentimentColor()} border rounded-xl p-4 hover:scale-105 transition-transform duration-200`}
+              className={`relative bg-gradient-to-br ${getSentimentColor()} border rounded-xl p-3 sm:p-4 hover:scale-105 transition-transform duration-200`}
             >
               {/* 순위 배지 */}
-              <div className={`absolute -top-3 -left-3 w-10 h-10 ${getRankBadge()} rounded-full flex items-center justify-center font-bold text-lg shadow-lg z-10`}>
+              <div className={`absolute -top-2.5 -left-2.5 sm:-top-3 sm:-left-3 w-9 h-9 sm:w-10 sm:h-10 ${getRankBadge()} rounded-full flex items-center justify-center font-bold text-base sm:text-lg shadow-lg z-10`}>
                 {index + 1}
               </div>
 
               {/* 티커 */}
-              <div className="flex items-center justify-between mb-3 mt-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-bold text-white">${stock.ticker}</span>
+              <div className="flex items-center justify-between mb-2 sm:mb-3 mt-1.5 sm:mt-2">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="text-xl sm:text-2xl font-bold text-white">${stock.ticker}</span>
                   {getSentimentIcon()}
                 </div>
               </div>
 
               {/* 언급 수 */}
-              <div className="mb-3">
-                <div className="text-sm text-slate-400 mb-1">언급 횟수</div>
-                <div className="text-xl font-bold text-cyan-300">{stock.mentions}회</div>
+              <div className="mb-2 sm:mb-3">
+                <div className="text-xs sm:text-sm text-slate-400 mb-0.5 sm:mb-1">언급 횟수</div>
+                <div className="text-lg sm:text-xl font-bold text-cyan-300">{stock.mentions}회</div>
               </div>
 
               {/* 감성 비율 */}

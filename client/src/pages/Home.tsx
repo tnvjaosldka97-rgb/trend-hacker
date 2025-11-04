@@ -268,36 +268,36 @@ export default function Home() {
 
       {/* 헤더 */}
       <header className="relative border-b border-slate-800 bg-slate-900/90 backdrop-blur-md">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
             {/* 왼쪽: 로고 */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <img 
                 src="/logo.png" 
                 alt="Trend Hacker Logo" 
-                className="w-12 h-12 object-contain"
+                className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
               />
               <div>
-                <h1 className="text-3xl font-bold text-cyan-300 flex items-center gap-2">
-                  <Activity className="w-7 h-7" />
+                <h1 className="text-xl sm:text-3xl font-bold text-cyan-300 flex items-center gap-1 sm:gap-2">
+                  <Activity className="w-5 h-5 sm:w-7 sm:h-7" />
                   TREND HACKER
                 </h1>
-                <p className="text-slate-400 text-sm mt-0.5">500+ 검증된 전문가 · 실시간 업데이트</p>
+                <p className="text-slate-400 text-xs sm:text-sm mt-0.5">500+ 검증된 전문가 · 실시간 업데이트</p>
               </div>
             </div>
             
             {/* 오른쪽: 업데이트 타이머 */}
-            <div className="flex items-center gap-8">
-              <div className="text-right">
-                <div className="text-xs text-slate-400 mb-1">LAST UPDATE</div>
-                <div className="font-mono font-bold text-cyan-300 text-lg">
+            <div className="flex items-center gap-3 sm:gap-8 w-full sm:w-auto justify-between sm:justify-end">
+              <div className="text-left sm:text-right">
+                <div className="text-xs text-slate-400 mb-0.5 sm:mb-1">LAST UPDATE</div>
+                <div className="font-mono font-bold text-cyan-300 text-sm sm:text-lg">
                   {(activeData as any)?.lastUpdate ? formatTimeAgo((activeData as any).lastUpdate) : "대기 중"}
                 </div>
               </div>
-              <div className="w-px h-12 bg-slate-700"></div>
+              <div className="w-px h-10 sm:h-12 bg-slate-700"></div>
               <div className="text-right">
-                <div className="text-xs text-slate-400 mb-1">NEXT UPDATE</div>
-                <div className="font-mono font-bold text-cyan-300 text-lg">
+                <div className="text-xs text-slate-400 mb-0.5 sm:mb-1">NEXT UPDATE</div>
+                <div className="font-mono font-bold text-cyan-300 text-sm sm:text-lg">
                   {(activeData as any)?.nextUpdate ? formatNextUpdate((activeData as any).nextUpdate) : "대기 중"}
                 </div>
               </div>
@@ -307,83 +307,80 @@ export default function Home() {
       </header>
 
       {/* 통계 카드 */}
-      <div className="relative container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-cyan-900/40 to-cyan-950/40 border border-cyan-700/50 rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <Users className="w-6 h-6 text-cyan-400" />
-              <span className="text-slate-300 text-sm">전문가</span>
+      <div className="relative container mx-auto px-4 py-6 sm:py-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6 mb-6 sm:mb-8">
+           <div className="bg-gradient-to-br from-cyan-900/40 to-cyan-950/40 border border-cyan-700/50 rounded-lg p-3 sm:p-6">
+            <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+              <Users className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+              <span className="text-slate-300 text-xs sm:text-sm">전문가</span>
             </div>
-            <div className="text-4xl font-bold text-cyan-300">500+</div>
-            <div className="text-xs text-slate-400 mt-1">검증된 계정</div>
+            <div className="text-2xl sm:text-4xl font-bold text-cyan-300">500+</div>
+            <div className="text-slate-400 text-xs sm:text-sm mt-0.5 sm:mt-1">검증된 계정</div>
           </div>
-
-          <div className="bg-gradient-to-br from-blue-900/40 to-blue-950/40 border border-blue-700/50 rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <BarChart3 className="w-6 h-6 text-blue-400" />
-              <span className="text-slate-300 text-sm">트윗</span>
+          <div className="bg-gradient-to-br from-blue-900/40 to-blue-950/40 border border-blue-700/50 rounded-lg p-3 sm:p-6">
+            <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+              <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
+              <span className="text-slate-300 text-xs sm:text-sm">트윗</span>
             </div>
-            <div className="text-4xl font-bold text-blue-300">{activeData?.totalTweets || 0}</div>
-            <div className="text-xs text-slate-400 mt-1">오늘 수집</div>
+            <div className="text-2xl sm:text-4xl font-bold text-blue-300">{activeData?.totalTweets || 0}</div>
+            <div className="text-slate-400 text-xs sm:text-sm mt-0.5 sm:mt-1">오늘 수집</div>
           </div>
-
-          <div className="bg-gradient-to-br from-purple-900/40 to-purple-950/40 border border-purple-700/50 rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <TrendingUp className="w-6 h-6 text-purple-400" />
-              <span className="text-slate-300 text-sm">종목</span>
+          <div className="bg-gradient-to-br from-purple-900/40 to-purple-950/40 border border-purple-700/50 rounded-lg p-3 sm:p-6">
+            <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+              <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-purple-400" />
+              <span className="text-slate-300 text-xs sm:text-sm">종목</span>
             </div>
-            <div className="text-4xl font-bold text-purple-300">{stocks.length}</div>
-            <div className="text-xs text-slate-400 mt-1">추적 중</div>
+            <div className="text-2xl sm:text-4xl font-bold text-purple-300">{stocks.length}</div>
+            <div className="text-slate-400 text-xs sm:text-sm mt-0.5 sm:mt-1">추적 중</div>
           </div>
-
-          <div className="bg-gradient-to-br from-pink-900/40 to-pink-950/40 border border-pink-700/50 rounded-lg p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <Activity className="w-6 h-6 text-pink-400" />
-              <span className="text-slate-300 text-sm">업데이트</span>
+          <div className="bg-gradient-to-br from-pink-900/40 to-pink-950/40 border border-pink-700/50 rounded-lg p-3 sm:p-6">
+            <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+              <Activity className="w-5 h-5 sm:w-6 sm:h-6 text-pink-400" />
+              <span className="text-slate-300 text-xs sm:text-sm">업데이트</span>
             </div>
-            <div className="text-4xl font-bold text-pink-300">3분</div>
-            <div className="text-xs text-slate-400 mt-1">자동 갱신</div>
+            <div className="text-2xl sm:text-4xl font-bold text-pink-300">3분</div>
+            <div className="text-slate-400 text-xs sm:text-sm mt-0.5 sm:mt-1">자동 갱신</div>
           </div>
         </div>
 
         {/* 탭 네비게이션 */}
-        <div className="flex items-center gap-4 mb-8">
+        <div className="flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8 overflow-x-auto pb-2">
           <button
             onClick={() => setActiveTab("realtime")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
               activeTab === "realtime"
                 ? "bg-red-600 text-white"
                 : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
             }`}
           >
-            <Activity className="w-5 h-5" />
+            <Activity className="w-4 h-4 sm:w-5 sm:h-5" />
             실시간 (3분)
           </button>
           <button
             onClick={() => setActiveTab("today")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
               activeTab === "today"
                 ? "bg-cyan-600 text-white"
                 : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
             }`}
           >
-            <BarChart3 className="w-5 h-5" />
+            <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5" />
             오늘 (24h)
           </button>
           <button
             onClick={() => setActiveTab("weekly")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
               activeTab === "weekly"
                 ? "bg-purple-600 text-white"
                 : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
             }`}
           >
-            <TrendingUp className="w-5 h-5" />
+            <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
             주간 (7일)
           </button>
           <button
             onClick={() => setActiveTab("consensus")}
-            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
               activeTab === "consensus"
                 ? "bg-yellow-600 text-white"
                 : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
