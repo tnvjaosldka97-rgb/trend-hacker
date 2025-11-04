@@ -234,13 +234,13 @@ export const appRouter = router({
       // Get last update time from DB
       const lastUpdateMeta = await db.getSystemMetadata('lastDataCollection');
       const lastUpdate = lastUpdateMeta ? new Date(lastUpdateMeta.value!) : null;
-      const nextUpdate = lastUpdate ? new Date(lastUpdate.getTime() + 15 * 60 * 1000) : null;
+      const nextUpdate = lastUpdate ? new Date(lastUpdate.getTime() + 5 * 60 * 1000) : null;
       
       const contents = await db.getAllContents(100);
-      const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000);
+      const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
       
       const recentTweets = contents.filter(c => 
-        new Date(c.publishedAt) >= fifteenMinutesAgo && c.aiStocks
+        new Date(c.publishedAt) >= fiveMinutesAgo && c.aiStocks
       );
 
       const stockMap = new Map();
