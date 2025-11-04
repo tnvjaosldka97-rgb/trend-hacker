@@ -223,6 +223,77 @@ const STOCK_MAP: Record<string, string> = {
 };
 
 /**
+ * 티커 유효성 검증
+ */
+function isValidTicker(ticker: string): boolean {
+  // 1. 길이 체크 (1-5자)
+  if (ticker.length < 1 || ticker.length > 5) return false;
+  
+  // 2. 대문자 알파벳만 허용
+  if (!/^[A-Z]+$/.test(ticker)) return false;
+  
+  // 3. 일반적인 단어 필터링 (주식 티커가 아닌 것)
+  const INVALID_WORDS = [
+    'I', 'A', 'THE', 'AND', 'OR', 'BUT', 'FOR', 'TO', 'OF', 'IN', 'ON', 'AT',
+    'IT', 'IS', 'WAS', 'BE', 'ARE', 'HAVE', 'HAS', 'HAD', 'DO', 'DOES', 'DID',
+    'WILL', 'CAN', 'MAY', 'MUST', 'SHALL', 'WOULD', 'COULD', 'SHOULD',
+    'MY', 'YOUR', 'HIS', 'HER', 'ITS', 'OUR', 'THEIR',
+    'THIS', 'THAT', 'THESE', 'THOSE', 'ALL', 'SOME', 'ANY', 'MANY', 'MUCH',
+    'NOT', 'NO', 'YES', 'SO', 'AS', 'IF', 'WHEN', 'WHERE', 'WHY', 'HOW',
+    'UP', 'DOWN', 'OUT', 'OFF', 'OVER', 'UNDER', 'AGAIN', 'THEN', 'ONCE',
+    'HERE', 'THERE', 'NOW', 'JUST', 'VERY', 'TOO', 'ALSO', 'ONLY', 'WELL',
+    'BACK', 'EVEN', 'NEW', 'OLD', 'GOOD', 'BAD', 'BIG', 'SMALL', 'HIGH', 'LOW',
+    'MORE', 'LESS', 'MOST', 'LEAST', 'BEST', 'WORST', 'FIRST', 'LAST', 'NEXT',
+    'FEW', 'BOTH', 'EACH', 'EVERY', 'SUCH', 'OWN', 'SAME', 'OTHER', 'ANOTHER',
+    'STILL', 'JUST', 'LIKE', 'THAN', 'ABOUT', 'INTO', 'THROUGH', 'DURING',
+    'BEFORE', 'AFTER', 'ABOVE', 'BELOW', 'BETWEEN', 'AMONG', 'WITHIN', 'WITHOUT',
+    'BECAUSE', 'SINCE', 'UNTIL', 'WHILE', 'ALTHOUGH', 'UNLESS', 'WHETHER',
+    'EITHER', 'NEITHER', 'BOTH', 'SUCH', 'WHAT', 'WHICH', 'WHO', 'WHOM', 'WHOSE',
+    'US', 'AI', 'CEO', 'CFO', 'CTO', 'IPO', 'ETF', 'SEC', 'FDA', 'FED', 'GDP',
+    'API', 'APP', 'WEB', 'NET', 'COM', 'ORG', 'GOV', 'EDU',
+    'YEAR', 'MONTH', 'WEEK', 'DAY', 'HOUR', 'MIN', 'SEC', 'AM', 'PM',
+    'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC',
+    'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN',
+    'USD', 'EUR', 'GBP', 'JPY', 'CNY', 'KRW',
+    'CEO', 'CTO', 'CFO', 'COO', 'CMO', 'CIO', 'VP', 'SVP', 'EVP',
+    'INC', 'LLC', 'LTD', 'CORP', 'CO',
+    'BUY', 'SELL', 'HOLD', 'LONG', 'SHORT', 'CALL', 'PUT',
+    'BULL', 'BEAR', 'MOON', 'PUMP', 'DUMP', 'FOMO', 'HODL',
+    'BREAKING', 'ALERT', 'NEWS', 'UPDATE', 'REPORT', 'ANALYSIS',
+    'THREAD', 'TWEET', 'POST', 'SHARE', 'LIKE', 'FOLLOW', 'RT', 'DM',
+    'LOL', 'OMG', 'WTF', 'IMO', 'IMHO', 'FYI', 'BTW', 'ASAP', 'TBD', 'TBA',
+    'WATCH', 'LOOK', 'SEE', 'CHECK', 'READ', 'CLICK', 'LINK', 'VIA',
+    'SAYS', 'SAID', 'TOLD', 'ASKED', 'ADDED', 'NOTED', 'STATED',
+    'GETS', 'GOT', 'GAVE', 'GIVES', 'TAKES', 'TOOK', 'MAKES', 'MADE',
+    'GOES', 'WENT', 'COMES', 'CAME', 'PUTS', 'KEEPS', 'KEPT',
+    'SAYS', 'MEANS', 'SEEMS', 'FEELS', 'LOOKS', 'SOUNDS', 'WORKS',
+    'NEEDS', 'WANTS', 'TRIES', 'TRIED', 'HELPS', 'HELPED', 'SHOWS', 'SHOWED',
+    'FINDS', 'FOUND', 'KNOWS', 'KNEW', 'THINKS', 'THOUGHT', 'BELIEVES',
+    'EXPECTS', 'HOPES', 'PLANS', 'AIMS', 'SEEKS', 'CLAIMS', 'ARGUES',
+    'SUGGESTS', 'IMPLIES', 'INDICATES', 'REVEALS', 'CONFIRMS', 'DENIES',
+    'WARNS', 'URGES', 'CALLS', 'DEMANDS', 'REQUESTS', 'ASKS', 'OFFERS',
+    'AGREES', 'DISAGREES', 'SUPPORTS', 'OPPOSES', 'BACKS', 'REJECTS',
+    'LAUNCHES', 'ANNOUNCES', 'UNVEILS', 'INTRODUCES', 'PRESENTS', 'RELEASES',
+    'HITS', 'REACHES', 'TOPS', 'BEATS', 'MISSES', 'FALLS', 'DROPS', 'RISES',
+    'GAINS', 'LOSES', 'ADDS', 'CUTS', 'BOOSTS', 'SLASHES', 'DOUBLES', 'HALVES',
+    'SOARS', 'PLUNGES', 'SURGES', 'TUMBLES', 'JUMPS', 'DIPS', 'CLIMBS', 'SLIDES',
+    'RALLIES', 'SINKS', 'SPIKES', 'CRASHES', 'RECOVERS', 'REBOUNDS', 'STALLS',
+    'CONTINUES', 'REMAINS', 'STAYS', 'HOLDS', 'MAINTAINS', 'KEEPS', 'RETAINS',
+    'FACES', 'SEES', 'EXPERIENCES', 'UNDERGOES', 'SUFFERS', 'ENJOYS', 'BENEFITS',
+    'STRUGGLES', 'BATTLES', 'FIGHTS', 'DEALS', 'HANDLES', 'MANAGES', 'TACKLES',
+    'TARGETS', 'FOCUSES', 'AIMS', 'SEEKS', 'PURSUES', 'CHASES', 'FOLLOWS',
+    'LEADS', 'HEADS', 'RUNS', 'OPERATES', 'MANAGES', 'CONTROLS', 'OWNS',
+    'BUYS', 'SELLS', 'TRADES', 'INVESTS', 'BETS', 'SHORTS', 'LONGS',
+    'RAISES', 'LOWERS', 'INCREASES', 'DECREASES', 'EXPANDS', 'SHRINKS',
+    'GROWS', 'DECLINES', 'IMPROVES', 'WORSENS', 'STRENGTHENS', 'WEAKENS'
+  ];
+  
+  if (INVALID_WORDS.includes(ticker)) return false;
+  
+  return true;
+}
+
+/**
  * Extract stock tickers from text
  */
 function extractTickers(text: string): string[] {
@@ -232,7 +303,12 @@ function extractTickers(text: string): string[] {
   const tickerRegex = /\$([A-Z]{1,5})\b/g;
   const tickerMatches = text.match(tickerRegex);
   if (tickerMatches) {
-    tickerMatches.forEach(m => tickers.add(m.slice(1)));
+    tickerMatches.forEach(m => {
+      const ticker = m.slice(1);
+      if (isValidTicker(ticker)) {
+        tickers.add(ticker);
+      }
+    });
   }
   
   // 2. Match company names and convert to tickers
@@ -243,7 +319,8 @@ function extractTickers(text: string): string[] {
     }
   }
   
-  return Array.from(tickers);
+  // 최종 필터링
+  return Array.from(tickers).filter(isValidTicker);
 }
 
 /**
