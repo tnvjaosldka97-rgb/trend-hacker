@@ -209,6 +209,15 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await db.getExpertAccuracy(input.influencerId);
       }),
+    
+    getPredictions: publicProcedure
+      .input(z.object({ 
+        influencerId: z.number(),
+        limit: z.number().optional().default(50)
+      }))
+      .query(async ({ input }) => {
+        return await db.getPredictionsByInfluencer(input.influencerId, input.limit);
+      }),
   }),
 
   trending: router({

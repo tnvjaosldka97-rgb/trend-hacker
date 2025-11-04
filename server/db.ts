@@ -396,3 +396,21 @@ export async function getTopExperts(limit: number = 50) {
   .orderBy(desc(expertAccuracy.accuracyRate))
   .limit(limit);
 }
+
+/**
+ * Get predictions by influencer ID with results
+ */
+export async function getPredictionsByInfluencer(influencerId: number, limit: number = 50) {
+  const db = await getDb();
+  if (!db) return [];
+  
+  return await db.select({
+    prediction: predictions,
+    result: predictionResults,
+  })
+  .from(predictions)
+  .leftJoin(predictionResults, eq(predictions.id, predictionResults.predictionId))
+  .where(eq(predictions.influencerId, influencerId))
+  .orderBy(sql`${predictions.predictedDate} DESC`)
+  .limit(limit);
+}
