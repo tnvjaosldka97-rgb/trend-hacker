@@ -19,6 +19,19 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 
 /**
+ * System metadata table - stores system-wide settings and timestamps
+ */
+export const systemMetadata = mysqlTable("systemMetadata", {
+  id: int("id").autoincrement().primaryKey(),
+  key: varchar("key", { length: 255 }).notNull().unique(),
+  value: text("value"),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SystemMetadata = typeof systemMetadata.$inferSelect;
+export type InsertSystemMetadata = typeof systemMetadata.$inferInsert;
+
+/**
  * Influencers table - stores information about tracked influencers
  */
 export const influencers = mysqlTable("influencers", {

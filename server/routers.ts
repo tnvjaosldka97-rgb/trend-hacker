@@ -231,6 +231,11 @@ export const appRouter = router({
 
   trending: router({
     realtime: publicProcedure.query(async () => {
+      // Get last update time from DB
+      const lastUpdateMeta = await db.getSystemMetadata('lastDataCollection');
+      const lastUpdate = lastUpdateMeta ? new Date(lastUpdateMeta.value!) : null;
+      const nextUpdate = lastUpdate ? new Date(lastUpdate.getTime() + 15 * 60 * 1000) : null;
+      
       const contents = await db.getAllContents(100);
       const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000);
       
@@ -274,7 +279,7 @@ export const appRouter = router({
       }
 
       const stocks = Array.from(stockMap.values()).sort((a, b) => b.count - a.count).slice(0, 20);
-      return { stocks, lastUpdate: new Date(), nextUpdate: new Date(Date.now() + 15 * 60 * 1000), totalTweets: recentTweets.length };
+      return { stocks, lastUpdate, nextUpdate, totalTweets: recentTweets.length };
     }),
 
     today: publicProcedure.query(async () => {

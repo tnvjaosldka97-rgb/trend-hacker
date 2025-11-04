@@ -36,6 +36,11 @@ export function startDataCollectionScheduler() {
       }
       
       console.log(`[Scheduler] ${new Date().toISOString()} - Data collection completed`);
+      
+      // Save collection timestamp to DB
+      const { setSystemMetadata } = await import('./db');
+      await setSystemMetadata('lastDataCollection', new Date().toISOString());
+      console.log('[Scheduler] Timestamp saved to database');
     } catch (error) {
       console.error('[Scheduler] Data collection failed:', error);
     }

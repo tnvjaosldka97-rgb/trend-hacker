@@ -486,3 +486,33 @@ export async function getTopStocks(timeWindow: '15min' | '24h' | '7d', limit: nu
     .sort((a, b) => b.mentionCount - a.mentionCount)
     .slice(0, limit);
 }
+
+// ============================================
+// System Metadata Functions
+// ============================================
+
+/**
+ * Get system metadata by key
+ */
+export async function getSystemMetadata(key: string) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const { systemMetadata } = await import('../drizzle/schema');
+  const result = await db.select().from(systemMetadata).where(eq(systemMetadata.key, key)).limit(1);
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Set system metadata
+ */
+export async function setSystemMetadata(key: string, value: string) {
+  const db = await getDb();
+  if (!db) return;
+
+  const { systemMetadata } = await import('../drizzle/schema');
+  
+  await db.insert(systemMetadata)
+    .values({ key, value })
+    .onDuplicateKeyUpdate({ set: { value, updatedAt: new Date() } });
+}
