@@ -48,8 +48,10 @@ export default function Home() {
 
   const formatNextUpdate = (date: Date | null) => {
     if (!date) return "";
-    const seconds = Math.floor((new Date(date).getTime() - currentTime.getTime()) / 1000);
-    if (seconds < 0) return "곧 업데이트";
+    const nextUpdateTime = new Date(date).getTime();
+    const now = Date.now();
+    const seconds = Math.floor((nextUpdateTime - now) / 1000);
+    if (seconds <= 0) return "곳 업데이트";
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${minutes}분 ${secs}초 후`;

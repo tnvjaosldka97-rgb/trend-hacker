@@ -9,6 +9,16 @@ export async function getRealtimeTrending() {
   const db = await getDb();
   if (!db) return { stocks: [], lastUpdate: null, nextUpdate: null, totalTweets: 0 };
 
+  // Calculate next update time (every 5 minutes at :00, :05, :10, etc.)
+  const now = new Date();
+  const minutes = now.getMinutes();
+  const nextMinute = Math.ceil(minutes / 5) * 5;
+  const nextUpdate = new Date(now);
+  nextUpdate.setMinutes(nextMinute, 0, 0);
+  if (nextUpdate <= now) {
+    nextUpdate.setMinutes(nextUpdate.getMinutes() + 5);
+  }
+
   const threeMinutesAgo = new Date(Date.now() - 3 * 60 * 1000);
   
   const tweets = await db.select().from(stockTweets)
@@ -53,10 +63,6 @@ export async function getRealtimeTrending() {
   const stocks = Array.from(stockMap.values())
     .sort((a, b) => b.count - a.count)
     .slice(0, 20);
-
-  // Calculate next update (next 3-minute mark)
-  const now = new Date();
-  const nextUpdate = new Date(Math.ceil(now.getTime() / (3 * 60 * 1000)) * (3 * 60 * 1000));
   
   return {
     stocks,
