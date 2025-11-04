@@ -171,9 +171,9 @@ async function main() {
     const saved = await collectFromInfluencer(TOP_INFLUENCERS[i]);
     total += saved;
     
-    // Rate limit 방지 (5초 대기)
+    // Rate limit 방지 (10초 대기)
     if (i < TOP_INFLUENCERS.length - 1) {
-      await new Promise(resolve => setTimeout(resolve, 5000));
+      await new Promise(resolve => setTimeout(resolve, 10000));
     }
   }
   

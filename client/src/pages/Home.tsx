@@ -12,7 +12,7 @@ export default function Home() {
 
   const realtimeQuery = trpc.trending.realtime.useQuery(undefined, {
     enabled: activeTab === "realtime",
-    refetchInterval: 3 * 60 * 1000, // 3분마다 자동 새로고침
+    refetchInterval: 5 * 60 * 1000, // 5분마다 자동 새로고침
   });
 
   const todayQuery = trpc.trending.today.useQuery(undefined, {
