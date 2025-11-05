@@ -182,6 +182,7 @@ export const etfHoldings = mysqlTable("etfHoldings", {
   weight: int("weight").notNull(), // percentage * 100 (850 = 8.5%)
   shares: int("shares"), // number of shares
   marketValue: int("marketValue"), // in cents
+  marketCap: varchar("marketCap", { length: 20 }), // market cap as string to avoid overflow
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
 

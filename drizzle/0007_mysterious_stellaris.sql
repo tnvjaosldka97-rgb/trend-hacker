@@ -1,0 +1,1 @@
+ALTER TABLE `etfHoldings` ADD `marketCap` varchar(20);

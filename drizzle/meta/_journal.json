@@ -50,6 +50,13 @@
       "when": 1762323192647,
       "tag": "0006_funny_naoko",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1762340439822,
+      "tag": "0007_mysterious_stellaris",
+      "breakpoints": true
     }
   ]
 }

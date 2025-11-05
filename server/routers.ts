@@ -245,7 +245,8 @@ export const appRouter = router({
     getHoldings: publicProcedure
       .input(z.object({ etfTicker: z.string() }))
       .query(async ({ input }) => {
-        return await db.getEtfHoldings(input.etfTicker);
+        const holdings = await db.getEtfHoldings(input.etfTicker);
+        return holdings;
       }),
   }),
 

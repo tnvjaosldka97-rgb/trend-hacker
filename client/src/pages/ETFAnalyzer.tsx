@@ -153,8 +153,6 @@ export default function ETFAnalyzer() {
                       <th className="text-left py-3 px-4 text-sm font-bold text-slate-300">순위</th>
                       <th className="text-left py-3 px-4 text-sm font-bold text-slate-300">티커</th>
                       <th className="text-right py-3 px-4 text-sm font-bold text-slate-300">비중 (%)</th>
-                      <th className="text-right py-3 px-4 text-sm font-bold text-slate-300">보유 주식 수</th>
-                      <th className="text-right py-3 px-4 text-sm font-bold text-slate-300">시가총액</th>
                       <th className="text-left py-3 px-4 text-sm font-bold text-slate-300">비중 시각화</th>
                     </tr>
                   </thead>
@@ -167,12 +165,6 @@ export default function ETFAnalyzer() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <span className="font-bold text-green-400">{holding.weight.toFixed(2)}%</span>
-                        </td>
-                        <td className="py-3 px-4 text-right text-slate-300">
-                          {holding.shares ? holding.shares.toLocaleString() : "-"}
-                        </td>
-                        <td className="py-3 px-4 text-right text-slate-300">
-                          {holding.marketValue ? `$${(holding.marketValue / 1000000).toFixed(1)}M` : "-"}
                         </td>
                         <td className="py-3 px-4">
                           <div className="w-full bg-slate-700 rounded-full h-2">

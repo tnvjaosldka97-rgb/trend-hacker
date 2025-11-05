@@ -592,3 +592,28 @@
 - [ ] ETF 검색 페이지 UI 테스트
 - [ ] 체크포인트 저장
 - [ ] GitHub 푸시
+
+
+## Phase 71: ETF 보유종목 시가총액 실시간 계산
+
+### 1. Yahoo Finance API 연동
+- [x] Yahoo Finance API로 종목별 시가총액 조회
+- [x] ETF 비율 xd7 시가총액 계산 로직 추가
+- [x] getMultipleStockQuotes 함수 활용
+
+### 2. tRPC API 수정
+- [x] getETFHoldings API에 시가총액 계산 로직 통합
+- [x] 실시간 데이터 반환 (marketCap, currentPrice, marketValue)
+
+### 3. 테스트 및 배포
+- [x] ETFAnalyzer 페이지 시가총액 표시 수정 (T/B/M 단위)
+- [ ] 체크포인트 저장
+- [ ] GitHub 푸시
+
+
+## 버그 수정: ETF 시가총액 표시 안됨 (비율만 표시하도록 변경)
+- [x] Yahoo Finance API 문제 확인 (API 차단됨)
+- [x] ETF Analyzer UI에서 시가총액/보유주식수 컴럼 제거
+- [x] 비율(%) 컴럼만 표시하도록 UI 수정
+- [x] routers.ts에서 getMultipleStockQuotes API 호출 제거
+- [ ] 테스트 및 체크포인트 저장
