@@ -249,6 +249,46 @@ export const appRouter = router({
       }),
   }),
 
+  subscription: router({
+    getCurrent: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) {
+        return { plan: 'free', expiresAt: null };
+      }
+      const subscription = await db.getUserSubscription(ctx.user.id);
+      return subscription || { plan: 'free', expiresAt: null };
+    }),
+
+    subscribe: publicProcedure
+      .input(z.object({ plan: z.enum(['pro', 'premium']) }))
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user) {
+          throw new Error('로그인이 필요합니다.');
+        }
+        
+        // Calculate expiration date (30 days from now)
+        const expiresAt = new Date();
+        expiresAt.setDate(expiresAt.getDate() + 30);
+        
+        await db.upsertSubscription({
+          userId: ctx.user.id,
+          plan: input.plan,
+          status: 'active',
+          expiresAt,
+        });
+        
+        return { success: true };
+      }),
+
+    cancel: publicProcedure.mutation(async ({ ctx }) => {
+      if (!ctx.user) {
+        throw new Error('로그인이 필요합니다.');
+      }
+      
+      await db.cancelSubscription(ctx.user.id);
+      return { success: true };
+    }),
+  }),
+
   trending: router({
     realtime: publicProcedure.query(async () => {
       const { getRealtimeTrending } = await import('./trending');

@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users } from "lucide-react";
+import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users, PieChart, Crown } from "lucide-react";
 import { useEffect, useState } from "react";
 import StockRanking from "@/components/StockRanking";
 import HotStocks from "@/components/HotStocks";
@@ -176,8 +176,24 @@ export default function Home() {
               </div>
             </div>
             
-            {/* 오른쪽: 업데이트 타이머 */}
+            {/* 오른쪽: 네비게이션 + 업데이트 타이머 */}
             <div className="flex items-center gap-3 sm:gap-8 w-full sm:w-auto justify-between sm:justify-end">
+              {/* ETF 분석기 링크 */}
+              <a
+                href="/etf"
+                className="flex items-center gap-2 px-4 py-2 bg-cyan-600/20 hover:bg-cyan-600/30 border border-cyan-500/50 rounded-lg text-sm text-cyan-300 transition-all"
+              >
+                <PieChart className="w-4 h-4" />
+                ETF 분석기
+              </a>
+              {/* 구독 링크 */}
+              <a
+                href="/subscription"
+                className="flex items-center gap-2 px-4 py-2 bg-yellow-600/20 hover:bg-yellow-600/30 border border-yellow-500/50 rounded-lg text-sm text-yellow-300 transition-all"
+              >
+                <Crown className="w-4 h-4" />
+                AI 리포트 구독
+              </a>
               <div className="text-left sm:text-right">
                 <div className="text-xs text-slate-400 mb-0.5 sm:mb-1">LAST UPDATE</div>
                 <div className="font-mono font-bold text-cyan-300 text-sm sm:text-lg">

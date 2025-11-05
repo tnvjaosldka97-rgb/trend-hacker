@@ -7,6 +7,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import ExpertProfile from "./pages/ExpertProfile";
+import ETFAnalyzer from "./pages/ETFAnalyzer";
+import Subscription from "./pages/Subscription";
 
 function Router() {
   return (
@@ -14,6 +16,8 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path="/expert/:id" component={ExpertProfile} />
+      <Route path="/etf" component={ETFAnalyzer} />
+      <Route path="/subscription" component={Subscription} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

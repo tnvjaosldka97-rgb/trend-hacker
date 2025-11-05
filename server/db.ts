@@ -1,6 +1,6 @@
 import { eq, gte, desc, and, like, sql, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets, stocks, Stock, InsertStock, etfHoldings, EtfHolding, InsertEtfHolding } from "../drizzle/schema";
+import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets, stocks, Stock, InsertStock, etfHoldings, EtfHolding, InsertEtfHolding, subscriptions, Subscription, InsertSubscription } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -611,4 +611,54 @@ export async function upsertEtfHolding(holding: InsertEtfHolding) {
         updatedAt: new Date()
       }
     });
+}
+
+
+// ============================================
+// Subscription Functions
+// ============================================
+
+/**
+ * Get user subscription
+ */
+export async function getUserSubscription(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db.select().from(subscriptions)
+    .where(eq(subscriptions.userId, userId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Upsert subscription
+ */
+export async function upsertSubscription(subscription: InsertSubscription) {
+  const db = await getDb();
+  if (!db) return;
+
+  await db.insert(subscriptions)
+    .values(subscription)
+    .onDuplicateKeyUpdate({
+      set: {
+        plan: subscription.plan,
+        status: subscription.status,
+        expiresAt: subscription.expiresAt,
+        updatedAt: new Date()
+      }
+    });
+}
+
+/**
+ * Cancel subscription
+ */
+export async function cancelSubscription(userId: number) {
+  const db = await getDb();
+  if (!db) return;
+
+  await db.update(subscriptions)
+    .set({ status: 'cancelled', updatedAt: new Date() })
+    .where(eq(subscriptions.userId, userId));
 }
