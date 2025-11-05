@@ -4,11 +4,13 @@ import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users }
 import { useEffect, useState } from "react";
 import StockRanking from "@/components/StockRanking";
 import HotStocks from "@/components/HotStocks";
+import TweetsList from "@/components/TweetsList";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"realtime" | "today" | "weekly" | "consensus">("realtime");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [expandedStocks, setExpandedStocks] = useState<Set<string>>(new Set());
+  const [expandedTweets, setExpandedTweets] = useState<Record<string, any[]>>({});
 
   const realtimeQuery = trpc.trending.realtime.useQuery(undefined, {
     enabled: activeTab === "realtime",
@@ -34,6 +36,21 @@ export default function Home() {
     }, 1000);
     return () => clearInterval(timer);
   }, []);
+
+  // 5분마다 강제 리페치 (타이머 0초 도달 시)
+  useEffect(() => {
+    if (!realtimeQuery.data?.nextUpdate) return;
+    
+    const nextUpdateTime = new Date(realtimeQuery.data.nextUpdate).getTime();
+    const now = Date.now();
+    const seconds = Math.floor((nextUpdateTime - now) / 1000);
+    
+    // 0초 도달 시 강제 리페치
+    if (seconds <= 0 && activeTab === "realtime") {
+      console.log('[Auto Refetch] Timer reached 0, forcing refetch...');
+      realtimeQuery.refetch();
+    }
+  }, [currentTime, realtimeQuery.data?.nextUpdate, activeTab]);
 
   const formatTimeAgo = (date: Date | null) => {
     if (!date) return "";
@@ -244,13 +261,9 @@ export default function Home() {
           </button>
         )}
 
-        {/* 확장된 트윗 리스트 (TODO: 실제 데이터 연동 필요) */}
+        {/* 확장된 트윗 리스트 */}
         {isExpanded && (
-          <div className="mt-4 space-y-3 border-t border-slate-700 pt-4">
-            <div className="text-xs text-slate-500 mb-2">
-              💡 전체 {total}명의 전문가 의견을 곧 표시할 예정입니다
-            </div>
-          </div>
+          <TweetsList ticker={stock.ticker} timeRange={activeTab === "weekly" ? "7d" : "24h"} />
         )}
       </div>
     );
@@ -340,7 +353,7 @@ export default function Home() {
               <Activity className="w-5 h-5 sm:w-6 sm:h-6 text-pink-400" />
               <span className="text-slate-300 text-xs sm:text-sm">업데이트</span>
             </div>
-            <div className="text-2xl sm:text-4xl font-bold text-pink-300">3분</div>
+            <div className="text-2xl sm:text-4xl font-bold text-pink-300">5분</div>
             <div className="text-slate-400 text-xs sm:text-sm mt-0.5 sm:mt-1">자동 갱신</div>
           </div>
         </div>
@@ -356,7 +369,7 @@ export default function Home() {
             }`}
           >
             <Activity className="w-4 h-4 sm:w-5 sm:h-5" />
-            실시간 (3분)
+            실시간 (5분)
           </button>
           <button
             onClick={() => setActiveTab("today")}
@@ -455,7 +468,7 @@ export default function Home() {
                 <Activity className="w-12 h-12 text-cyan-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
               </div>
               <p className="text-slate-300 text-xl font-medium mb-2">
-                {activeTab === "realtime" && "최근 3분간 데이터 수집 중"}
+                {activeTab === "realtime" && "최근 5분간 데이터 수집 중"}
                 {activeTab === "today" && "오늘 데이터 수집 중"}
                 {activeTab === "weekly" && "주간 데이터 수집 중"}
                 {activeTab === "consensus" && "컨센서스 분석 중"}
@@ -489,7 +502,7 @@ export default function Home() {
               <h4 className="text-slate-300 font-semibold mb-4">데이터 소스</h4>
               <ul className="text-slate-400 text-sm space-y-2">
                 <li>Twitter · Reddit · StockTwits</li>
-                <li>3분 간격 자동 업데이트</li>
+                <li>5분 간격 자동 업데이트</li>
               </ul>
             </div>
 

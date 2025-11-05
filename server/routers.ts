@@ -244,6 +244,16 @@ export const appRouter = router({
       const { getWeeklyTrending } = await import('./trending');
       return await getWeeklyTrending();
     }),
+
+    getTweetsByTicker: publicProcedure
+      .input(z.object({
+        ticker: z.string(),
+        timeRange: z.enum(['24h', '7d']).optional().default('24h'),
+        limit: z.number().optional().default(50),
+      }))
+      .query(async ({ input }) => {
+        return await db.getTweetsByTicker(input.ticker, input.timeRange, input.limit);
+      }),
   }),
 });
 

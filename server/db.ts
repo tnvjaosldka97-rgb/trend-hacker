@@ -502,3 +502,31 @@ export async function setSystemMetadata(key: string, value: string) {
     .values({ key, value })
     .onDuplicateKeyUpdate({ set: { value, updatedAt: new Date() } });
 }
+
+// ============================================
+// Stock Tweets Functions
+// ============================================
+
+/**
+ * Get all tweets for a specific ticker (for detailed view)
+ */
+export async function getTweetsByTicker(ticker: string, timeRange: '24h' | '7d' = '24h', limit: number = 50) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const timeAgo = timeRange === '24h' 
+    ? new Date(Date.now() - 24 * 60 * 60 * 1000)
+    : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+
+  const tweets = await db.select().from(stockTweets)
+    .where(
+      and(
+        eq(stockTweets.ticker, ticker),
+        gte(stockTweets.createdAt, timeAgo)
+      )
+    )
+    .orderBy(desc(stockTweets.createdAt))
+    .limit(limit);
+
+  return tweets;
+}

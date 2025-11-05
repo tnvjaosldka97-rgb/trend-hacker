@@ -3,7 +3,7 @@ import { stockTweets } from '../drizzle/schema';
 import { gte, desc } from 'drizzle-orm';
 
 /**
- * Get realtime trending stocks (last 3 minutes)
+ * Get realtime trending stocks (last 5 minutes)
  */
 export async function getRealtimeTrending() {
   const db = await getDb();
@@ -19,10 +19,10 @@ export async function getRealtimeTrending() {
     nextUpdate.setMinutes(nextUpdate.getMinutes() + 5);
   }
 
-  const threeMinutesAgo = new Date(Date.now() - 3 * 60 * 1000);
+  const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
   
   const tweets = await db.select().from(stockTweets)
-    .where(gte(stockTweets.createdAt, threeMinutesAgo))
+    .where(gte(stockTweets.createdAt, fiveMinutesAgo))
     .orderBy(desc(stockTweets.createdAt));
 
   const stockMap = new Map();
