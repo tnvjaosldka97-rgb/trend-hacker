@@ -1,4 +1,4 @@
-import { eq, gte, desc, and, like, sql, isNull } from "drizzle-orm";
+import { eq, gte, desc, and, like, sql, isNull, lt } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets, stocks, Stock, InsertStock, etfHoldings, EtfHolding, InsertEtfHolding, subscriptions, Subscription, InsertSubscription } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -661,4 +661,49 @@ export async function cancelSubscription(userId: number) {
   await db.update(subscriptions)
     .set({ status: 'cancelled', updatedAt: new Date() })
     .where(eq(subscriptions.userId, userId));
+}
+
+/**
+ * Create free trial subscription (7 days)
+ */
+export async function createFreeTrialSubscription(userId: number): Promise<Subscription | null> {
+  const db = await getDb();
+  if (!db) return null;
+
+  // Check if user already has a subscription
+  const existing = await getUserSubscription(userId);
+  if (existing) return existing;
+
+  // Create free trial (7 days)
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + 7);
+
+  await db.insert(subscriptions).values({
+    userId,
+    plan: 'free',
+    status: 'active',
+    expiresAt,
+  });
+
+  return await getUserSubscription(userId);
+}
+
+/**
+ * Check and expire free trial subscriptions
+ */
+export async function expireFreeTrials() {
+  const db = await getDb();
+  if (!db) return;
+
+  const now = new Date();
+  
+  await db.update(subscriptions)
+    .set({ status: 'expired', updatedAt: now })
+    .where(
+      and(
+        eq(subscriptions.plan, 'free'),
+        eq(subscriptions.status, 'active'),
+        lt(subscriptions.expiresAt, now)
+      )
+    );
 }

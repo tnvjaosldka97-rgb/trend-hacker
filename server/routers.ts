@@ -252,10 +252,25 @@ export const appRouter = router({
   subscription: router({
     getCurrent: publicProcedure.query(async ({ ctx }) => {
       if (!ctx.user) {
-        return { plan: 'free', expiresAt: null };
+        return { plan: 'free', status: 'active', expiresAt: null };
       }
-      const subscription = await db.getUserSubscription(ctx.user.id);
-      return subscription || { plan: 'free', expiresAt: null };
+      
+      // Auto-create free trial if user doesn't have subscription
+      let subscription = await db.getUserSubscription(ctx.user.id);
+      if (!subscription) {
+        subscription = await db.createFreeTrialSubscription(ctx.user.id);
+      }
+      
+      // Check if free trial expired
+      if (subscription && subscription.plan === 'free' && subscription.expiresAt) {
+        const now = new Date();
+        if (now > new Date(subscription.expiresAt) && subscription.status === 'active') {
+          await db.expireFreeTrials();
+          subscription = await db.getUserSubscription(ctx.user.id);
+        }
+      }
+      
+      return subscription || { plan: 'free', status: 'active', expiresAt: null };
     }),
 
     subscribe: publicProcedure
@@ -287,6 +302,19 @@ export const appRouter = router({
       await db.cancelSubscription(ctx.user.id);
       return { success: true };
     }),
+
+    generateReport: publicProcedure
+      .input(z.object({ reportType: z.enum(['pro', 'premium']) }))
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user) {
+          throw new Error('로그인이 필요합니다.');
+        }
+        
+        const { generateAIReport } = await import('./ai-report-generator');
+        const report = await generateAIReport(ctx.user.id, input.reportType);
+        
+        return { report };
+      }),
   }),
 
   trending: router({

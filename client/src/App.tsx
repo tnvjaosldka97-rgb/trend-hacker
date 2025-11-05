@@ -9,6 +9,8 @@ import Dashboard from "./pages/Dashboard";
 import ExpertProfile from "./pages/ExpertProfile";
 import ETFAnalyzer from "./pages/ETFAnalyzer";
 import Subscription from "./pages/Subscription";
+import AIReportSample from "./pages/AIReportSample";
+import MobileBlocker from "./components/MobileBlocker";
 
 function Router() {
   return (
@@ -18,6 +20,7 @@ function Router() {
       <Route path="/expert/:id" component={ExpertProfile} />
       <Route path="/etf" component={ETFAnalyzer} />
       <Route path="/subscription" component={Subscription} />
+      <Route path="/ai-report-sample" component={AIReportSample} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
@@ -30,7 +33,9 @@ function App() {
       <ThemeProvider defaultTheme="dark">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <MobileBlocker>
+            <Router />
+          </MobileBlocker>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

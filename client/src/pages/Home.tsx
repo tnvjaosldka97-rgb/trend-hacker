@@ -1,6 +1,6 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users, PieChart, Crown } from "lucide-react";
+import { Activity, BarChart3, ChevronDown, ChevronUp, Clock, TrendingUp, Users, PieChart, Crown, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import StockRanking from "@/components/StockRanking";
 import HotStocks from "@/components/HotStocks";
@@ -186,13 +186,21 @@ export default function Home() {
                 <PieChart className="w-4 h-4" />
                 ETF 분석기
               </a>
+              {/* AI 리포트 샘플 링크 */}
+              <a
+                href="/ai-report-sample"
+                className="flex items-center gap-2 px-3 py-2 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/50 rounded-lg text-sm text-purple-300 transition-all"
+              >
+                <Sparkles className="w-4 h-4" />
+                AI 리포트
+              </a>
               {/* 구독 링크 */}
               <a
                 href="/subscription"
-                className="flex items-center gap-2 px-4 py-2 bg-yellow-600/20 hover:bg-yellow-600/30 border border-yellow-500/50 rounded-lg text-sm text-yellow-300 transition-all"
+                className="flex items-center gap-2 px-3 py-2 bg-yellow-600/20 hover:bg-yellow-600/30 border border-yellow-500/50 rounded-lg text-sm text-yellow-300 transition-all"
               >
                 <Crown className="w-4 h-4" />
-                AI 리포트 구독
+                구독
               </a>
               <div className="text-left sm:text-right">
                 <div className="text-xs text-slate-400 mb-0.5 sm:mb-1">LAST UPDATE</div>
@@ -244,7 +252,7 @@ export default function Home() {
               <Activity className="w-5 h-5 sm:w-6 sm:h-6 text-pink-400" />
               <span className="text-slate-300 text-xs sm:text-sm">업데이트</span>
             </div>
-            <div className="text-2xl sm:text-4xl font-bold text-pink-300">5분</div>
+            <div className="text-2xl sm:text-4xl font-bold text-pink-300">24시간</div>
             <div className="text-slate-400 text-xs sm:text-sm mt-0.5 sm:mt-1">자동 갱신</div>
           </div>
         </div>
@@ -394,7 +402,7 @@ export default function Home() {
               <h4 className="text-slate-300 font-semibold mb-4">데이터 소스</h4>
               <ul className="text-slate-400 text-sm space-y-2">
                 <li>Twitter · Reddit · StockTwits</li>
-                <li>5분 간격 자동 업데이트</li>
+                <li>24시간마다 자동 업데이트</li>
               </ul>
             </div>
 
