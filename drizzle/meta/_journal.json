@@ -43,6 +43,13 @@
       "when": 1762261362068,
       "tag": "0005_spicy_magik",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1762323192647,
+      "tag": "0006_funny_naoko",
+      "breakpoints": true
     }
   ]
 }

@@ -155,3 +155,82 @@ export const predictionResults = mysqlTable("predictionResults", {
 
 export type PredictionResult = typeof predictionResults.$inferSelect;
 export type InsertPredictionResult = typeof predictionResults.$inferInsert;
+
+/**
+ * Stocks table - stores stock master data
+ */
+export const stocks = mysqlTable("stocks", {
+  ticker: varchar("ticker", { length: 10 }).primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  logoUrl: text("logoUrl"),
+  category: varchar("category", { length: 50 }), // Tech, Finance, Healthcare, etc.
+  exchange: varchar("exchange", { length: 20 }), // NASDAQ, NYSE, etc.
+  description: text("description"),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Stock = typeof stocks.$inferSelect;
+export type InsertStock = typeof stocks.$inferInsert;
+
+/**
+ * ETF Holdings table - stores ETF portfolio composition
+ */
+export const etfHoldings = mysqlTable("etfHoldings", {
+  id: int("id").autoincrement().primaryKey(),
+  etfTicker: varchar("etfTicker", { length: 10 }).notNull(),
+  stockTicker: varchar("stockTicker", { length: 10 }).notNull(),
+  weight: int("weight").notNull(), // percentage * 100 (850 = 8.5%)
+  shares: int("shares"), // number of shares
+  marketValue: int("marketValue"), // in cents
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type EtfHolding = typeof etfHoldings.$inferSelect;
+export type InsertEtfHolding = typeof etfHoldings.$inferInsert;
+
+/**
+ * User Portfolios table - stores user's stock/ETF holdings
+ */
+export const userPortfolios = mysqlTable("userPortfolios", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  ticker: varchar("ticker", { length: 10 }).notNull(),
+  shares: int("shares"), // number of shares
+  isEtf: int("isEtf").default(0).notNull(), // 1 = ETF, 0 = individual stock
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type UserPortfolio = typeof userPortfolios.$inferSelect;
+export type InsertUserPortfolio = typeof userPortfolios.$inferInsert;
+
+/**
+ * Watchlists table - stores user's watchlist
+ */
+export const watchlists = mysqlTable("watchlists", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  ticker: varchar("ticker", { length: 10 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Watchlist = typeof watchlists.$inferSelect;
+export type InsertWatchlist = typeof watchlists.$inferInsert;
+
+/**
+ * Subscriptions table - stores user subscription plans
+ */
+export const subscriptions = mysqlTable("subscriptions", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  plan: mysqlEnum("plan", ["free", "pro", "premium"]).default("free").notNull(),
+  status: mysqlEnum("status", ["active", "cancelled", "expired"]).default("active").notNull(),
+  startedAt: timestamp("startedAt").defaultNow().notNull(),
+  expiresAt: timestamp("expiresAt"),
+  stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 100 }),
+  stripeCustomerId: varchar("stripeCustomerId", { length: 100 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Subscription = typeof subscriptions.$inferSelect;
+export type InsertSubscription = typeof subscriptions.$inferInsert;

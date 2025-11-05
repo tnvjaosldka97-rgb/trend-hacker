@@ -421,3 +421,94 @@
 - [ ] 전체 기능 테스트
 - [ ] 체크포인트 저장
 - [ ] GitHub 푸시
+
+
+---
+
+## Phase 65: 티커 표시 기능 구현 (주린이 친화)
+
+### 1. DB 스키마 확장
+- [ ] stocks 테이블 생성 (ticker, name, logo_url, category, exchange)
+- [ ] 기존 stockTweets 테이블과 연결
+
+### 2. 종목 정보 자동 수집
+- [ ] Yahoo Finance API 연동
+- [ ] 크롤링 시 종목 정보 자동 업데이트
+- [ ] 종목 로고 이미지 수집 및 S3 저장
+
+### 3. UI 개선
+- [ ] 모든 티커 옆에 회사명 표시 ($AAPL → $AAPL (Apple Inc.))
+- [ ] 종목 카드에 회사 로고 표시
+- [ ] 카테고리 뱃지 추가 (Tech, Finance, Healthcare 등)
+
+---
+
+## Phase 66: ETF 보유종목 검색 서비스 구현
+
+### 1. DB 스키마 확장
+- [ ] etf_holdings 테이블 생성 (etf_ticker, stock_ticker, weight, shares)
+- [ ] user_portfolios 테이블 생성 (user_id, ticker, shares, is_etf)
+- [ ] watchlists 테이블 생성 (user_id, ticker)
+
+### 2. ETF 데이터 수집
+- [ ] FactSet / Morningstar API 연동 (또는 SEC EDGAR 크롤링)
+- [ ] ETF 보유종목 데이터 수집 스크립트 작성
+- [ ] 주기적 업데이트 스케줄러 (주 1회)
+
+### 3. ETF 검색 기능
+- [ ] ETF 검색 API 구현
+- [ ] ETF 보유종목 TOP 10 조회 API
+- [ ] ETF 검색 페이지 UI 개발
+
+### 4. 포트폴리오 분석 기능
+- [ ] 사용자 포트폴리오 입력 UI
+- [ ] 중복 종목 분석 알고리즘 구현
+- [ ] 섹터별 분산 분석
+- [ ] 차트 시각화 (파이 차트, 바 차트)
+
+---
+
+## Phase 67: AI 리포트 구독 시스템 구축
+
+### 1. 구독 시스템 구축
+- [ ] subscriptions 테이블 생성 (user_id, plan, status, stripe_subscription_id)
+- [ ] Stripe 결제 연동 (webdev_add_feature stripe)
+- [ ] 구독 플랜 관리 API 구현
+
+### 2. AI 리포트 생성
+- [ ] 일간 리포트 생성 로직 (거래량 급등 종목 TOP 5)
+- [ ] 주간 리포트 생성 로직 (주간 HOT 종목 분석)
+- [ ] PDF 생성 기능 구현
+- [ ] 이메일 발송 자동화
+
+### 3. 사용자 관심 종목 관리
+- [ ] 관심 종목 등록/삭제 API
+- [ ] 관심 종목별 전문가 의견 자동 수집
+- [ ] 맞춤형 리포트 생성
+
+### 4. 구독 페이지 UI
+- [ ] Free / Pro / Premium 플랜 비교 테이블
+- [ ] Stripe 결제 버튼
+- [ ] 구독 관리 페이지
+
+---
+
+## Phase 68: 최종 테스트 및 배포
+
+### 1. 전체 기능 테스트
+- [ ] 티커 표시 기능 테스트
+- [ ] ETF 검색 기능 테스트
+- [ ] 포트폴리오 분석 기능 테스트
+- [ ] AI 리포트 생성 테스트
+- [ ] 구독 결제 테스트
+
+### 2. 성능 최적화
+- [ ] DB 쿼리 최적화
+- [ ] 이미지 로딩 최적화
+- [ ] 캐싱 전략 구현
+
+### 3. 배포
+- [ ] 체크포인트 저장
+- [ ] GitHub 푸시
+- [ ] Vercel 재배포
+- [ ] 프로덕션 테스트

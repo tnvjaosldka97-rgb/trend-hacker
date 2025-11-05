@@ -1,6 +1,6 @@
 import { eq, gte, desc, and, like, sql, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets } from "../drizzle/schema";
+import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets, stocks, Stock, InsertStock, etfHoldings, EtfHolding, InsertEtfHolding } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -529,4 +529,86 @@ export async function getTweetsByTicker(ticker: string, timeRange: '24h' | '7d' 
     .limit(limit);
 
   return tweets;
+}
+
+
+// ============================================
+// Stocks Functions
+// ============================================
+
+/**
+ * Get stock information by ticker
+ */
+export async function getStockByTicker(ticker: string): Promise<Stock | null> {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db.select().from(stocks).where(eq(stocks.ticker, ticker.toUpperCase())).limit(1);
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
+ * Upsert stock information
+ */
+export async function upsertStock(stock: InsertStock) {
+  const db = await getDb();
+  if (!db) return;
+
+  await db.insert(stocks)
+    .values(stock)
+    .onDuplicateKeyUpdate({
+      set: {
+        name: stock.name,
+        logoUrl: stock.logoUrl,
+        category: stock.category,
+        exchange: stock.exchange,
+        description: stock.description,
+        updatedAt: new Date()
+      }
+    });
+}
+
+/**
+ * Get all stocks
+ */
+export async function getAllStocks(limit: number = 100): Promise<Stock[]> {
+  const db = await getDb();
+  if (!db) return [];
+
+  return await db.select().from(stocks).limit(limit);
+}
+
+// ============================================
+// ETF Holdings Functions
+// ============================================
+
+/**
+ * Get ETF holdings by ETF ticker
+ */
+export async function getEtfHoldings(etfTicker: string): Promise<EtfHolding[]> {
+  const db = await getDb();
+  if (!db) return [];
+
+  return await db.select().from(etfHoldings)
+    .where(eq(etfHoldings.etfTicker, etfTicker.toUpperCase()))
+    .orderBy(desc(etfHoldings.weight));
+}
+
+/**
+ * Upsert ETF holding
+ */
+export async function upsertEtfHolding(holding: InsertEtfHolding) {
+  const db = await getDb();
+  if (!db) return;
+
+  await db.insert(etfHoldings)
+    .values(holding)
+    .onDuplicateKeyUpdate({
+      set: {
+        weight: holding.weight,
+        shares: holding.shares,
+        marketValue: holding.marketValue,
+        updatedAt: new Date()
+      }
+    });
 }

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import StockRanking from "@/components/StockRanking";
 import HotStocks from "@/components/HotStocks";
 import TweetsList from "@/components/TweetsList";
+import StockCard from "@/components/StockCard";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<"today" | "weekly" | "monthly" | "consensus">("today");
@@ -140,119 +141,7 @@ export default function Home() {
   };
 
   const renderStockCard = (stock: any, index: number) => {
-    const total = stock.bullish + stock.bearish + stock.neutral;
-    const bullishPercent = total > 0 ? Math.round((stock.bullish / total) * 100) : 0;
-    const bearishPercent = total > 0 ? Math.round((stock.bearish / total) * 100) : 0;
-    const neutralPercent = total > 0 ? Math.round((stock.neutral / total) * 100) : 0;
-    const isExpanded = expandedStocks.has(stock.ticker);
-
-    return (
-      <div
-        key={stock.ticker}
-        className={`border-2 ${getSentimentColor(stock)} rounded-lg p-6 transition-all hover:scale-[1.02]`}
-      >
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-2xl font-bold text-cyan-300">${stock.ticker}</span>
-              <TrendingUp className="w-5 h-5 text-cyan-400" />
-            </div>
-            <div className="text-sm text-slate-400">{stock.count}회 언급</div>
-          </div>
-          <div className="text-right">
-            <div className="text-3xl font-bold text-cyan-300">#{index + 1}</div>
-          </div>
-        </div>
-
-        {/* 감성 분석 결과 */}
-        <div className="mb-4 space-y-2">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-green-400">🟢 상승 예상</span>
-            <span className="font-bold text-green-300">{stock.bullish}명 ({bullishPercent}%)</span>
-          </div>
-          <div className="w-full bg-slate-700 rounded-full h-2">
-            <div
-              className="bg-green-500 h-2 rounded-full transition-all"
-              style={{ width: `${bullishPercent}%` }}
-            />
-          </div>
-
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-red-400">🔴 하락 예상</span>
-            <span className="font-bold text-red-300">{stock.bearish}명 ({bearishPercent}%)</span>
-          </div>
-          <div className="w-full bg-slate-700 rounded-full h-2">
-            <div
-              className="bg-red-500 h-2 rounded-full transition-all"
-              style={{ width: `${bearishPercent}%` }}
-            />
-          </div>
-
-          {neutralPercent > 0 && (
-            <>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-slate-400">⚪ 중립</span>
-                <span className="font-bold text-slate-300">{stock.neutral}명 ({neutralPercent}%)</span>
-              </div>
-              <div className="w-full bg-slate-700 rounded-full h-2">
-                <div
-                  className="bg-slate-500 h-2 rounded-full transition-all"
-                  style={{ width: `${neutralPercent}%` }}
-                />
-              </div>
-            </>
-          )}
-        </div>
-
-        {/* 컨센서스 배지 */}
-        {getSentimentBadge(stock)}
-
-        {/* 최신 의견 */}
-        {stock.latestTweet && (
-          <div className="mt-4 pt-4 border-t border-slate-700">
-            <div className="text-sm text-slate-300 mb-2">→ {stock.latestTweet}</div>
-            <div className="flex items-center justify-between text-xs text-slate-500">
-              <span>@{stock.latestTweetAuthor} · {formatTimeAgo(stock.latestTweetTime)}</span>
-              {stock.latestTweetUrl && (
-                <a
-                  href={stock.latestTweetUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-cyan-400 hover:text-cyan-300"
-                >
-                  원문
-                </a>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* 모든 의견 보기 버튼 */}
-        {total > 1 && (
-          <button
-            onClick={() => toggleExpanded(stock.ticker)}
-            className="mt-4 w-full flex items-center justify-center gap-2 py-2 px-4 bg-slate-800/50 hover:bg-slate-700/50 rounded-lg text-sm text-cyan-400 transition-all"
-          >
-            {isExpanded ? (
-              <>
-                <ChevronUp className="w-4 h-4" />
-                접기
-              </>
-            ) : (
-              <>
-                <ChevronDown className="w-4 h-4" />
-                {total}명의 의견 모두 보기
-              </>
-            )}
-          </button>
-        )}
-
-        {/* 확장된 트윗 리스트 */}
-        {isExpanded && (
-          <TweetsList ticker={stock.ticker} timeRange={activeTab === "weekly" ? "7d" : "24h"} />
-        )}
-      </div>
-    );
+    return <StockCard stock={stock} index={index} formatTimeAgo={formatTimeAgo} />;
   };
 
   return (

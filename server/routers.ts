@@ -204,6 +204,18 @@ export const appRouter = router({
       .query(async ({ input }) => {
         return await db.getTopStocks(input.timeWindow, input.limit);
       }),
+
+    getByTicker: publicProcedure
+      .input(z.object({ ticker: z.string() }))
+      .query(async ({ input }) => {
+        return await db.getStockByTicker(input.ticker);
+      }),
+
+    getAll: publicProcedure
+      .input(z.object({ limit: z.number().optional().default(100) }))
+      .query(async ({ input }) => {
+        return await db.getAllStocks(input.limit);
+      }),
   }),
 
   experts: router({
@@ -226,6 +238,14 @@ export const appRouter = router({
       }))
       .query(async ({ input }) => {
         return await db.getPredictionsByInfluencer(input.influencerId, input.limit);
+      }),
+  }),
+
+  etf: router({
+    getHoldings: publicProcedure
+      .input(z.object({ etfTicker: z.string() }))
+      .query(async ({ input }) => {
+        return await db.getEtfHoldings(input.etfTicker);
       }),
   }),
 
