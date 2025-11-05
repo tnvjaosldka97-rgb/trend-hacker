@@ -245,6 +245,11 @@ export const appRouter = router({
       return await getWeeklyTrending();
     }),
 
+    monthly: publicProcedure.query(async () => {
+      const { getMonthlyTrending } = await import('./trending');
+      return await getMonthlyTrending();
+    }),
+
     getTweetsByTicker: publicProcedure
       .input(z.object({
         ticker: z.string(),

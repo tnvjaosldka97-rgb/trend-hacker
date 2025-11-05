@@ -8,7 +8,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
-import { startDataCollectionScheduler } from "../scheduler";
+import { startDailyCollectionScheduler } from "../scheduler";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -93,7 +93,7 @@ async function startServer() {
     console.log(`Server running on http://localhost:${port}/`);
     
     // Start data collection scheduler
-    startDataCollectionScheduler();
+    startDailyCollectionScheduler(); // 매일 새벽 3시 데이터 수집 (Twitter + YouTube)
   });
 }
 

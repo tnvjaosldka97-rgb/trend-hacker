@@ -7,15 +7,12 @@ import HotStocks from "@/components/HotStocks";
 import TweetsList from "@/components/TweetsList";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<"realtime" | "today" | "weekly" | "consensus">("realtime");
+  const [activeTab, setActiveTab] = useState<"today" | "weekly" | "monthly" | "consensus">("today");
   const [currentTime, setCurrentTime] = useState(new Date());
   const [expandedStocks, setExpandedStocks] = useState<Set<string>>(new Set());
   const [expandedTweets, setExpandedTweets] = useState<Record<string, any[]>>({});
 
-  const realtimeQuery = trpc.trending.realtime.useQuery(undefined, {
-    enabled: activeTab === "realtime",
-    refetchInterval: 5 * 60 * 1000, // 5분마다 자동 새로고침
-  });
+  // 실시간 탭 제거 - 하루 1번 크롤링으로 변경
 
   const todayQuery = trpc.trending.today.useQuery(undefined, {
     enabled: activeTab === "today",
@@ -25,32 +22,21 @@ export default function Home() {
     enabled: activeTab === "weekly",
   });
 
+  const monthlyQuery = trpc.trending.monthly.useQuery(undefined, {
+    enabled: activeTab === "monthly",
+  });
+
   const consensusQuery = trpc.trending.today.useQuery(undefined, {
     enabled: activeTab === "consensus",
   });
 
-  // 실시간 타이머
+  // 타이머 제거 - 매일 업데이트로 변경
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
     return () => clearInterval(timer);
   }, []);
-
-  // 5분마다 강제 리페치 (타이머 0초 도달 시)
-  useEffect(() => {
-    if (!realtimeQuery.data?.nextUpdate) return;
-    
-    const nextUpdateTime = new Date(realtimeQuery.data.nextUpdate).getTime();
-    const now = Date.now();
-    const seconds = Math.floor((nextUpdateTime - now) / 1000);
-    
-    // 0초 도달 시 강제 리페치
-    if (seconds <= 0 && activeTab === "realtime") {
-      console.log('[Auto Refetch] Timer reached 0, forcing refetch...');
-      realtimeQuery.refetch();
-    }
-  }, [currentTime, realtimeQuery.data?.nextUpdate, activeTab]);
 
   const formatTimeAgo = (date: Date | null) => {
     if (!date) return "";
@@ -87,11 +73,11 @@ export default function Home() {
   };
 
   const getActiveData = () => {
-    if (activeTab === "realtime") return realtimeQuery.data;
     if (activeTab === "today") return todayQuery.data;
     if (activeTab === "weekly") return weeklyQuery.data;
+    if (activeTab === "monthly") return monthlyQuery.data;
     if (activeTab === "consensus") return consensusQuery.data;
-    return realtimeQuery.data;
+    return todayQuery.data;
   };
 
   const activeData = getActiveData();
@@ -360,17 +346,7 @@ export default function Home() {
 
         {/* 탭 네비게이션 */}
         <div className="flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8 overflow-x-auto pb-2">
-          <button
-            onClick={() => setActiveTab("realtime")}
-            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
-              activeTab === "realtime"
-                ? "bg-red-600 text-white"
-                : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
-            }`}
-          >
-            <Activity className="w-4 h-4 sm:w-5 sm:h-5" />
-            실시간 (5분)
-          </button>
+          {/* 실시간 탭 제거 */}
           <button
             onClick={() => setActiveTab("today")}
             className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
@@ -394,6 +370,17 @@ export default function Home() {
             주간 (7일)
           </button>
           <button
+            onClick={() => setActiveTab("monthly")}
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
+              activeTab === "monthly"
+                ? "bg-indigo-600 text-white"
+                : "bg-slate-800/50 text-slate-400 hover:bg-slate-800"
+            }`}
+          >
+            <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5" />
+            월간 (30일)
+          </button>
+          <button
             onClick={() => setActiveTab("consensus")}
             className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all whitespace-nowrap text-sm sm:text-base ${
               activeTab === "consensus"
@@ -415,8 +402,8 @@ export default function Home() {
         <div className="mb-8">
           <StockRanking 
             timeWindow={
-              activeTab === "realtime" ? "15min" : 
               activeTab === "today" ? "24h" : 
+              activeTab === "weekly" ? "7d" :
               "7d"
             } 
           />
@@ -468,9 +455,9 @@ export default function Home() {
                 <Activity className="w-12 h-12 text-cyan-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
               </div>
               <p className="text-slate-300 text-xl font-medium mb-2">
-                {activeTab === "realtime" && "최근 5분간 데이터 수집 중"}
                 {activeTab === "today" && "오늘 데이터 수집 중"}
                 {activeTab === "weekly" && "주간 데이터 수집 중"}
+                {activeTab === "monthly" && "월간 데이터 수집 중"}
                 {activeTab === "consensus" && "컨센서스 분석 중"}
               </p>
               <p className="text-slate-500 text-sm">전문가들의 의견을 분석하고 있습니다...</p>

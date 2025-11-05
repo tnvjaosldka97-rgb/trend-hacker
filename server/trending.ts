@@ -73,16 +73,19 @@ export async function getRealtimeTrending() {
 }
 
 /**
- * Get today's trending stocks (last 24 hours)
+ * Get today's trending stocks (from 00:00 today)
  */
 export async function getTodayTrending() {
   const db = await getDb();
   if (!db) return { stocks: [], hourlyData: [], totalTweets: 0 };
 
-  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  // Get today's 00:00:00
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayStart = today;
   
   const tweets = await db.select().from(stockTweets)
-    .where(gte(stockTweets.createdAt, oneDayAgo))
+    .where(gte(stockTweets.createdAt, todayStart))
     .orderBy(desc(stockTweets.createdAt));
 
   const stockMap = new Map();
@@ -148,6 +151,67 @@ export async function getTodayTrending() {
   return {
     stocks,
     hourlyData,
+    totalTweets: tweets.length
+  };
+}
+
+/**
+ * Get monthly trending stocks (last 30 days)
+ */
+export async function getMonthlyTrending() {
+  const db = await getDb();
+  if (!db) return { stocks: [], lastUpdate: null, totalTweets: 0 };
+
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  
+  const tweets = await db.select().from(stockTweets)
+    .where(gte(stockTweets.createdAt, thirtyDaysAgo))
+    .orderBy(desc(stockTweets.createdAt));
+
+  const stockMap = new Map();
+  
+  for (const tweet of tweets) {
+    const ticker = tweet.ticker;
+    if (!ticker) continue;
+
+    if (!stockMap.has(ticker)) {
+      stockMap.set(ticker, {
+        ticker,
+        count: 0,
+        bullish: 0,
+        bearish: 0,
+        neutral: 0,
+        latestTweet: '',
+        latestTweetUrl: '',
+        latestTweetAuthor: '',
+        latestTweetTime: null
+      });
+    }
+
+    const stock = stockMap.get(ticker);
+    stock.count++;
+    
+    if (tweet.sentiment === 'bullish') stock.bullish++;
+    else if (tweet.sentiment === 'bearish') stock.bearish++;
+    else stock.neutral++;
+
+    if (!stock.latestTweetTime || tweet.createdAt > stock.latestTweetTime) {
+      stock.latestTweet = tweet.text;
+      stock.latestTweetUrl = tweet.url || '';
+      stock.latestTweetAuthor = tweet.authorName || tweet.authorUsername;
+      stock.latestTweetTime = tweet.createdAt;
+    }
+  }
+
+  const stocks = Array.from(stockMap.values())
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 20);
+
+  const lastUpdate = tweets.length > 0 ? tweets[0].createdAt : null;
+
+  return {
+    stocks,
+    lastUpdate,
     totalTweets: tweets.length
   };
 }

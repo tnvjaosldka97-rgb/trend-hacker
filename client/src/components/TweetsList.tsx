@@ -7,11 +7,14 @@ interface TweetsListProps {
 }
 
 export default function TweetsList({ ticker, timeRange }: TweetsListProps) {
-  const { data: tweets, isLoading } = trpc.trending.getTweetsByTicker.useQuery({
+  const { data: tweets, isLoading, error } = trpc.trending.getTweetsByTicker.useQuery({
     ticker,
     timeRange,
     limit: 50,
   });
+
+  console.log('[TweetsList] ticker:', ticker, 'timeRange:', timeRange);
+  console.log('[TweetsList] isLoading:', isLoading, 'tweets:', tweets?.length, 'error:', error);
 
   if (isLoading) {
     return (
@@ -23,11 +26,22 @@ export default function TweetsList({ ticker, timeRange }: TweetsListProps) {
     );
   }
 
+  if (error) {
+    return (
+      <div className="mt-4 border-t border-slate-700 pt-4">
+        <div className="text-center py-8 text-red-400">
+          오류: {error.message}
+        </div>
+      </div>
+    );
+  }
+
   if (!tweets || tweets.length === 0) {
     return (
       <div className="mt-4 border-t border-slate-700 pt-4">
         <div className="text-center py-8 text-slate-500">
-          아직 수집된 트윗이 없습니다
+          <p>아직 수집된 트윗이 없습니다</p>
+          <p className="text-xs mt-2">(Ticker: {ticker}, Range: {timeRange})</p>
         </div>
       </div>
     );
