@@ -565,3 +565,30 @@
 - [ ] 전체 기능 테스트
 - [ ] 체크포인트 저장
 - [ ] GitHub 푸시
+
+
+## Phase 70: ETF 보유종목 데이터 수집 구현
+
+### 1. DB 스키마 추가
+- [x] etf_holdings 테이블 생성 (etf_ticker, stock_ticker, weight, shares, company_name)
+- [x] 스키마 마이그레이션 실행
+
+### 2. LLM 기반 ETF 데이터 수집
+- [x] LLM 기반 ETF 보유종목 수집 스크립트 작성
+- [x] 주요 ETF 10개 리스트 정의 (SPY, QQQ, VOO, VTI, IWM, XLK, XLF, XLE, XLV, ARKK)
+- [x] 보유종목 데이터 파싱 및 DB 저장 (10 ETFs xd7 20 holdings = 200개)
+
+### 3. 주간 자동 수집 스케줄러
+- [x] 주 1회 자동 수집 스케줄러 추가 (매주 월요일 새벽 2시)
+- [x] 에러 핸들링 및 로깅
+
+### 4. tRPC API 업데이트
+- [x] getETFHoldings API 실제 DB 연동 (이미 구현됨)
+- [x] 검색 결과 반환 로직 구현
+
+### 5. 테스트 및 배포
+- [x] ETF 데이터 수집 테스트 (10/10 성공)
+- [x] DB 데이터 확인 (200개 보유종목)
+- [ ] ETF 검색 페이지 UI 테스트
+- [ ] 체크포인트 저장
+- [ ] GitHub 푸시

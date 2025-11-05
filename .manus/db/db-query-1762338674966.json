@@ -1,0 +1,55 @@
+{
+  "query": "SELECT * FROM etfHoldings WHERE etfTicker = 'SPY' ORDER BY weight DESC LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2X49rbyh5skMcUf.cfd704647716 --database jaL3MeCkWSbFaXkY2XzNnr --execute SELECT * FROM etfHoldings WHERE etfTicker = 'SPY' ORDER BY weight DESC LIMIT 5;",
+  "rows": [
+    {
+      "id": "54",
+      "etfTicker": "SPY",
+      "stockTicker": "MSFT",
+      "weight": "721",
+      "shares": "NULL",
+      "marketValue": "NULL",
+      "updatedAt": "2025-11-05 10:22:38"
+    },
+    {
+      "id": "55",
+      "etfTicker": "SPY",
+      "stockTicker": "AAPL",
+      "weight": "607",
+      "shares": "NULL",
+      "marketValue": "NULL",
+      "updatedAt": "2025-11-05 10:22:39"
+    },
+    {
+      "id": "56",
+      "etfTicker": "SPY",
+      "stockTicker": "NVDA",
+      "weight": "586",
+      "shares": "NULL",
+      "marketValue": "NULL",
+      "updatedAt": "2025-11-05 10:22:39"
+    },
+    {
+      "id": "57",
+      "etfTicker": "SPY",
+      "stockTicker": "AMZN",
+      "weight": "373",
+      "shares": "NULL",
+      "marketValue": "NULL",
+      "updatedAt": "2025-11-05 10:22:40"
+    },
+    {
+      "id": "58",
+      "etfTicker": "SPY",
+      "stockTicker": "GOOGL",
+      "weight": "229",
+      "shares": "NULL",
+      "marketValue": "NULL",
+      "updatedAt": "2025-11-05 10:22:40"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tetfTicker\tstockTicker\tweight\tshares\tmarketValue\tupdatedAt\n54\tSPY\tMSFT\t721\tNULL\tNULL\t2025-11-05 10:22:38\n55\tSPY\tAAPL\t607\tNULL\tNULL\t2025-11-05 10:22:39\n56\tSPY\tNVDA\t586\tNULL\tNULL\t2025-11-05 10:22:39\n57\tSPY\tAMZN\t373\tNULL\tNULL\t2025-11-05 10:22:40\n58\tSPY\tGOOGL\t229\tNULL\tNULL\t2025-11-05 10:22:40\n",
+  "stderr": "",
+  "execution_time_ms": 1507
+}

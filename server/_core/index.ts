@@ -8,7 +8,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
-import { startDailyCollectionScheduler } from "../scheduler";
+import { startDailyCollectionScheduler, startWeeklyETFCollectionScheduler } from "../scheduler";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -94,6 +94,7 @@ async function startServer() {
     
     // Start data collection scheduler
     startDailyCollectionScheduler(); // 매일 새벽 3시 데이터 수집 (Twitter + YouTube)
+    startWeeklyETFCollectionScheduler(); // 매주 월요일 새벽 2시 ETF 보유종목 수집
   });
 }
 

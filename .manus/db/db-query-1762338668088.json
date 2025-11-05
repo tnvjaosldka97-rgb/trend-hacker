@@ -1,0 +1,50 @@
+{
+  "query": "SELECT etfTicker, COUNT(*) as holdings_count FROM etfHoldings GROUP BY etfTicker ORDER BY etfTicker;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2X49rbyh5skMcUf.cfd704647716 --database jaL3MeCkWSbFaXkY2XzNnr --execute SELECT etfTicker, COUNT(*) as holdings_count FROM etfHoldings GROUP BY etfTicker ORDER BY etfTicker;",
+  "rows": [
+    {
+      "etfTicker": "ARKK",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "IWM",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "QQQ",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "SPY",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "VOO",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "VTI",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "XLE",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "XLF",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "XLK",
+      "holdings_count": "20"
+    },
+    {
+      "etfTicker": "XLV",
+      "holdings_count": "20"
+    }
+  ],
+  "messages": [],
+  "stdout": "etfTicker\tholdings_count\nARKK\t20\nIWM\t20\nQQQ\t20\nSPY\t20\nVOO\t20\nVTI\t20\nXLE\t20\nXLF\t20\nXLK\t20\nXLV\t20\n",
+  "stderr": "",
+  "execution_time_ms": 1888
+}

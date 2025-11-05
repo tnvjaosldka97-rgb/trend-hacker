@@ -6,6 +6,45 @@ import path from 'path';
 const execAsync = promisify(exec);
 
 /**
+ * 주 1회 ETF 보유종목 데이터 수집 (매주 월요일 새벽 2시)
+ */
+export function startWeeklyETFCollectionScheduler() {
+  console.log('[Scheduler] Starting weekly ETF holdings collection scheduler (Monday 2 AM KST)...');
+  
+  // 매주 월요일 새벽 2시 실행 (한국 시간 기준, UTC+9)
+  // UTC 시간으로는 일요일 17시
+  cron.schedule('0 17 * * 0', async () => {
+    const now = new Date().toISOString();
+    console.log(`[Scheduler] ${now} - Starting WEEKLY ETF collection...`);
+    
+    try {
+      const etfScriptPath = path.join(process.cwd(), 'scripts/collect-etf-holdings-llm.ts');
+      
+      const { stdout, stderr } = await execAsync(
+        `npx tsx ${etfScriptPath}`,
+        {
+          cwd: process.cwd(),
+          maxBuffer: 10 * 1024 * 1024, // 10MB buffer
+          timeout: 30 * 60 * 1000, // 30분 타임아웃
+        }
+      );
+      
+      if (stdout) {
+        console.log('[Scheduler] ETF collection output:', stdout.slice(-500));
+      }
+      
+      if (stderr) {
+        console.error('[Scheduler] ETF collection errors:', stderr);
+      }
+      
+      console.log(`[Scheduler] ${new Date().toISOString()} - WEEKLY ETF collection completed`);
+    } catch (error) {
+      console.error('[Scheduler] ETF collection failed:', error);
+    }
+  });
+}
+
+/**
  * 매일 새벽 3시에 데이터 수집 (Twitter + YouTube, 180초 간격)
  */
 export function startDailyCollectionScheduler() {
