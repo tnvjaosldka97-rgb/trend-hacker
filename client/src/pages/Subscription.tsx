@@ -41,7 +41,6 @@ export default function Subscription() {
       ],
       limitations: [
         "AI 리포트 미제공",
-        "알림 기능 제한",
       ],
     },
     {
@@ -55,7 +54,6 @@ export default function Subscription() {
         "Free 플랜 모든 기능",
         "주간 AI 리포트 (간단한 요약, 1-2페이지)",
         "전문가 의견 무제한 조회",
-        "실시간 알림 (종목 급등/급락)",
         "광고 제거",
         "포트폴리오 중복 분석",
       ],
@@ -70,8 +68,6 @@ export default function Subscription() {
         "Pro 플랜 모든 기능",
         "일간 심층 AI 리포트 (상세 분석, 3-5페이지)",
         "개인 맞춤형 종목 추천",
-        "전문가 1:1 상담 (월 1회)",
-        "API 액세스 (데이터 다운로드)",
         "우선 고객 지원",
       ],
     },

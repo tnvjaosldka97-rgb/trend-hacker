@@ -311,10 +311,34 @@ export const appRouter = router({
           throw new Error('로그인이 필요합니다.');
         }
         
-        const { generateAIReport } = await import('./ai-report-generator');
-        const report = await generateAIReport(ctx.user.id, input.reportType);
+        const { generateAIReport } = await import('./ai-report');
+        const reportId = await generateAIReport({
+          userId: ctx.user.id,
+          planType: input.reportType,
+          reportDate: new Date(),
+        });
         
-        return { report };
+        return { reportId };
+      }),
+
+    getReports: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) {
+        return [];
+      }
+      
+      const { getUserReports } = await import('./ai-report');
+      return await getUserReports(ctx.user.id);
+    }),
+
+    getReportById: publicProcedure
+      .input(z.object({ reportId: z.number() }))
+      .query(async ({ ctx, input }) => {
+        if (!ctx.user) {
+          throw new Error('로그인이 필요합니다.');
+        }
+        
+        const { getReportById } = await import('./ai-report');
+        return await getReportById(input.reportId, ctx.user.id);
       }),
   }),
 

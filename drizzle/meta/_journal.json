@@ -57,6 +57,13 @@
       "when": 1762340439822,
       "tag": "0007_mysterious_stellaris",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1762341366925,
+      "tag": "0008_brown_captain_midlands",
+      "breakpoints": true
     }
   ]
 }

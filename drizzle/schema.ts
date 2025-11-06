@@ -32,6 +32,22 @@ export type SystemMetadata = typeof systemMetadata.$inferSelect;
 export type InsertSystemMetadata = typeof systemMetadata.$inferInsert;
 
 /**
+ * AI Reports table - stores generated AI reports for users
+ */
+export const aiReports = mysqlTable("aiReports", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId").notNull(),
+  planType: mysqlEnum("planType", ["pro", "premium"]).notNull(),
+  title: varchar("title", { length: 255 }).notNull(),
+  content: text("content").notNull(),
+  reportDate: timestamp("reportDate").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type AiReport = typeof aiReports.$inferSelect;
+export type InsertAiReport = typeof aiReports.$inferInsert;
+
+/**
  * Influencers table - stores information about tracked influencers
  */
 export const influencers = mysqlTable("influencers", {

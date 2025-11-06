@@ -10,6 +10,7 @@ import ExpertProfile from "./pages/ExpertProfile";
 import ETFAnalyzer from "./pages/ETFAnalyzer";
 import Subscription from "./pages/Subscription";
 import AIReportSample from "./pages/AIReportSample";
+import Reports from "./pages/Reports";
 import MobileBlocker from "./components/MobileBlocker";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/etf" component={ETFAnalyzer} />
       <Route path="/subscription" component={Subscription} />
       <Route path="/ai-report-sample" component={AIReportSample} />
+      <Route path="/reports" component={Reports} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
