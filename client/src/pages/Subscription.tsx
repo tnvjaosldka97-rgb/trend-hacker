@@ -53,6 +53,7 @@ export default function Subscription() {
       features: [
         "Free 플랜 모든 기능",
         "주간 AI 리포트 (간단한 요약, 1-2페이지)",
+        "온디맨드 리포트 3회/월",
         "전문가 의견 무제한 조회",
         "광고 제거",
         "포트폴리오 중복 분석",
@@ -67,6 +68,7 @@ export default function Subscription() {
       features: [
         "Pro 플랜 모든 기능",
         "일간 심층 AI 리포트 (상세 분석, 3-5페이지)",
+        "온디맨드 리포트 무제한",
         "개인 맞춤형 종목 추천",
         "우선 고객 지원",
       ],
@@ -84,7 +86,9 @@ export default function Subscription() {
       return;
     }
 
-    subscribeMutation.mutate({ plan: planId as "pro" | "premium" });
+    // Redirect to Kakao Open Chat for subscription
+    window.open('https://open.kakao.com/o/sfOuaU0h', '_blank');
+    toast.success('카카오톡 오픈채팅으로 이동합니다. 구독 문의를 남겨주세요!');
   };
 
   return (

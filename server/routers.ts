@@ -340,6 +340,83 @@ export const appRouter = router({
         const { getReportById } = await import('./ai-report');
         return await getReportById(input.reportId, ctx.user.id);
       }),
+
+    requestOnDemand: publicProcedure
+      .input(z.object({ 
+        topic: z.string(),
+        ticker: z.string().optional(),
+      }))
+      .mutation(async ({ ctx, input }) => {
+        if (!ctx.user) {
+          throw new Error('로그인이 필요합니다.');
+        }
+        
+        // Get user subscription
+        const subscription = await db.getUserSubscription(ctx.user.id);
+        if (!subscription || subscription.plan === 'free') {
+          throw new Error('Pro 또는 Premium 플랜이 필요합니다.');
+        }
+        
+        // Check usage limit for Pro plan
+        if (subscription.plan === 'pro') {
+          // Reset counter if month has passed
+          const now = new Date();
+          const resetDate = new Date(subscription.onDemandResetAt);
+          if (now.getMonth() !== resetDate.getMonth() || now.getFullYear() !== resetDate.getFullYear()) {
+            await db.resetOnDemandUsage(ctx.user.id);
+            subscription.onDemandUsed = 0;
+          }
+          
+          if (subscription.onDemandUsed >= 3) {
+            throw new Error('Pro 플랜은 월 3회까지만 요청할 수 있습니다. Premium으로 업그레이드하세요.');
+          }
+        }
+        
+        // Generate on-demand report
+        const { generateOnDemandReport } = await import('./ai-report');
+        const reportId = await generateOnDemandReport({
+          userId: ctx.user.id,
+          planType: subscription.plan,
+          topic: input.topic,
+          ticker: input.ticker,
+        });
+        
+        // Increment usage counter
+        await db.incrementOnDemandUsage(ctx.user.id);
+        
+        return { reportId, remaining: subscription.plan === 'pro' ? 2 - subscription.onDemandUsed : -1 };
+      }),
+
+    getOnDemandStatus: publicProcedure.query(async ({ ctx }) => {
+      if (!ctx.user) {
+        return { plan: 'free', used: 0, limit: 0, remaining: 0 };
+      }
+      
+      const subscription = await db.getUserSubscription(ctx.user.id);
+      if (!subscription || subscription.plan === 'free') {
+        return { plan: 'free', used: 0, limit: 0, remaining: 0 };
+      }
+      
+      // Reset counter if month has passed
+      const now = new Date();
+      const resetDate = new Date(subscription.onDemandResetAt);
+      if (now.getMonth() !== resetDate.getMonth() || now.getFullYear() !== resetDate.getFullYear()) {
+        await db.resetOnDemandUsage(ctx.user.id);
+        return {
+          plan: subscription.plan,
+          used: 0,
+          limit: subscription.plan === 'pro' ? 3 : -1,
+          remaining: subscription.plan === 'pro' ? 3 : -1,
+        };
+      }
+      
+      return {
+        plan: subscription.plan,
+        used: subscription.onDemandUsed,
+        limit: subscription.plan === 'pro' ? 3 : -1,
+        remaining: subscription.plan === 'pro' ? 3 - subscription.onDemandUsed : -1,
+      };
+    }),
   }),
 
   trending: router({

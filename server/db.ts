@@ -707,3 +707,34 @@ export async function expireFreeTrials() {
       )
     );
 }
+
+/**
+ * Increment on-demand usage counter
+ */
+export async function incrementOnDemandUsage(userId: number) {
+  const db = await getDb();
+  if (!db) return;
+
+  await db.update(subscriptions)
+    .set({ 
+      onDemandUsed: sql`${subscriptions.onDemandUsed} + 1`,
+      updatedAt: new Date()
+    })
+    .where(eq(subscriptions.userId, userId));
+}
+
+/**
+ * Reset on-demand usage counter (monthly)
+ */
+export async function resetOnDemandUsage(userId: number) {
+  const db = await getDb();
+  if (!db) return;
+
+  await db.update(subscriptions)
+    .set({ 
+      onDemandUsed: 0,
+      onDemandResetAt: new Date(),
+      updatedAt: new Date()
+    })
+    .where(eq(subscriptions.userId, userId));
+}

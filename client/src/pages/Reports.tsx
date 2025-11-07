@@ -1,11 +1,14 @@
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { FileText, Lock, Calendar, Sparkles } from "lucide-react";
+import { FileText, Lock, Calendar, Sparkles, Send, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getLoginUrl } from "@/const";
 import { Streamdown } from "streamdown";
 import { Link } from "wouter";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 export default function Reports() {
   const { user, isAuthenticated } = useAuth();
@@ -20,6 +23,40 @@ export default function Reports() {
 
   const currentPlan = subscriptionQuery.data?.plan || "free";
   const reports = reportsQuery.data || [];
+  
+  const [requestTopic, setRequestTopic] = useState("");
+  const [requestTicker, setRequestTicker] = useState("");
+  
+  const onDemandStatusQuery = trpc.subscription.getOnDemandStatus.useQuery(undefined, {
+    enabled: isAuthenticated,
+  });
+  
+  const requestReportMutation = trpc.subscription.requestOnDemand.useMutation({
+    onSuccess: (data) => {
+      toast.success(`리포트가 생성되었습니다! ${data.remaining >= 0 ? `(남은 횟수: ${data.remaining}회)` : ''}`);
+      setRequestTopic("");
+      setRequestTicker("");
+      reportsQuery.refetch();
+      onDemandStatusQuery.refetch();
+    },
+    onError: (error) => {
+      toast.error(error.message || "리포트 생성에 실패했습니다.");
+    },
+  });
+  
+  const handleRequestReport = () => {
+    if (!requestTopic.trim()) {
+      toast.error("주제를 입력해주세요.");
+      return;
+    }
+    
+    requestReportMutation.mutate({
+      topic: requestTopic,
+      ticker: requestTicker || undefined,
+    });
+  };
+  
+  const onDemandStatus = onDemandStatusQuery.data || { plan: 'free', used: 0, limit: 0, remaining: 0 };
 
   // Free plan users see locked message
   if (!isAuthenticated) {
@@ -87,6 +124,56 @@ export default function Reports() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
+        {/* On-Demand Report Request */}
+        {(currentPlan === 'pro' || currentPlan === 'premium') && (
+          <Card className="p-6 bg-slate-900/50 border-cyan-500/30 mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <Send className="w-6 h-6 text-cyan-400" />
+              <h2 className="text-xl font-bold text-cyan-300">온디맨드 리포트 요청</h2>
+            </div>
+            
+            <div className="mb-4">
+              <p className="text-sm text-slate-400 mb-2">
+                {onDemandStatus.plan === 'pro' 
+                  ? `월 ${onDemandStatus.limit}회 사용 가능 (남은 횟수: ${onDemandStatus.remaining}회)`
+                  : '무제한 사용 가능'}
+              </p>
+              <div className="grid md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="text-sm text-slate-300 mb-2 block">주제 *</label>
+                  <Input
+                    placeholder="예: 이번 주 테슬라 분석"
+                    value={requestTopic}
+                    onChange={(e) => setRequestTopic(e.target.value)}
+                    className="bg-slate-800 border-slate-700 text-slate-100"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm text-slate-300 mb-2 block">종목 티커 (선택)</label>
+                  <Input
+                    placeholder="예: TSLA"
+                    value={requestTicker}
+                    onChange={(e) => setRequestTicker(e.target.value.toUpperCase())}
+                    className="bg-slate-800 border-slate-700 text-slate-100"
+                  />
+                </div>
+              </div>
+              <Button
+                onClick={handleRequestReport}
+                disabled={requestReportMutation.isPending || (onDemandStatus.plan === 'pro' && onDemandStatus.remaining <= 0)}
+                className="bg-cyan-600 hover:bg-cyan-700 w-full md:w-auto"
+              >
+                <TrendingUp className="w-4 h-4 mr-2" />
+                {requestReportMutation.isPending ? '생성 중...' : '리포트 요청하기'}
+              </Button>
+            </div>
+            
+            <div className="text-xs text-slate-500 mt-4">
+              <p>팁: "이번 주 테슬라 분석", "엔비디아 최근 동향", "나스닥 100 주간 요약" 등으로 요청해보세요.</p>
+            </div>
+          </Card>
+        )}
+        
         {reportsQuery.isLoading && (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-cyan-500 border-t-transparent"></div>

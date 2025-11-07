@@ -241,6 +241,8 @@ export const subscriptions = mysqlTable("subscriptions", {
   userId: int("userId").notNull(),
   plan: mysqlEnum("plan", ["free", "pro", "premium"]).default("free").notNull(),
   status: mysqlEnum("status", ["active", "cancelled", "expired"]).default("active").notNull(),
+  onDemandUsed: int("onDemandUsed").default(0).notNull(), // Pro: 3/month, Premium: unlimited
+  onDemandResetAt: timestamp("onDemandResetAt").defaultNow().notNull(), // Reset monthly
   startedAt: timestamp("startedAt").defaultNow().notNull(),
   expiresAt: timestamp("expiresAt"),
   stripeSubscriptionId: varchar("stripeSubscriptionId", { length: 100 }),
