@@ -450,6 +450,52 @@ export const appRouter = router({
         return await db.getTweetsByTicker(input.ticker, input.timeRange, input.limit);
       }),
   }),
+
+  // PDF 다운로드
+  pdf: router({
+    downloadReport: publicProcedure
+      .input(z.object({ 
+        content: z.string(),
+        filename: z.string().optional()
+      }))
+      .mutation(async ({ input, ctx }) => {
+        const { exec } = await import('child_process');
+        const { promisify } = await import('util');
+        const execAsync = promisify(exec);
+        const fs = await import('fs/promises');
+        const path = await import('path');
+        
+        const tempDir = '/tmp';
+        const timestamp = Date.now();
+        const mdPath = path.join(tempDir, `report-${timestamp}.md`);
+        const pdfPath = path.join(tempDir, `report-${timestamp}.pdf`);
+        
+        try {
+          // Markdown 파일 생성
+          await fs.writeFile(mdPath, input.content, 'utf-8');
+          
+          // manus-md-to-pdf 유틸리티 사용
+          await execAsync(`manus-md-to-pdf ${mdPath} ${pdfPath}`);
+          
+          // PDF 파일 읽기
+          const pdfBuffer = await fs.readFile(pdfPath);
+          const base64Pdf = pdfBuffer.toString('base64');
+          
+          // 임시 파일 삭제
+          await fs.unlink(mdPath).catch(() => {});
+          await fs.unlink(pdfPath).catch(() => {});
+          
+          return {
+            success: true,
+            pdf: base64Pdf,
+            filename: input.filename || `report-${timestamp}.pdf`
+          };
+        } catch (error) {
+          console.error('PDF generation error:', error);
+          throw new Error('PDF 생성에 실패했습니다.');
+        }
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
