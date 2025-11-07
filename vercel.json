@@ -1,5 +1,11 @@
 {
-  "buildCommand": "pnpm build",
+  "buildCommand": "pnpm build:frontend",
   "outputDirectory": "dist/public",
-  "installCommand": "pnpm install"
+  "installCommand": "pnpm install",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
