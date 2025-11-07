@@ -58,6 +58,36 @@ function extractTickers(text: string): string[] {
 }
 
 /**
+ * YouTube 날짜 파싱 ("2 days ago", "3 weeks ago" 등)
+ */
+function parseYouTubeDate(dateText: string): Date {
+  const now = new Date();
+  
+  // "X hours ago", "X days ago", "X weeks ago", "X months ago" 형식 파싱
+  const match = dateText.match(/(\d+)\s+(hour|day|week|month|year)s?\s+ago/i);
+  if (match) {
+    const value = parseInt(match[1]);
+    const unit = match[2].toLowerCase();
+    
+    switch (unit) {
+      case 'hour':
+        return new Date(now.getTime() - value * 60 * 60 * 1000);
+      case 'day':
+        return new Date(now.getTime() - value * 24 * 60 * 60 * 1000);
+      case 'week':
+        return new Date(now.getTime() - value * 7 * 24 * 60 * 60 * 1000);
+      case 'month':
+        return new Date(now.getTime() - value * 30 * 24 * 60 * 60 * 1000);
+      case 'year':
+        return new Date(now.getTime() - value * 365 * 24 * 60 * 60 * 1000);
+    }
+  }
+  
+  // 파싱 실패 시 현재 시간 반환
+  return now;
+}
+
+/**
  * 감성 분석 (영어 + 한글 키워드)
  */
 function analyzeSentiment(text: string): 'bullish' | 'bearish' | 'neutral' {
@@ -137,7 +167,7 @@ async function collectFromYouTubeChannel(channel: typeof YOUTUBE_CHANNELS[0], re
               url: `https://youtube.com/watch?v=${video.videoId}`,
               likeCount: 0,
               retweetCount: 0,
-              createdAt: new Date(video.publishedTimeText || Date.now()),
+              createdAt: video.publishedTimeText ? parseYouTubeDate(video.publishedTimeText) : new Date(),
             });
             saved++;
           } catch (error: any) {
