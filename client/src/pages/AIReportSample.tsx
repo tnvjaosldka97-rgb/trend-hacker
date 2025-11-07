@@ -16,6 +16,9 @@ const proSampleReport = `# 📊 주간 AI 투자 리포트 (Pro)
 ## 🔥 이번 주 HOT 종목 TOP 5
 
 ### 1. **TSLA (Tesla)** - 🚀 상승세
+
+![TSLA Chart](/chart-tsla.png)
+
 - **언급 횟수**: 61회
 - **전문가 의견**: 80% 긍정적
 - **핵심 포인트**: 4분기 실적 발표 앞두고 기대감 상승. 전기차 판매량 증가세 지속.
@@ -31,11 +34,17 @@ const proSampleReport = `# 📊 주간 AI 투자 리포트 (Pro)
 - **핵심 포인트**: S&P 500 추종 ETF. 시장 전반적으로 안정적.
 
 ### 4. **NVDA (NVIDIA)** - 🔥 강세
+
+![NVDA Chart](/chart-nvda.png)
+
 - **언급 횟수**: 7회
 - **전문가 의견**: 85% 긍정적
 - **핵심 포인트**: AI 반도체 수요 증가. CES 2025 발표 기대.
 
 ### 5. **AAPL (Apple)** - 📱 주목
+
+![AAPL Chart](/chart-aapl.png)
+
 - **언급 횟수**: 6회
 - **전문가 의견**: 70% 긍정적
 - **핵심 포인트**: 아이폰 15 판매 호조. 서비스 부문 성장.
@@ -59,9 +68,18 @@ const premiumSampleReport = `# 📊 일간 AI 투자 심층 리포트 (Premium)
 
 ---
 
+## 🌎 시장 개황
+
+![Market Overview](/chart-market-overview.png)
+
+---
+
 ## 🔥 오늘의 HOT 종목 TOP 10
 
 ### 1. **TSLA (Tesla, Inc.)** - 🚀 강력 매수 신호
+
+![TSLA Chart](/chart-tsla.png)
+
 - **언급 횟수**: 61회 | **전문가 의견**: 80% 긍정적 (49명 상승, 12명 중립)
 - **현재가**: $248.50 | **전일 대비**: +3.2%
 - **핵심 분석**:
@@ -72,6 +90,9 @@ const premiumSampleReport = `# 📊 일간 AI 투자 심층 리포트 (Premium)
 - **투자 전략**: 단기 (1주) 목표가 $260, 중기 (1개월) $280
 
 ### 2. **NVDA (NVIDIA Corporation)** - 🔥 AI 반도체 강자
+
+![NVDA Chart](/chart-nvda.png)
+
 - **언급 횟수**: 7회 | **전문가 의견**: 85% 긍정적
 - **현재가**: $495.20 | **전일 대비**: +1.8%
 - **핵심 분석**:
@@ -82,6 +103,9 @@ const premiumSampleReport = `# 📊 일간 AI 투자 심층 리포트 (Premium)
 - **투자 전략**: 장기 보유 추천, 목표가 $550
 
 ### 3. **AAPL (Apple Inc.)** - 📱 서비스 부문 성장
+
+![AAPL Chart](/chart-aapl.png)
+
 - **언급 횟수**: 6회 | **전문가 의견**: 70% 긍정적
 - **현재가**: $185.30 | **전일 대비**: +0.5%
 - **핵심 분석**:
@@ -109,6 +133,8 @@ const premiumSampleReport = `# 📊 일간 AI 투자 심층 리포트 (Premium)
 ---
 
 ## 📊 섹터별 분석
+
+![Sector Performance](/chart-sector-performance.png)
 
 ### 🖥️ 기술 섹터 (Technology)
 - **전망**: 강세 지속
@@ -253,29 +279,101 @@ export default function AIReportSample() {
           </Button>
         </div>
 
-        {/* Description */}
+        {/* Description - 구독 플랜별 제공 내역 */}
         <div className="mb-8 max-w-3xl mx-auto">
-          <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-6">
-            <h2 className="text-xl font-bold text-white mb-4">
-              {reportType === "pro" ? "Pro 플랜 리포트" : "Premium 플랜 리포트"}
-            </h2>
-            <div className="space-y-2 text-slate-300">
+          <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-8">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-white mb-2">
+                {reportType === "pro" ? (
+                  <>
+                    <span className="text-cyan-400">Pro</span> 플랜 리포트
+                  </>
+                ) : (
+                  <>
+                    <span className="text-yellow-400">Premium</span> 플랜 리포트
+                  </>
+                )}
+              </h2>
+              <p className="text-slate-400">
+                {reportType === "pro" 
+                  ? "주간 AI 리포트 (지난 보요, 1-2페이지)"
+                  : "일간 심층 AI 리포트 (상세 분석, 3-5페이지)"
+                }
+              </p>
+            </div>
+            
+            <div className="space-y-3 text-slate-200">
               {reportType === "pro" ? (
                 <>
-                  <p>• <strong>주간 1회</strong> 발송 (매주 월요일)</p>
-                  <p>• <strong>1-2페이지</strong> 분량의 간단한 요약</p>
-                  <p>• 상위 5개 종목 핵심 분석</p>
-                  <p>• 전반적인 시장 분위기 요약</p>
-                  <p>• 다음 주 주목할 포인트 (불릿 포인트)</p>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>Free 플랜 모든 기능</strong>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>주간 AI 리포트</strong> (지난 보요, 1-2페이지)
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>온디맨드 리포트 3회/주</strong>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>전문가 의견 무제한 조회</strong>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>광고 제거</strong>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>포트폴리오 중간 분석</strong>
+                    </div>
+                  </div>
                 </>
               ) : (
                 <>
-                  <p>• <strong>일간 1회</strong> 발송 (매일 오전 9시)</p>
-                  <p>• <strong>3-5페이지</strong> 분량의 상세 분석</p>
-                  <p>• 상위 10개 종목 심층 분석</p>
-                  <p>• 섹터별 분석 및 거시경제 영향</p>
-                  <p>• 투자 전략 제안 (단기/중기)</p>
-                  <p>• 리스크 관리 가이드라인</p>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>Pro 플랜 모든 기능</strong>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>일간 심층 AI 리포트</strong> (상세 분석, 3-5페이지)
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>온디맨드 리포트 무제한</strong>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>개인 맞춤형 종목 추천</strong>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <span className="text-green-400 mt-1">✓</span>
+                    <div>
+                      <strong>우선 고객 지원</strong>
+                    </div>
+                  </div>
                 </>
               )}
             </div>
@@ -303,10 +401,21 @@ export default function AIReportSample() {
           </Button>
         </div>
 
-        {/* Report Display */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white text-slate-900 rounded-lg shadow-2xl p-8 md:p-12">
-            <div className="prose prose-slate max-w-none">
+        {/* Report Display - 트렌드해커 스타일 */}
+        <div className="max-w-5xl mx-auto">
+          <div className="bg-slate-900/80 border border-slate-700/50 rounded-xl shadow-2xl p-8 md:p-12 backdrop-blur-sm">
+            <div className="prose prose-invert prose-cyan max-w-none
+              prose-headings:text-slate-100 
+              prose-h1:text-3xl prose-h1:font-bold prose-h1:mb-6 prose-h1:pb-4 prose-h1:border-b prose-h1:border-slate-700
+              prose-h2:text-2xl prose-h2:font-bold prose-h2:text-cyan-300 prose-h2:mt-8 prose-h2:mb-4
+              prose-h3:text-xl prose-h3:font-semibold prose-h3:text-slate-200 prose-h3:mt-6 prose-h3:mb-3
+              prose-p:text-slate-300 prose-p:leading-relaxed
+              prose-strong:text-white prose-strong:font-semibold
+              prose-ul:text-slate-300 prose-li:text-slate-300
+              prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:text-cyan-300
+              prose-img:rounded-lg prose-img:shadow-lg prose-img:border prose-img:border-slate-700
+              prose-hr:border-slate-700 prose-hr:my-8
+              prose-blockquote:border-l-cyan-500 prose-blockquote:text-slate-400">
               <Streamdown>{currentReport}</Streamdown>
             </div>
           </div>
