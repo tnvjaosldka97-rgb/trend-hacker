@@ -30,11 +30,17 @@ export function generateDeviceFingerprint(userAgent: string, ipAddress: string):
 export async function checkTrialEligibility(
   userId: number | null,
   ipAddress: string,
-  userAgent: string
+  userAgent: string,
+  userRole?: string
 ): Promise<TrialCheckResult> {
   const db = await getDb();
   if (!db) {
     return { allowed: false, reason: "데이터베이스 연결 실패" };
+  }
+
+  // 0. 관리자는 제한 없이 접근 허용
+  if (userRole === "admin") {
+    return { allowed: true };
   }
 
   const deviceFingerprint = generateDeviceFingerprint(userAgent, ipAddress);
