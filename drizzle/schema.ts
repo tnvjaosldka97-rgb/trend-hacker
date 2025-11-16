@@ -253,3 +253,21 @@ export const subscriptions = mysqlTable("subscriptions", {
 
 export type Subscription = typeof subscriptions.$inferSelect;
 export type InsertSubscription = typeof subscriptions.$inferInsert;
+
+/**
+ * Free Trial Tracking table - prevents abuse by tracking IP/device fingerprints
+ */
+export const freeTrialTracking = mysqlTable("freeTrialTracking", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"),
+  ipAddress: varchar("ipAddress", { length: 45 }).notNull(), // IPv6 support
+  deviceFingerprint: varchar("deviceFingerprint", { length: 255 }).notNull(),
+  userAgent: text("userAgent"),
+  trialStartedAt: timestamp("trialStartedAt").defaultNow().notNull(),
+  trialExpiresAt: timestamp("trialExpiresAt").notNull(),
+  isBlocked: int("isBlocked").default(0).notNull(), // 1 = blocked
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type FreeTrialTracking = typeof freeTrialTracking.$inferSelect;
+export type InsertFreeTrialTracking = typeof freeTrialTracking.$inferInsert;

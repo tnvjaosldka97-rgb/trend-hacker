@@ -71,6 +71,13 @@
       "when": 1762521029586,
       "tag": "0009_tearful_nemesis",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1763300895741,
+      "tag": "0010_light_masque",
+      "breakpoints": true
     }
   ]
 }

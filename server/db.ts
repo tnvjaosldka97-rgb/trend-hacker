@@ -1,6 +1,6 @@
-import { eq, gte, desc, and, like, sql, isNull, lt } from "drizzle-orm";
+import { eq, gte, desc, and, like, sql, or, isNull, lt } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets, stocks, Stock, InsertStock, etfHoldings, EtfHolding, InsertEtfHolding, subscriptions, Subscription, InsertSubscription } from "../drizzle/schema";
+import { InsertUser, users, influencers, contents, InsertContent, Influencer, Content, stockTweets, stocks, Stock, InsertStock, etfHoldings, EtfHolding, InsertEtfHolding, subscriptions, Subscription, InsertSubscription, freeTrialTracking } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -737,4 +737,100 @@ export async function resetOnDemandUsage(userId: number) {
       updatedAt: new Date()
     })
     .where(eq(subscriptions.userId, userId));
+}
+
+// ==================== Subscription Management ====================
+
+export async function getAllSubscriptionsWithUsers() {
+  const db = await getDb();
+  if (!db) return [];
+
+  const result = await db
+    .select({
+      subscription: subscriptions,
+      user: users,
+    })
+    .from(subscriptions)
+    .leftJoin(users, eq(users.id, subscriptions.userId));
+
+  return result.map((row) => ({
+    ...row.subscription,
+    user: row.user || { id: 0, name: null, email: null, openId: "", role: "user" as const, createdAt: new Date(), updatedAt: new Date(), lastSignedIn: new Date(), loginMethod: null },
+  }));
+}
+
+export async function updateSubscriptionByUserId(
+  userId: number,
+  updates: Partial<{
+    plan: "free" | "pro" | "premium";
+    status: "active" | "cancelled" | "expired";
+    expiresAt: Date | null;
+    onDemandUsed: number;
+  }>
+) {
+  const db = await getDb();
+  if (!db) return null;
+
+  await db
+    .update(subscriptions)
+    .set(updates)
+    .where(eq(subscriptions.userId, userId));
+
+  return true;
+}
+
+export async function getSubscriptionByUserId(userId: number) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db
+    .select()
+    .from(subscriptions)
+    .where(eq(subscriptions.userId, userId))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : null;
+}
+
+export async function createSubscription(subscription: InsertSubscription) {
+  const db = await getDb();
+  if (!db) return null;
+
+  await db.insert(subscriptions).values(subscription);
+  return true;
+}
+
+// ==================== Free Trial Tracking ====================
+
+export async function trackFreeTrial(data: {
+  userId: number | null;
+  ipAddress: string;
+  deviceFingerprint: string;
+  userAgent: string;
+  trialExpiresAt: Date;
+}) {
+  const db = await getDb();
+  if (!db) return null;
+
+  await db.insert(freeTrialTracking).values({
+    ...data,
+    trialStartedAt: new Date(),
+    isBlocked: 0,
+    createdAt: new Date(),
+  });
+
+  return true;
+}
+
+export async function getTrialByIpOrFingerprint(ipAddress: string, fingerprint: string) {
+  const db = await getDb();
+  if (!db) return null;
+
+  const result = await db
+    .select()
+    .from(freeTrialTracking)
+    .where(or(eq(freeTrialTracking.ipAddress, ipAddress), eq(freeTrialTracking.deviceFingerprint, fingerprint)))
+    .limit(1);
+
+  return result.length > 0 ? result[0] : null;
 }

@@ -11,6 +11,7 @@ import ETFAnalyzer from "./pages/ETFAnalyzer";
 import Subscription from "./pages/Subscription";
 import AIReportSample from "./pages/AIReportSample";
 import Reports from "./pages/Reports";
+import AdminSubscriptions from "./pages/AdminSubscriptions";
 import MobileBlocker from "./components/MobileBlocker";
 
 function Router() {
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/subscription" component={Subscription} />
       <Route path="/ai-report-sample" component={AIReportSample} />
       <Route path="/reports" component={Reports} />
+      <Route path="/admin/subscriptions" component={AdminSubscriptions} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

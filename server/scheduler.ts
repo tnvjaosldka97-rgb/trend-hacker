@@ -5,7 +5,7 @@ import path from 'path';
 import { generateAIReport } from './ai-report';
 import { getDb } from './db';
 import { subscriptions } from '../drizzle/schema';
-import { eq } from 'drizzle-orm';
+import { eq, and } from 'drizzle-orm';
 
 const execAsync = promisify(exec);
 
@@ -163,8 +163,7 @@ async function generateReportsForPlan(planType: 'pro' | 'premium') {
     const activeSubscribers = await db
       .select()
       .from(subscriptions)
-      .where(eq(subscriptions.plan, planType))
-      .where(eq(subscriptions.status, 'active'));
+      .where(and(eq(subscriptions.plan, planType), eq(subscriptions.status, 'active')));
 
     console.log(`[Report Scheduler] Found ${activeSubscribers.length} active ${planType} subscribers`);
 
