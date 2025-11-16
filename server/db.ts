@@ -834,3 +834,21 @@ export async function getTrialByIpOrFingerprint(ipAddress: string, fingerprint: 
 
   return result.length > 0 ? result[0] : null;
 }
+
+
+// ==================== Super Admin - User Management ====================
+
+export async function getAllUsers() {
+  const db = await getDb();
+  if (!db) return [];
+
+  const result = await db.select().from(users).orderBy(desc(users.createdAt));
+  return result;
+}
+
+export async function updateUserRole(userId: number, role: "user" | "admin") {
+  const db = await getDb();
+  if (!db) return;
+
+  await db.update(users).set({ role }).where(eq(users.id, userId));
+}

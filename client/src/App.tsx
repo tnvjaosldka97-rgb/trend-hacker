@@ -12,6 +12,7 @@ import Subscription from "./pages/Subscription";
 import AIReportSample from "./pages/AIReportSample";
 import Reports from "./pages/Reports";
 import AdminSubscriptions from "./pages/AdminSubscriptions";
+import SuperAdmin from "./pages/SuperAdmin";
 import MobileBlocker from "./components/MobileBlocker";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/ai-report-sample" component={AIReportSample} />
       <Route path="/reports" component={Reports} />
       <Route path="/admin/subscriptions" component={AdminSubscriptions} />
+      <Route path="/super-admin" component={SuperAdmin} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

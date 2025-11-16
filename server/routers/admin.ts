@@ -4,6 +4,8 @@ import { TRPCError } from "@trpc/server";
 import {
   getAllSubscriptionsWithUsers,
   updateSubscriptionByUserId,
+  getAllUsers,
+  updateUserRole,
 } from "../db";
 
 // Admin-only middleware
@@ -35,6 +37,24 @@ export const adminRouter = router({
     .mutation(async ({ input }) => {
       const { userId, ...updates } = input;
       await updateSubscriptionByUserId(userId, updates);
+      return { success: true };
+    }),
+
+  // 슈퍼어드민 - 전체 사용자 목록
+  listAllUsers: adminProcedure.query(async () => {
+    return await getAllUsers();
+  }),
+
+  // 슈퍼어드민 - 사용자 권한 변경
+  updateUserRole: adminProcedure
+    .input(
+      z.object({
+        userId: z.number(),
+        role: z.enum(["user", "admin"]),
+      })
+    )
+    .mutation(async ({ input }) => {
+      await updateUserRole(input.userId, input.role);
       return { success: true };
     }),
 });
