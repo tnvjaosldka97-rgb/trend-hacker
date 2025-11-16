@@ -92,6 +92,10 @@ export default function SuperAdmin() {
                   <TableHead className="text-slate-300">이메일</TableHead>
                   <TableHead className="text-slate-300">로그인 방법</TableHead>
                   <TableHead className="text-slate-300">권한</TableHead>
+                  <TableHead className="text-slate-300">구독 플랜</TableHead>
+                  <TableHead className="text-slate-300">구독 상태</TableHead>
+                  <TableHead className="text-slate-300">만료일</TableHead>
+                  <TableHead className="text-slate-300">마지막 로그인</TableHead>
                   <TableHead className="text-slate-300">가입일</TableHead>
                   <TableHead className="text-slate-300 text-right">관리</TableHead>
                 </TableRow>
@@ -121,6 +125,58 @@ export default function SuperAdmin() {
                       >
                         {user.role === "admin" ? "관리자" : "일반 사용자"}
                       </Badge>
+                    </TableCell>
+                    <TableCell>
+                      {user.subscriptionPlan ? (
+                        <Badge
+                          className={
+                            user.subscriptionPlan === "premium"
+                              ? "bg-yellow-500/20 text-yellow-300 border-yellow-500/50"
+                              : user.subscriptionPlan === "pro"
+                              ? "bg-cyan-500/20 text-cyan-300 border-cyan-500/50"
+                              : "bg-slate-500/20 text-slate-300 border-slate-500/50"
+                          }
+                        >
+                          {user.subscriptionPlan === "premium"
+                            ? "Premium"
+                            : user.subscriptionPlan === "pro"
+                            ? "Pro"
+                            : "Free"}
+                        </Badge>
+                      ) : (
+                        <span className="text-slate-500">구독 없음</span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {user.subscriptionStatus ? (
+                        <Badge
+                          className={
+                            user.subscriptionStatus === "active"
+                              ? "bg-green-500/20 text-green-300 border-green-500/50"
+                              : user.subscriptionStatus === "cancelled"
+                              ? "bg-orange-500/20 text-orange-300 border-orange-500/50"
+                              : "bg-red-500/20 text-red-300 border-red-500/50"
+                          }
+                        >
+                          {user.subscriptionStatus === "active"
+                            ? "활성"
+                            : user.subscriptionStatus === "cancelled"
+                            ? "취소됨"
+                            : "만료됨"}
+                        </Badge>
+                      ) : (
+                        <span className="text-slate-500">-</span>
+                      )}
+                    </TableCell>
+                    <TableCell className="text-slate-300">
+                      {user.subscriptionExpiresAt
+                        ? new Date(user.subscriptionExpiresAt).toLocaleDateString("ko-KR")
+                        : "-"}
+                    </TableCell>
+                    <TableCell className="text-slate-300">
+                      {user.lastSignedIn
+                        ? new Date(user.lastSignedIn).toLocaleString("ko-KR")
+                        : "로그인 기록 없음"}
                     </TableCell>
                     <TableCell className="text-slate-300">
                       {new Date(user.createdAt).toLocaleDateString("ko-KR")}

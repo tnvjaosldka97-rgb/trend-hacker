@@ -842,7 +842,25 @@ export async function getAllUsers() {
   const db = await getDb();
   if (!db) return [];
 
-  const result = await db.select().from(users).orderBy(desc(users.createdAt));
+  const result = await db
+    .select({
+      id: users.id,
+      openId: users.openId,
+      name: users.name,
+      email: users.email,
+      loginMethod: users.loginMethod,
+      role: users.role,
+      createdAt: users.createdAt,
+      lastSignedIn: users.lastSignedIn,
+      // Subscription info
+      subscriptionPlan: subscriptions.plan,
+      subscriptionStatus: subscriptions.status,
+      subscriptionExpiresAt: subscriptions.expiresAt,
+    })
+    .from(users)
+    .leftJoin(subscriptions, eq(users.id, subscriptions.userId))
+    .orderBy(desc(users.createdAt));
+
   return result;
 }
 
